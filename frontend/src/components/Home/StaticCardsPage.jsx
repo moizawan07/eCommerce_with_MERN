@@ -4,40 +4,40 @@ const StaticCardPage = () => {
   const products = [
     {
       discount: '-40%',
-      imageUrl: '/assets/slide1.png', // Replace with actual image URL
-      title: 'HAVIT HV-G92 Gamepad',
-      oldPrice: 160,
-      newPrice: 120,
+      imageUrl: '/assets/Stgamingc2.png', // Replace with actual image URL
+      title: 'Gaming Controller',
+      oldPrice: 3000,
+      newPrice: 2400,
       rating: 4.5,
       reviews: 88,
       btnHide : true,
     },
     {
       discount: '-35%',
-      imageUrl: '/assets/slide2.png', // Replace with actual image URL
-      title: 'AK-900 Wired Keyboard',
-      oldPrice: 1160,
-      newPrice: 960,
+      imageUrl: '/assets/Stphone2.png', // Replace with actual image URL
+      title: 'Mobile',
+      oldPrice: 95600,
+      newPrice: 85000,
       rating: 4.0,
       reviews: 75,
       btnHide : true
     },
     {
       discount: '-30%',
-      imageUrl: '/assets/slide3.png', // Replace with actual image URL
-      title: 'IPS LCD Gaming Monitor',
-      oldPrice: 400,
-      newPrice: 370,
+      imageUrl: '/assets/Stlaptop2.png', // Replace with actual image URL
+      title: 'Laptop',
+      oldPrice: 55500,
+      newPrice: 49500,
       rating: 3.5,
       reviews: 99,
       btnHide : true
     },
     {
       discount: '-25%',
-      imageUrl: '/assets/slide4.png', // Replace with actual image URL
-      title: 'S-Series Comfort Chair',
-      oldPrice: 400,
-      newPrice: 375,
+      imageUrl: '/assets/Stheadp1.png', // Replace with actual image URL
+      title: 'Head Phone',
+      oldPrice: 3500,
+      newPrice: 2200,
       rating: 4.8,
       reviews: 99,
       btnHide : true

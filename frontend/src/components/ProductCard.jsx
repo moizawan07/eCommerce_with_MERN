@@ -36,7 +36,7 @@ const DameCards = ({
         <img
           src={imageUrl}
           alt={title}
-          className="w-full h-48 object-cover transition-opacity duration-300 rounded"
+          className="w-full h-52 object-cover transition-opacity duration-300 rounded"
           style={{ opacity: isHovered ? 0.8 : 1 }}
         />
 

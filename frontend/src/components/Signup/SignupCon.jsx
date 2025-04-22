@@ -117,14 +117,10 @@ const SignUpPage = () => {
         headers : {"Content-type": "application/json"},
         body : JSON.stringify(formValue)
       })
-
-      console.log("response ==>", response);
       let resData = await response.json()
 
-      console.log("resDara ==>", resData);
-      
        if(response.status != 201){
-        setServerMsg(resData.message)
+        return setServerMsg(resData.message)
        }
 
        setServerMsg(resData.message)

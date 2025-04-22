@@ -42,10 +42,10 @@ const HeroSection = () => {
           showStatus={false}
           interval={3000}
         >
-          {[1, 2, 3, 4, 5].map((num) => (
+          {[1,2,3,4,5].map((num) => (
             <div key={num}>
               <img
-                src={`/assets/slide${num}.png`}
+                src={`/assets/crousel${num}.png`}
                 alt={`Slide${num}`}
                 className="rounded-lg h-64 md:h-105 - w-full"
               />

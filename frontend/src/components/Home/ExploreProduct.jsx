@@ -5,58 +5,58 @@ import ViewProductsBtn from "./ViewProductsBtn";
 const products = [
     {
       discount: '-5%',
-      imageUrl: '/assets/slide3.png', // Replace with actual image URL
-      title: 'Camera',
-      oldPrice: 550,
-      newPrice: 500,
+      imageUrl: '/assets/Stlaptop1.png', // Replace with actual image URL
+      title: 'Laptop',
+      oldPrice: 75000,
+      newPrice: 69000,
       rating: 4.3,
       reviews: 82,
       btnHide : true
     },
     {
       discount: '-25%',
-      imageUrl: '/assets/slide1.png', // Replace with actual image URL
-      title: 'Laptap keyboard',
-      oldPrice: 1360,
-      newPrice: 900,
+      imageUrl: '/assets/Stwatch2.png', // Replace with actual image URL
+      title: 'Head Phone',
+      oldPrice: 2760,
+      newPrice: 1850,
       rating: 3.8,
       reviews: 62,
       btnHide : true
     },
     {
+      discount: '-36%',
+      imageUrl: '/assets/Stgamingc2.png', // Replace with actual image URL
+      title: 'Gaming Controller',
+      oldPrice: 4500,
+      newPrice: 3800,
+      rating: 4.5,
+      reviews: 73,
+      btnHide : true
+    },
+    {
       discount: '-10%',
-      imageUrl: '/assets/slide5.png', // Replace with actual image URL
-      title: 'headPhone',
-      oldPrice: 600,
-      newPrice: 450,
+      imageUrl: '/assets/Stphone1.png', // Replace with actual image URL
+      title: 'Phone',
+      oldPrice: 32000,
+      newPrice: 29500,
       rating: 3.1,
       reviews: 150,
       btnHide : true
     },
     {
-      discount: '-16%',
-      imageUrl: '/assets/slide2.png', // Replace with actual image URL
-      title: 'Gaming Remote',
-      oldPrice: 3000,
-      newPrice: 1550,
-      rating: 5.7,
-      reviews: 75,
-      btnHide : true
-    },
-    {
       discount: '-25%',
-      imageUrl: '/assets/slide4.png', // Replace with actual image URL
-      title: 'watch',
-      oldPrice: 6500,
-      newPrice: 4550,
+      imageUrl: '/assets/Stphone3.png', // Replace with actual image URL
+      title: 'Phone',
+      oldPrice: 22500,
+      newPrice: 20500,
       rating: 3,
       reviews: 45,
       btnHide : true
     },
     {
       discount: '-35%',
-      imageUrl: '/assets/slide1.png', // Replace with actual image URL
-      title: 'mobile',
+      imageUrl: '/assets/Stlaptop3.png', // Replace with actual image URL
+      title: 'Tablet',
       oldPrice: 50000,
       newPrice: 42000,
       rating: 6.7,
@@ -65,24 +65,25 @@ const products = [
     },
     {
       discount: '-7%',
-      imageUrl: '/assets/slide2.png', // Replace with actual image URL
-      title: 'creative',
-      oldPrice: 4500,
-      newPrice: 3900,
+      imageUrl: '/assets/Stwatch3.png', // Replace with actual image URL
+      title: 'Phone',
+      oldPrice: 45000,
+      newPrice: 39000,
       rating: 5.7,
       reviews: 75,
       btnHide : true
     },
     {
-      discount: '-36%',
-      imageUrl: '/assets/slide4.png', // Replace with actual image URL
-      title: 'creative',
-      oldPrice: 2300,
-      newPrice: 3600,
-      rating: 4.5,
-      reviews: 73,
+      discount: '-16%',
+      imageUrl: '/assets/Stheadp2.png', // Replace with actual image URL
+      title: 'Head Phone',
+      oldPrice: 3000,
+      newPrice: 1850,
+      rating: 5.7,
+      reviews: 75,
       btnHide : true
     },
+
   ];
 
 function ExploreProduct() {
