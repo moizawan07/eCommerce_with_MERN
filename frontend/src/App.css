@@ -5,3 +5,11 @@ body{
     width: 100%;
     border: 1px solid black;
 }
+
+.err{
+    font-size: 12px !important;
+    color: crimson;
+    position: relative;
+    bottom: 12px;
+    left: 5px;
+}
