@@ -13,7 +13,7 @@ const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
-  const navLinks = ["Home", "Products", "Contact", "About", "SignUp"];
+  const navLinks = ["Home", "Products",  "About", "Contact", "SignUp"];
 
   return (
     <header className="shadow-md py-4 px-6 flex items-center justify-between relative z-50 bg-white">

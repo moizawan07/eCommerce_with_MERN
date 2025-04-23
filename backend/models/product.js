@@ -1,7 +1,16 @@
 const mongoose = require('mongoose')
 
 const schema = mongoose.Schema({
-   
+        discount: String,
+        imageUrl: String,
+        title: String,   // no idea
+        oldPrice: Number,
+        newPrice: Number,
+        rating: Number,
+        reviews: Number,
+        category: String,    
 })
 
-const userModel = mongoose.model('products', schema)
+const productModel = mongoose.model('products', schema)
+
+module.exports = productModel
