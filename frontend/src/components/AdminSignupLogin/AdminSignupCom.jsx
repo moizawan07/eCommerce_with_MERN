@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import { useState } from 'react';
 
-const SignUpPage = () => {
+const AdminSignupCom = () => {
   // For Inputs Value Stored
   const [formValue, setFormValue] = useState({
     name : '',
@@ -102,10 +102,10 @@ const SignUpPage = () => {
      }
 
     try {
-      let response = await fetch('http://localhost:3000/user/signup', {
+      let response = await fetch('http://localhost:3000/admin/signup', {
         method : 'POST',
         headers : {"Content-type": "application/json"},
-        body : JSON.stringify({...formValue, role : 'user'})
+        body : JSON.stringify({...formValue, role : 'admin'})
       })
       let resData = await response.json()
 
@@ -115,7 +115,7 @@ const SignUpPage = () => {
 
        setServerMsg(resData.message)
        setTimeout(() => {
-          navigate('/login')
+          navigate('/adminnnnnnnnnnlogin')
        }, 1000);
     }
 
@@ -132,8 +132,8 @@ const SignUpPage = () => {
         {/* Left Image Section */}
         <div className="w-full md:w-[55%]">
           <img
-            src="/assets/SignupImg.png"
-            alt="Shopping Illustration"
+            src="/assets/adminform.png"
+            alt="Admin Form "
             className="w-full h-full object-cover"
           />
         </div>
@@ -148,7 +148,7 @@ const SignUpPage = () => {
           <form onSubmit={signupSubmit} className="space-y-4">
             <input
               type="text"
-              className="w-full outline-none focus:border-red-500 py-2 px-3 text-gray-700 border-b border-gray-300 text-sm"
+              className="w-full outline-none focus:border-[#00DFC0] py-2 px-3 text-gray-700 border-b border-gray-300 text-sm"
               placeholder="Enter name..."
               name="name"
               onChange={valuedStored}
@@ -157,7 +157,7 @@ const SignUpPage = () => {
 
             <input
               type="email"
-              className="w-full outline-none focus:border-red-500 py-2 px-3 text-gray-700 border-b border-gray-300 text-sm"
+              className="w-full outline-none focus:border-[#00DFC0] py-2 px-3 text-gray-700 border-b border-gray-300 text-sm"
               placeholder="Enter email..."
               name="email"
               onChange={valuedStored}
@@ -166,7 +166,7 @@ const SignUpPage = () => {
 
             <input
               type="number"
-              className="w-full outline-none focus:border-red-500 py-2 px-3 text-gray-700 border-b border-gray-300 text-sm"
+              className="w-full outline-none focus:border-[#00DFC0] py-2 px-3 text-gray-700 border-b border-gray-300 text-sm"
               placeholder="Enter phone number..."
               name="phone"
               onChange={valuedStored}
@@ -175,7 +175,7 @@ const SignUpPage = () => {
 
             <input
               type="password"
-              className="w-full outline-none focus:border-red-500 py-2 px-3 text-gray-700 border-b border-gray-300 text-sm"
+              className="w-full outline-none focus:border-[#00DFC0] py-2 px-3 text-gray-700 border-b border-gray-300 text-sm"
               placeholder="Enter password..."
               name="password"
               onChange={valuedStored}
@@ -184,7 +184,7 @@ const SignUpPage = () => {
 
             <input
               type="text"
-              className="w-full outline-none focus:border-red-500 py-2 px-3 text-gray-700 border-b border-gray-300 text-sm"
+              className="w-full outline-none focus:border-[#00DFC0] py-2 px-3 text-gray-700 border-b border-gray-300 text-sm"
               placeholder="Enter address..."
               name="address"
               onChange={valuedStored}
@@ -199,7 +199,7 @@ const SignUpPage = () => {
             </p>}
 
             <button
-              className="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-4 rounded w-full text-sm transition duration-300"
+              className="bg-[#0b8777] hover:bg-[#4a867e] text-white outline-none font-bold py-3 px-4 rounded w-full text-sm transition duration-300"
               type="submit"
             >
               Create Account
@@ -216,7 +216,7 @@ const SignUpPage = () => {
 
           <p className="mt-5 text-gray-600 text-sm text-center">
             Already have an account?{" "}
-            <Link to="/login" className="text-red-500 underline font-semibold" 
+            <Link to="/adminnnnnnnnnnlogin" className="text-[#094b42] underline font-semibold" 
             >
               Log in
             </Link>
@@ -227,4 +227,4 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+export default AdminSignupCom;

@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import { useState } from 'react';
 
-const LoginCon = () => {
+const AdminLoginCom = () => {
  // For Inputs Value Stored
  const [formValue, setFormValue] = useState({
   email: '',
@@ -72,7 +72,7 @@ const loginSubmit = async (e) => {
    }
 
   try {
-    let response = await fetch('http://localhost:3000/user/login', {
+    let response = await fetch('http://localhost:3000/admin/login', {
       method : 'POST',
       headers : {"Content-type": "application/json"},
       body : JSON.stringify(formValue)
@@ -89,7 +89,7 @@ const loginSubmit = async (e) => {
      window.localStorage.setItem('token', resData.token)
      setServerMsg(resData.message)
      setTimeout(() => {
-        navigate('/')
+        navigate('/admin/dashboard')
      }, 1000);
   }
    catch (error) {
@@ -105,7 +105,7 @@ const loginSubmit = async (e) => {
         {/* Left Image Section */}
         <div className="w-full md:w-[55%]">
           <img
-            src="/assets/SignupImg.png"
+            src="/assets/adminform.png"
             alt="Shopping Illustration"
             className="w-full h-full object-cover"
           />
@@ -122,7 +122,7 @@ const loginSubmit = async (e) => {
            
             <input
               type="email"
-              className="w-full outline-none focus:border-red-500 py-4 px-3 text-gray-700 border-b border-gray-300 text-sm"
+              className="w-full outline-none focus:border-[#00DFC0] py-4 px-3 text-gray-700 border-b border-gray-300 text-sm"
               placeholder="Enter email..."
               name="email"
               onChange={valuedStored}
@@ -131,7 +131,7 @@ const loginSubmit = async (e) => {
            
             <input
               type="password"
-              className="w-full outline-none focus:border-red-500 py-4 px-3 text-gray-700 border-b border-gray-300 text-sm"
+              className="w-full outline-none focus:border-[#00DFC0] py-4 px-3 text-gray-700 border-b border-gray-300 text-sm"
               placeholder="Enter password..."
               name="password"
               onChange={valuedStored}
@@ -145,18 +145,18 @@ const loginSubmit = async (e) => {
             </p>}
          <div className="flex items-center justify-between mt-3">
            <button 
-              className="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-4 rounded w-[45%] text-sm transition duration-300"
+              className="bg-[#0b8777] hover:bg-[#00DFC0] text-white font-bold py-3 px-4 rounded w-[45%] text-sm transition duration-300"
            >
             Login
            </button>
-           <p className='text-red-500 text-[14px]'>Forget Your Password?</p>
+           <p className='text-[#216e64] text-[14px]'>Forget Your Password?</p>
          </div>
             
           </form>
 
           <p className="mt-5 text-gray-600 text-sm text-center">
             Don't have an account?{" "}
-            <Link to="/signup" className="text-red-500 underline font-semibold">
+            <Link to="/adminnnnnnnnnnsignup" className="text-[#12584f] underline font-semibold">
               Signup 
             </Link>
           </p>
@@ -166,4 +166,4 @@ const loginSubmit = async (e) => {
   );
 };
 
-export default LoginCon;
+export default AdminLoginCom;

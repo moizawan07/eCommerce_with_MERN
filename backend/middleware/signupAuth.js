@@ -1,7 +1,7 @@
 const userModel = require("../models/user");
 
 const signupAuth = async (req, res, next) => {
-  console.log('Signup MID ma');
+  console.log('Signup MID ma', req.body);
   const { name, email, password, phone, address, role } = req.body;
 
 // Check all fields 
@@ -39,15 +39,29 @@ const signupAuth = async (req, res, next) => {
     return res.status(400).json({ message: "Address is required" });
   }
 
-  // Role validation
-  if (role === "select role") {
-    return res.status(400).json({ message: "Please select a valid role" });
-  }
+  // // Role validation
+  // if (role !== "user") {
+  //   return res.status(400).json({ message: "Please select a valid role" });
+  // }
 
+   //  Dynamic role check based on route If agr request /user/signup se means role user hona chiya 
+   
+   const routeName = req.originalUrl;
+   console.log("route===>", routeName);
+   
+
+   if (routeName.includes("/user/signup") && role !== "user") {
+     return res.status(400).json({ message: "Role must be 'user' for user signup" });
+   }
+ 
+   if (routeName.includes("/admin/signup") && role !== "admin") {
+     return res.status(400).json({ message: "Role must be 'admin' for admin signup" });
+   }
+  
    // Check if email already exists
    const existingUser = await userModel.findOne({ email });
    if (existingUser) {
-     return res.status(409).json({ message: "User already registered" });
+     return res.status(409).json({ message: "Email already registered" });
    }
 
   // Sab kuch theek to chalo next controller

@@ -12,17 +12,16 @@ dotenv.config() // Environment Varaibles loads
 dbConnect() // Database Connected
 
 // ROUTES Imports
-const authRoutes = require('./routes/authRoutes');
+const userRoutes = require('./routes/userRoutes');
+const adminRoutes = require('./routes/adminRoutes')
 // const productRoutes = require('./routes/productRoutes');
-// const userRoutes = require('./routes/userRoutes');
 // const adminRoutes = require('./routes/adminRoutes');
 
 
 // Use routes with prefixes
-app.use('/auth', authRoutes);
+app.use('/user', userRoutes);
 // app.use('/api/products', productRoutes);
-// app.use('/api/users', userRoutes);
-// app.use('/api/admin', adminRoutes);
+app.use('/admin', adminRoutes);
 
    
 
