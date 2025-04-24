@@ -15,6 +15,7 @@ const DameCards = ({
   rating,
   reviews,
   btnHide,
+  inStock
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -56,11 +57,9 @@ const DameCards = ({
         {/* Add To Cart Button (Hover Effect) */}
         <button
           className={`bg-black text-white w-full py-3 transition ${
-            isHovered ? "block" : "hidden"
-          }
-        disabled:opacity-50
-        `}
-          disabled={btnHide} // This Condition Bcuz Card Ye Card Static Jaga Be use Ho rha And Products Page Pa be
+            isHovered ? "block" : "hidden"}
+           disabled:opacity-50`}
+          disabled={btnHide || !inStock} // This Condition Bcuz Card Ye Card Static Jaga Be use Ho rha And Products Page Pa be
           onClick={() => alert("hello")}
         >
           <AiOutlineShoppingCart
@@ -73,13 +72,16 @@ const DameCards = ({
 
       {/* Product Details */}
       <div className="p-4 flex flex-col flex-grow">
+        <div className="flex justify-between">
         <h3 className="text-sm text-gray-700 font-semibold mb-2">{title}</h3>
+        <p className="text-[12px] text-[#c62d03] font-semibold">{!inStock && "Out of Stock"}</p>
+        </div>
         <div className="flex items-center mb-2">
           <span className="text-gray-600 line-through text-xs mr-2">
-            ${oldPrice}
+            Pkr {oldPrice}
           </span>
           <span className="text-red-500 font-semibold text-sm">
-            ${newPrice}
+            Pkr {newPrice}
           </span>
         </div>
 

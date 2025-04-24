@@ -8,7 +8,8 @@ const schema = mongoose.Schema({
         newPrice: Number,
         rating: Number,
         reviews: Number,
-        category: String,    
+        category: String,
+        inStock : Boolean    
 })
 
 const productModel = mongoose.model('products', schema)

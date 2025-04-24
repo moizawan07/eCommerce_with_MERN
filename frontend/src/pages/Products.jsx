@@ -13,7 +13,6 @@ function Products() {
         <span className="text-gray-900  cursor-pointer"> Products</span>
       </SuggestedNav>
 
-       <CategoriesSorting />
        <AllProductsPrint />
     </>
   )

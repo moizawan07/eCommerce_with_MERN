@@ -421,7 +421,20 @@ const productData = [
 ];
 
 
-module.exports = productData
+// Upadted Product Data 
+const updatedProductData = productData.map((product) => {
+
+  if(product.newPrice == "254999" || product.newPrice == "16200" ||
+    product.newPrice == "4500"  || product.newPrice == "7920"){
+      return {...product, inStock : false}
+    }
+
+  return  {...product, inStock : true}
+})
+
+
+
+module.exports = updatedProductData
 
 
 
