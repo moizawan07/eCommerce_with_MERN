@@ -5,6 +5,7 @@ import {
   AiOutlineShoppingCart,
 } from "react-icons/ai";
 import { FaStar } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const DameCards = ({
   title,
@@ -18,6 +19,7 @@ const DameCards = ({
   inStock
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const navigate = useNavigate(null)
 
   return (
     <div
@@ -50,7 +52,7 @@ const DameCards = ({
         {/* Eye Icon  */}
         <div className="absolute top-12 right-2 z-10">
           <button className="bg-white rounded-full p-2 text-gray-500 hover:text-gray-700 shadow-sm">
-            <AiOutlineEye size={16} />
+            <AiOutlineEye onClick={() => navigate('/productDetail')} size={16} />
           </button>
         </div>
 
@@ -78,10 +80,10 @@ const DameCards = ({
         </div>
         <div className="flex items-center mb-2">
           <span className="text-gray-600 line-through text-xs mr-2">
-            Pkr {oldPrice}
+            Rs {oldPrice}
           </span>
           <span className="text-red-500 font-semibold text-sm">
-            Pkr {newPrice}
+            Rs {newPrice}
           </span>
         </div>
 

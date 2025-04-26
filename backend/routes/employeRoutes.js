@@ -1,5 +1,5 @@
 const express = require('express')
-const adminRoutes = express.Router()
+const employeRoutes = express.Router()
 
 // Signup Midllware & Controller Import
 const signupAuth = require('../middleware/signupAuth')
@@ -10,15 +10,15 @@ const login = require('../controllers/login')
 
 
 // 1: Signup Route
-// adminRoutes.post('/signup', signupAuth,  signup)
+employeRoutes.post('/signup', signupAuth,  signup)
 
 
 // 2: Login Route
-adminRoutes.post('/login', loginAuth, login)
+employeRoutes.post('/login', loginAuth, login)
 
 
 
 
 
 
-module.exports = adminRoutes
+module.exports = employeRoutes

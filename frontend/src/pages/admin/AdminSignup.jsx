@@ -1,4 +1,4 @@
-import AdminSignupCom from "../components/AdminSignupLogin/AdminSignupCom"
+import AdminSignupCom from "../../components/Admin/AdminSignupCom"
 
 
 function AdminSignup() {

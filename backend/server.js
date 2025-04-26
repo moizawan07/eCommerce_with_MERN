@@ -15,13 +15,16 @@ dbConnect() // Database Connected
 const userRoutes = require('./routes/userRoutes');      
 const adminRoutes = require('./routes/adminRoutes')     
 const productRoutes = require('./routes/productRoutes')
+const employeRoutes = require('./routes/employeRoutes')
 // const adminRoutes = require('./routes/adminRoutes');
 
 
+
 // Use routes with prefixes
-app.use('/user', userRoutes);
 app.use('/product', productRoutes);
+app.use('/user', userRoutes);
 app.use('/admin', adminRoutes);
+app.use('/employe', employeRoutes);
 
 
    

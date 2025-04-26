@@ -115,7 +115,7 @@ const AdminSignupCom = () => {
 
        setServerMsg(resData.message)
        setTimeout(() => {
-          navigate('/adminnnnnnnnnnlogin')
+          navigate('/admin/login')
        }, 1000);
     }
 
@@ -216,7 +216,7 @@ const AdminSignupCom = () => {
 
           <p className="mt-5 text-gray-600 text-sm text-center">
             Already have an account?{" "}
-            <Link to="/adminnnnnnnnnnlogin" className="text-[#094b42] underline font-semibold" 
+            <Link to="/admin/login" className="text-[#094b42] underline font-semibold" 
             >
               Log in
             </Link>

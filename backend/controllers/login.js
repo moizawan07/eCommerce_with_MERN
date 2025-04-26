@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
 const login = async (req, res) => {
- let {email, password} = req.body
+ let {email, password, role} = req.body
 
  try {
     let user = await userModel.findOne({email})
@@ -12,6 +12,10 @@ const login = async (req, res) => {
 
     let passCorreect = await bcrypt.compare(password, user.password)
        if(!passCorreect) return res.status(400).json({message : 'invalid password'})
+    
+   if (user.role !== role) {
+      return res.status(400).json({ message: "Unauthorized role access" });
+   }     
 
         
   let payload = {

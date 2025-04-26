@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import { useState } from 'react';
 
-const AdminLoginCom = () => {
+const EmployeLoginCom = () => {
  // For Inputs Value Stored
  const [formValue, setFormValue] = useState({
   email: '',
@@ -75,7 +75,7 @@ const loginSubmit = async (e) => {
     let response = await fetch('http://localhost:3000/admin/login', {
       method : 'POST',
       headers : {"Content-type": "application/json"},
-      body : JSON.stringify(formValue)
+      body : JSON.stringify({...formValue, role : 'employe'})
     })
     let resData = await response.json()
     
@@ -89,7 +89,7 @@ const loginSubmit = async (e) => {
      window.localStorage.setItem('token', resData.token)
      setServerMsg(resData.message)
      setTimeout(() => {
-        navigate('/admin/dashboard')
+        navigate('/employe/dashboard')
      }, 1000);
   }
    catch (error) {
@@ -156,7 +156,7 @@ const loginSubmit = async (e) => {
 
           <p className="mt-5 text-gray-600 text-sm text-center">
             Don't have an account?{" "}
-            <Link to="/adminnnnnnnnnnsignup" className="text-[#12584f] underline font-semibold">
+            <Link to="/employe/signup" className="text-[#12584f] underline font-semibold">
               Signup 
             </Link>
           </p>
@@ -166,4 +166,4 @@ const loginSubmit = async (e) => {
   );
 };
 
-export default AdminLoginCom;
+export default EmployeLoginCom;

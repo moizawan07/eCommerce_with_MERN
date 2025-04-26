@@ -57,7 +57,12 @@ const signupAuth = async (req, res, next) => {
    if (routeName.includes("/admin/signup") && role !== "admin") {
      return res.status(400).json({ message: "Role must be 'admin' for admin signup" });
    }
+
+   if (routeName.includes("/employe/signup") && role !== "employe") {
+     return res.status(400).json({ message: "Role must be 'Employe' for employe signup" });
+   }
   
+   
    // Check if email already exists
    const existingUser = await userModel.findOne({ email });
    if (existingUser) {
