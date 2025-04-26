@@ -13,6 +13,9 @@ import ProductDetail from '../pages/ProductDetail'
 import EmployeSignup from '../pages/employe/EmployeSignup'
 import EmployeLogin from '../pages/employe/EmployeLogin'
 import EmployeDashoard from '../pages/employe/EmployeDashoard'
+import AdminUsers from '../pages/admin/AdminUsers'
+import AdminProducts from '../pages/admin/AdminProducts'
+import AdminCreateProduct from '../pages/admin/AdminCreateProduct'
 
 function AllRoutes() {
   return (
@@ -30,10 +33,13 @@ function AllRoutes() {
         <Route path='/productDetail'element={<ProductDetail />}/>
 
 
-        {/* Admin Route */}
+        {/* Admin Routes */}
         {/* <Route path='/admin/signup' element={<AdminSignup />}/> */}
-        <Route path='/admin/login' element={<AdminLogin />}/>
+        <Route path='/admin/login'     element={<AdminLogin />}/>
         <Route path='/admin/dashboard' element={<AdminDashboard />}/>
+        <Route path='/admin/users'     element={<AdminUsers />}/>
+        <Route path='/admin/products'  element={<AdminProducts />}/>
+        <Route path='/admin/create/product'  element={<AdminCreateProduct />}/>
 
 
         {/* Employe Route */}

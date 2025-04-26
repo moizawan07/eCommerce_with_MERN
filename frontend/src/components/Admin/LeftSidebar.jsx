@@ -64,14 +64,14 @@ const LeftSidebar = () => {
 
         {/* Links */}
         <div className={`flex flex-col gap-4 ${!isOpen && "justify-start"} flex-1`}>
-          <SidebarLink to="/" icon={<FaChartBar />} label="Dashboard" isOpen={isOpen} active />
+          <SidebarLink to="/admin/dashboard" icon={<FaChartBar />} label="Dashboard" isOpen={isOpen} active />
           <SidebarLink to="/analytics" icon={<FaClipboardList />} label="Analytics" isOpen={isOpen} />
-          <SidebarLink to="/users" icon={<FaUser />} label="Users" isOpen={isOpen} />
+          <SidebarLink to="/admin/users" icon={<FaUser />} label="Users" isOpen={isOpen} />
           <SidebarLink to="/categories" icon={<FaClipboardList />} label="Categories" isOpen={isOpen} />
-          <SidebarLink to="/products" icon={<FaBox />} label="Products" isOpen={isOpen} />
+          <SidebarLink to="/admin/products" icon={<FaBox />} label="Products" isOpen={isOpen} />
           <SidebarLink to="/orders" icon={<FaClipboardList />} label="Orders" isOpen={isOpen} />
           <SidebarLink to="/purchases" icon={<FaShoppingCart />} label="Purchases" isOpen={isOpen} />
-          <SidebarLink to="/new-product" icon={<FaPlus />} label="New Product" isOpen={isOpen} />
+          <SidebarLink to="/admin/create/product" icon={<FaPlus />} label="New Product" isOpen={isOpen} />
           <SidebarLink to="/profile" icon={<FaUserCircle />} label="Profile" isOpen={isOpen} />
           <SidebarLink to="/settings" icon={<FaCog />} label="Settings" isOpen={isOpen} />
         </div>
@@ -83,7 +83,7 @@ const LeftSidebar = () => {
 const SidebarLink = ({ to, icon, label, isOpen, active }) => (
   <Link
     to={to}
-    className={`flex items-center gap-4 p-2 rounded transition-colors duration-200
+    className={`flex items-center gap-4 p-2 rounded transition-colors duration-200 
       ${active ? "bg-[#2563EB]" : "hover:bg-[#2563EB]"}
       ${!isOpen ? "justify-center" : ""}`}
   >

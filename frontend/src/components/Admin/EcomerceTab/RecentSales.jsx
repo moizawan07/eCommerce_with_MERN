@@ -36,20 +36,7 @@ const SalesItem = ({ name, email, amount }) => {
 const RecentSales = () => {
   return (
     <div
-      className="bg-[#0E1628] rounded-md shadow-md overflow-y-auto md:w-[430px] h-[370px] w-[100%]"
-      style={{
-        scrollbarColor: '#5C6777 #0E1628', // thumb and track color (Firefox)
-        '&::-webkit-scrollbar': {
-          width: '5px',
-        },
-        '&::-webkit-scrollbar-track': {
-          backgroundColor: '#0E1628',
-        },
-        '&::-webkit-scrollbar-thumb': {
-          backgroundColor: '#5C6777',
-          borderRadius: '4px',
-        },
-      }}
+      className="bg-[#0E1628] rounded-md shadow-md overflow-y-auto md:w-[430px] h-[370px] w-[100%] custom-scrollbar"
     >
       <h2 className="text-lg font-semibold text-gray-300 p-3">
         Recent Sales

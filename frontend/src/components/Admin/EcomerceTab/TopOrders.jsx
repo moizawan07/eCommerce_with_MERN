@@ -60,7 +60,7 @@ const TopOrders = () => {
       rating: 4.1,
     },
     {
-      id: 6,
+      id: 8,
       product: "Another Product",
       description: "Just another product to demonstrate scrolling.",
       price: 149.99,
@@ -68,7 +68,15 @@ const TopOrders = () => {
       rating: 4.6,
     },
     {
-      id: 7,
+      id: 9,
+      product: "Yet Another Item",
+      description: "Keeping the list long for scrolling.",
+      price: 29.99,
+      status: "Out of Stock",
+      rating: 4.1,
+    },
+    {
+      id: 10,
       product: "Yet Another Item",
       description: "Keeping the list long for scrolling.",
       price: 29.99,
@@ -78,20 +86,7 @@ const TopOrders = () => {
   ];
 
   return (
-    <div className="bg-[#0E1628] border border-[#334155] p-4 shadow-md overflow-y-auto h-[480px]  w-full  mt-10 rounded-2xl"
-    style={{
-        scrollbarColor: '#5C6777 #0E1628', // thumb and track color (Firefox)
-        '&::-webkit-scrollbar': {
-          width: '5px',
-        },
-        '&::-webkit-scrollbar-track': {
-          backgroundColor: '#0E1628',
-        },
-        '&::-webkit-scrollbar-thumb': {
-          backgroundColor: '#5C6777',
-          borderRadius: '4px',
-        },
-      }}
+    <div className="bg-[#0E1628] border border-[#334155] p-4 shadow-md overflow-y-auto h-[480px]  w-full  mt-10 rounded-2xl custom-scrollbar"
     >
       <h2 className="text-lg font-semibold text-gray-300 p-4 border-b border-gray-700">
         Top Orders

@@ -1,4 +1,5 @@
 import RightTopHeader from "../RightTopHeader"
+import AdminFooter from "./AdminFooter"
 import EcomCards from "./EcomCards"
 import OverviewChart from "./OverviewChart"
 import RecentSales from "./RecentSales"
@@ -7,7 +8,7 @@ import TopOrders from "./TopOrders"
 
 function EcomRightSidebar() {
   return (
-    <div className="bg-[#020617] w-full h-auto pb-10 min-h-[100vh]  text-white">
+    <div className="bg-[#020617] w-full h-auto pb-5 min-h-[100vh]  text-white">
      <RightTopHeader />
 
      <h1 className="px-7 lg:text-[30px] font-semibold mt-7">Dashboard</h1>
@@ -30,6 +31,9 @@ function EcomRightSidebar() {
      <div className="px-7">
      <TopOrders />
      </div>
+
+     {/* Footre */}
+     <AdminFooter />
 
     </div>
   )
