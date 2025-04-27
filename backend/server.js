@@ -5,7 +5,8 @@ const dotenv = require('dotenv')
 // DataBase Function
 const dbConnect = require('./config/db')
 
-app.use(express.json()) // Json parse 
+app.use(express.json()) // Json parse
+app.use(express.urlencoded()) 
 app.use(cors()) // Cross Origin Request Allor
 dotenv.config() // Environment Varaibles loads
 

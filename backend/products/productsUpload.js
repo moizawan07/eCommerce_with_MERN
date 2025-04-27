@@ -5,6 +5,8 @@ const productModel = require("../models/product");
 const products = require("./productsData");
 
 const uploadAllProducts = async () => {
+  console.log("Runnnn...");
+  
     let finalAllProducts = []
   try {
     // Step 1: Product Images upload on Cloudinary

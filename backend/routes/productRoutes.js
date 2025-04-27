@@ -4,6 +4,10 @@ const productRoutes = express.Router()
 const uploadAllProducts = require('../products/productsUpload')
 const getProducts = require('../controllers/getProducts')
 const getCategoryProducts = require('../controllers/categoriesProduct')
+const verifyToken = require('../middleware/verifytoken')
+const adminAuth = require('../middleware/adminAuth')
+const upload = require('../middleware/uploadMulter')
+const createProduct = require('../controllers/createProduct')
 
 // Upload The Products in Mongodb
 productRoutes.get('/uploads', uploadAllProducts)
@@ -15,6 +19,8 @@ productRoutes.get('/getProducts', getProducts)
 productRoutes.post('/getCategorie/Product', getCategoryProducts)
 
 
+// Products Upload By Admin
+productRoutes.post('/create', verifyToken, adminAuth, upload.single('imageUrl'), createProduct)
 
 
 

@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-
+import {useNavigate} from 'react-router-dom'
 const CreateProductForm = () => {
   const fileInputRef = useRef(null);
   const [formValue , setFormValue] = useState({
@@ -13,28 +13,64 @@ const CreateProductForm = () => {
     inStock: true,
     discount: null,
   })
+  let navigate = useNavigate(null)
 
-//   Input Type File On Select Product Image
+// Input Type File On Select Product Image
   const triggerFileInput = () => {
     fileInputRef.current.click();
   };
   
 
 // Stored Input Value In the FormValue State
-const storedValue = (e) => {
-  setFormValue({...formValue, [e.target.name] : e.target.value})
-} 
+  const storedValue = (e) => {
+    setFormValue({...formValue, [e.target.name] : e.target.value})
+  } 
 console.log("form values ==>", formValue);
 
+
 // Create Product onSubmit 
-const handleCreateProduct = async () => {
+  const handleCreateProduct = async (e) => {
+  e.preventDefault()
+  let formData = new FormData()
+      formData.append('title', formValue.title)
+      formData.append('imageUrl', formValue.imageUrl)
+      formData.append('category', formValue.category)
+      formData.append('rating', formValue.rating)
+      formData.append('reviews', formValue.reviews)
+      formData.append('discount', formValue.discount)
+      formData.append('oldPrice', formValue.oldPrice)
+      formData.append('newPrice', formValue.newPrice)
+      formData.append('inStock', formValue.inStock)
+
+      
    try {
+    let response = await fetch('http://localhost:3000/product/create', {
+        method : 'POST',
+        headers : {
+          'authorization' : `bearer ${window.localStorage.getItem('token')}`,
+        },
+        body: formData
+      })  
+     let resData = await response.json()
     
+    console.log("response ==>", response);
+    
+     if(response.status !== 201){
+      console.log('if  maaa')
+        throw new Error(resData.message);
+     }
+     
+     alert(resData.message)
+
+    //  After Product Create Sucessfully remove state value
+     navigate('/admin/products')
+      
+      
    } 
    catch (error) {
-    
+   alert(error.message)
    }
-}
+  }
 
   return (
     <div className="bg-[#0E1628] rounded-md shadow-md p-4 md:p-6">
@@ -75,7 +111,7 @@ const handleCreateProduct = async () => {
              onChange={(e) => setFormValue({...formValue, [e.target.name]: e.target.files[0]})}/>
 
 
-      <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <form onSubmit={handleCreateProduct} className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Product Information */}
         <div className="col-span-full">
 

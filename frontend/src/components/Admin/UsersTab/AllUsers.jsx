@@ -1,18 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { AiOutlineEye, AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
 
 const AllUserTable = () => {
-  const usersData = [
-    { id: 1, name: 'Moiz Khan', email: 'moiz.khan@example.com', number: '0312-xxxxxxx', role: 'Admin' },
-    { id: 2, name: 'Fatima Ali', email: 'fatima.ali@example.com', number: '0300-xxxxxxx', role: 'Editor' },
-    { id: 3, name: 'Ahmed Raza', email: 'ahmed.raza@example.com', number: '0333-xxxxxxx', role: 'Subscriber' },
-    { id: 4, name: 'Sara Khan', email: 'sara.khan@example.com', number: '0345-xxxxxxx', role: 'Editor' },
-    { id: 5, name: 'Usman Malik', email: 'usman.malik@example.com', number: '0321-xxxxxxx', role: 'Admin' },
-    { id: 6, name: 'Ayesha Siddiqui', email: 'ayesha.s@example.com', number: '0315-xxxxxxx', role: 'Subscriber' },
-    // Add more user data as needed
-    { id: 7, name: 'Ali Hassan', email: 'ali.hassan@example.com', number: '0301-xxxxxxx', role: 'Editor' },
-    { id: 8, name: 'Hina Khan', email: 'hina.k@example.com', number: '0308-xxxxxxx', role: 'Admin' },
-  ];
+  const [users, setUsers] = useState([])
+
+// Get all Users
+useEffect(() => {
+  fetch('http://localhost:3000/user/allUsersGet', {
+    method : 'GET',
+    headers : {'authorization' : `bearer ${window.localStorage.getItem('token')}`}
+  })
+  .then(res => {
+    if(res.status === 400){
+     throw new Error("UnAuthorized Role");
+    }
+    return res.json()})
+  .then(data => setUsers(data.data))
+  .catch(err => alert(err.message))
+}, [])
+
+
 
   return (
     <div className="bg-[#0E1628] rounded-md shadow-md overflow-x-auto">
@@ -30,13 +38,17 @@ const AllUserTable = () => {
             </tr>
           </thead>
           <tbody className="text-white text-sm">
-            {usersData.map((user) => (
-              <tr key={user.id} className="border-b border-gray-700 last:border-b-0">
-                <td className="py-2 px-3">{user.id}</td>
+            {users.length > 0 && 
+             users.map((user, index) => (
+              <tr key={index} className="border-b border-gray-700 last:border-b-0">
+                <td className="py-2 px-3">{index + 1}</td>
                 <td className="py-2 px-3">{user.name}</td>
-                <td className="py-2 px-3">{user.email}</td>
-                <td className="py-2 px-3">{user.number}</td>
-                <td className="py-2 px-3">{user.role}</td>
+                <td className="py-2 px-3 ">{user.email}</td>
+                <td className="py-2 px-3">{user.phone.slice(0,4)}-xxxxxxxx</td>
+                <td className={`py-2 px-3 text-${user.role === 'admin' ? 'yellow-400' :  
+                      user.role === 'employe' ? 'orange-500' : 'green-400'}`}>
+                  {user.role}
+                  </td>
                 <td className="py-2 px-3 flex items-center space-x-2">
                   <div className="bg-blue-900 rounded-md p-1">
                     <AiOutlineEye className="text-blue-300 hover:text-blue-400" size={18} />

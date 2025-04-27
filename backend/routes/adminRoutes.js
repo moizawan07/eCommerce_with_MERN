@@ -7,6 +7,8 @@ const signup = require('../controllers/signup')
 // Login Middleware & Controller Import
 const loginAuth = require('../middleware/loginAuth')
 const login = require('../controllers/login')
+const verifytoken = require('../middleware/verifytoken')
+const adminAuth = require('../middleware/adminAuth')
 
 
 // 1: Signup Route
@@ -16,6 +18,9 @@ const login = require('../controllers/login')
 // 2: Login Route
 adminRoutes.post('/login', loginAuth, login)
 
+// 3: Coming Dashboard Person Check Hes Authorized Or not means (admin)
+adminRoutes.get('coming/dashboard', verifytoken, adminAuth, 
+    (req, res) => res.send({status : 200,message : 'Hes Authorized'}))
 
 
 

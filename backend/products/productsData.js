@@ -1,15 +1,5 @@
 const productData = [
   {
-    discount: "-10%",
-    imageUrl: "Pmobile1.png",
-    title: "Samsung Galaxy A23",
-    oldPrice: 28000,
-    newPrice: 25000,
-    rating: 4,
-    reviews: 56,
-    category: "phones",
-  },
-  {
     discount: "-5%",
     imageUrl: "Pmobile2.png", // iPhone 13 (Blue)
     title: "iPhone 13 Blue 128GB",
@@ -50,14 +40,14 @@ const productData = [
     category: "phones",
   },
   {
-    discount: "-9%",
-    imageUrl: "Pmobile8.png", // Samsung Galaxy S21 Ultra (Red)
-    title: "Samsung Galaxy S21 Ultra Red",
-    oldPrice: 207000,
-    newPrice: 187999,
-    rating: 5,
-    reviews: 76,
-    category: "phones",
+    discount: "-8%",
+    imageUrl: "Pheadphone2.png",
+    title: "JBL Tune 510BT",
+    oldPrice: 12000,
+    newPrice: 11040,
+    rating: 4,
+    reviews: 275,
+    category: "headphones",
   },
   {
     discount: "-6%",
@@ -80,36 +70,6 @@ const productData = [
     category: "phones",
   },
   {
-    discount: "-7%",
-    imageUrl: "Pmobile12.png", // Google Pixel 6a (guess)
-    title: "Google Pixel 6a",
-    oldPrice: 88000,
-    newPrice: 81999,
-    rating: 4,
-    reviews: 58,
-    category: "phones",
-  },
-  {
-    discount: "-6%",
-    imageUrl: "Pmobile13.png", // Google Pixel 5 (guess)
-    title: "Google Pixel 5",
-    oldPrice: 75000,
-    newPrice: 69999,
-    rating: 4,
-    reviews: 47,
-    category: "phones",
-  },
-  {
-    discount: "-10%",
-    imageUrl: "Pmobile14.png", // Google Pixel 7 Pro
-    title: "Google Pixel 7 Pro",
-    oldPrice: 165000,
-    newPrice: 149999,
-    rating: 5,
-    reviews: 109,
-    category: "phones",
-  },
-  {
     discount: "-10%",
     imageUrl: "Plaptop1.png",
     title: "ASUS ROG G15",
@@ -118,6 +78,16 @@ const productData = [
     rating: 5,
     reviews: 112,
     category: "laptops",
+  },
+  {
+    discount: "-7%",
+    imageUrl: "Pmobile12.png", // Google Pixel 6a (guess)
+    title: "Google Pixel 6a",
+    oldPrice: 88000,
+    newPrice: 81999,
+    rating: 4,
+    reviews: 58,
+    category: "phones",
   },
   {
     discount: "-6%",
@@ -130,6 +100,16 @@ const productData = [
     category: "laptops",
   },
   {
+    discount: "-6%",
+    imageUrl: "Pmobile13.png", // Google Pixel 5 (guess)
+    title: "Google Pixel 5",
+    oldPrice: 75000,
+    newPrice: 69999,
+    rating: 4,
+    reviews: 47,
+    category: "phones",
+  },
+  {
     discount: "-8%",
     imageUrl: "Plaptop3.png",
     title: "HP Spectre x360",
@@ -140,14 +120,14 @@ const productData = [
     category: "laptops",
   },
   {
-    discount: "-7%",
-    imageUrl: "Plaptop4.png",
-    title: "Lenovo IdeaPad",
-    oldPrice: 180000,
-    newPrice: 167400,
-    rating: 4,
-    reviews: 62,
-    category: "laptops",
+    discount: "-10%",
+    imageUrl: "Pmobile14.png", // Google Pixel 7 Pro
+    title: "Google Pixel 7 Pro",
+    oldPrice: 165000,
+    newPrice: 149999,
+    rating: 5,
+    reviews: 109,
+    category: "phones",
   },
   {
     discount: "-9%",
@@ -160,14 +140,14 @@ const productData = [
     category: "laptops",
   },
   {
-    discount: "-6%",
-    imageUrl: "Plaptop6.png",
-    title: "HP Pavilion 14",
-    oldPrice: 135000,
-    newPrice: 126900,
+    discount: "-9%",
+    imageUrl: "Pwatch5.png",
+    title: "Fire-Boltt Max",
+    oldPrice: 13000,
+    newPrice: 11830,
     rating: 4,
-    reviews: 53,
-    category: "laptops",
+    reviews: 130,
+    category: "smart watch",
   },
   {
     discount: "-8%",
@@ -180,16 +160,15 @@ const productData = [
     category: "laptops",
   },
   {
-    discount: "-7%",
-    imageUrl: "Plaptop8.png",
-    title: "MacBook Air M2",
-    oldPrice: 330000,
-    newPrice: 306900,
-    rating: 5,
-    reviews: 122,
-    category: "laptops",
+    discount: "-5%",
+    imageUrl: "Fcamera2.png",
+    title: "Nikon D3500", // product-specific title
+    oldPrice: 45000,
+    newPrice: 42750,
+    rating: 4,
+    reviews: 110,
+    category: "camera",
   },
-
   {
     discount: "-7%",
     imageUrl: "Fcamera1.png",
@@ -200,51 +179,39 @@ const productData = [
     reviews: 122,
     category: "camera",
   },
-
-  {
-    discount: "-5%",
-    imageUrl: "Fcamera2.png",
-    title: "Nikon D3500", // product-specific title
-    oldPrice: 45000,
-    newPrice: 42750,
-    rating: 4,
-    reviews: 110,
-    category: "camera",
-  },
-
-  {
-    discount: "-10%",
-    imageUrl: "Fcamera3.png",
-    title: "Sony Alpha 7", // product-specific title
-    oldPrice: 80000,
-    newPrice: 72000,
-    rating: 5,
-    reviews: 98,
-    category: "camera",
-  },
-
-  {
-    discount: "-5%",
-    imageUrl: "Fcamera4.png",
-    title: "Fujifilm X-T4", // product-specific title
-    oldPrice: 120000,
-    newPrice: 114000,
-    rating: 4,
-    reviews: 80,
-    category: "camera",
-  },
-
   {
     discount: "-8%",
-    imageUrl: "Fcamera5.png",
-    title: "GoPro Hero 9", // product-specific title
-    oldPrice: 55000,
-    newPrice: 50600,
-    rating: 5,
-    reviews: 150,
-    category: "camera",
+    imageUrl: "Pwatch4.png",
+    title: "Boat Xtend Pro",
+    oldPrice: 12000,
+    newPrice: 11040,
+    rating: 3,
+    reviews: 95,
+    category: "smart watch",
   },
-
+  {
+    discount: "-7%",
+    imageUrl: "Plaptop8.png",
+    title: "MacBook Air M2",
+    oldPrice: 330000,
+    newPrice: 306900,
+    rating: 5,
+    reviews: 122,
+    category: "laptops",
+  },
+  
+  
+  {
+    discount: "-11%",
+    imageUrl: "Pgamingcon5.png",
+    title: "Enter GX 200",
+    oldPrice: 4300,
+    newPrice: 3827,
+    rating: 4,
+    reviews: 120,
+    category: "gaming",
+  },
+  
   {
     discount: "-6%",
     imageUrl: "Fcamera6.png",
@@ -255,27 +222,18 @@ const productData = [
     reviews: 130,
     category: "camera",
   },
-
+  
   {
-    discount: "-10%",
-    imageUrl: "Pheadphone1.png",
-    title: "boAt Rockerz 450",
-    oldPrice: 15000,
-    newPrice: 13500,
+    discount: "-5%",
+    imageUrl: "Fcamera4.png",
+    title: "Fujifilm X-T4", // product-specific title
+    oldPrice: 120000,
+    newPrice: 114000,
     rating: 4,
-    reviews: 320,
-    category: "headphones",
+    reviews: 80,
+    category: "camera",
   },
-  {
-    discount: "-8%",
-    imageUrl: "Pheadphone2.png",
-    title: "JBL Tune 510BT",
-    oldPrice: 12000,
-    newPrice: 11040,
-    rating: 4,
-    reviews: 275,
-    category: "headphones",
-  },
+  
   {
     discount: "-12%",
     imageUrl: "Pheadphone3.png",
@@ -287,6 +245,48 @@ const productData = [
     category: "headphones",
   },
   {
+    discount: "-10%",
+    imageUrl: "Pmobile1.png",
+    title: "Samsung Galaxy A23",
+    oldPrice: 28000,
+    newPrice: 25000,
+    rating: 4,
+    reviews: 56,
+    category: "phones",
+  },
+  {
+    discount: "-8%",
+    imageUrl: "Fcamera5.png",
+    title: "GoPro Hero 9", // product-specific title
+    oldPrice: 55000,
+    newPrice: 50600,
+    rating: 5,
+    reviews: 150,
+    category: "camera",
+  },
+  
+  {
+    discount: "-6%",
+    imageUrl: "Plaptop6.png",
+    title: "HP Pavilion 14",
+    oldPrice: 135000,
+    newPrice: 126900,
+    rating: 4,
+    reviews: 53,
+    category: "laptops",
+  },
+  
+  {
+    discount: "-10%",
+    imageUrl: "Pheadphone1.png",
+    title: "boAt Rockerz 450",
+    oldPrice: 15000,
+    newPrice: 13500,
+    rating: 4,
+    reviews: 320,
+    category: "headphones",
+  },
+  {
     discount: "-15%",
     imageUrl: "Pheadphone4.png",
     title: "Redmi SonicBass",
@@ -295,6 +295,16 @@ const productData = [
     rating: 3,
     reviews: 145,
     category: "headphones",
+  },
+  {
+    discount: "-10%",
+    imageUrl: "Fcamera3.png",
+    title: "Sony Alpha 7", // product-specific title
+    oldPrice: 80000,
+    newPrice: 72000,
+    rating: 5,
+    reviews: 98,
+    category: "camera",
   },
   {
     discount: "-10%",
@@ -316,7 +326,7 @@ const productData = [
     reviews: 120,
     category: "headphones",
   },
-
+  
   {
     discount: "-10%",
     imageUrl: "Pgamingcon1.png",
@@ -326,6 +336,16 @@ const productData = [
     rating: 4,
     reviews: 105,
     category: "gaming",
+  },
+  {
+    discount: "-15%",
+    imageUrl: "Pwatch3.png",
+    title: "NoiseFit Halo",
+    oldPrice: 14000,
+    newPrice: 11900,
+    rating: 4,
+    reviews: 150,
+    category: "smart watch",
   },
   {
     discount: "-12%",
@@ -339,13 +359,13 @@ const productData = [
   },
   {
     discount: "-9%",
-    imageUrl: "Pgamingcon3.png",
-    title: "Cosmic Fury",
-    oldPrice: 4000,
-    newPrice: 3640,
-    rating: 4,
-    reviews: 115,
-    category: "gaming",
+    imageUrl: "Pmobile8.png", // Samsung Galaxy S21 Ultra (Red)
+    title: "Samsung Galaxy S21 Ultra Red",
+    oldPrice: 207000,
+    newPrice: 187999,
+    rating: 5,
+    reviews: 76,
+    category: "phones",
   },
   {
     discount: "-8%",
@@ -357,17 +377,7 @@ const productData = [
     reviews: 88,
     category: "gaming",
   },
-  {
-    discount: "-11%",
-    imageUrl: "Pgamingcon5.png",
-    title: "Enter GX 200",
-    oldPrice: 4300,
-    newPrice: 3827,
-    rating: 4,
-    reviews: 120,
-    category: "gaming",
-  },
-
+  
   {
     discount: "-12%",
     imageUrl: "Pwatch1.png",
@@ -377,6 +387,16 @@ const productData = [
     rating: 5,
     reviews: 210,
     category: "smart watch",
+  },
+  {
+    discount: "-9%",
+    imageUrl: "Pgamingcon3.png",
+    title: "Cosmic Fury",
+    oldPrice: 4000,
+    newPrice: 3640,
+    rating: 4,
+    reviews: 115,
+    category: "gaming",
   },
   {
     discount: "-10%",
@@ -389,47 +409,29 @@ const productData = [
     category: "smart watch",
   },
   {
-    discount: "-15%",
-    imageUrl: "Pwatch3.png",
-    title: "NoiseFit Halo",
-    oldPrice: 14000,
-    newPrice: 11900,
+    discount: "-7%",
+    imageUrl: "Plaptop4.png",
+    title: "Lenovo IdeaPad",
+    oldPrice: 180000,
+    newPrice: 167400,
     rating: 4,
-    reviews: 150,
-    category: "smart watch",
-  },
-  {
-    discount: "-8%",
-    imageUrl: "Pwatch4.png",
-    title: "Boat Xtend Pro",
-    oldPrice: 12000,
-    newPrice: 11040,
-    rating: 3,
-    reviews: 95,
-    category: "smart watch",
-  },
-  {
-    discount: "-9%",
-    imageUrl: "Pwatch5.png",
-    title: "Fire-Boltt Max",
-    oldPrice: 13000,
-    newPrice: 11830,
-    rating: 4,
-    reviews: 130,
-    category: "smart watch",
+    reviews: 62,
+    category: "laptops",
   },
 ];
 
 
 // Upadted Product Data 
 const updatedProductData = productData.map((product) => {
-
+  
   if(product.newPrice == "254999" || product.newPrice == "16200" ||
-    product.newPrice == "4500"  || product.newPrice == "7920"){
+    product.newPrice == "4500"    || product.newPrice == "7920" ||
+    product.newPrice == "167400"  || product.newPrice == "50600" || product.newPrice == "187999" ){
+      
       return {...product, inStock : false}
     }
-
-  return  {...product, inStock : true}
+    
+    return  {...product, inStock : true}
 })
 
 
