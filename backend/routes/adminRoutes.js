@@ -14,7 +14,6 @@ const adminAuth = require('../middleware/adminAuth')
 // 1: Signup Route
 // adminRoutes.post('/signup', signupAuth,  signup)
 
-
 // 2: Login Route
 adminRoutes.post('/login', loginAuth, login)
 

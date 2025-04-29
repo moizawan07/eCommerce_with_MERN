@@ -65,7 +65,8 @@ function AllProductsPrint() {
         products.map((product, index) => {
 
           return <ProductCard
-          key={index} 
+          key={index}
+          _id=       {product._id} 
           title=    {product.title} 
           imageUrl= {product.imageUrl}
           oldPrice= {product.oldPrice}
@@ -73,6 +74,8 @@ function AllProductsPrint() {
           reviews=  {product.reviews} 
           rating=   {product.rating}
           inStock=   {product.inStock}
+          discount=  {product.discount}
+          category=  {product.category}
            />
         }) : <p>Loading...</p>
       }

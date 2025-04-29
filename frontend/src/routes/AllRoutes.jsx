@@ -1,4 +1,4 @@
-import {Routes, Route} from 'react-router-dom'
+import {Routes, Route, BrowserRouter} from 'react-router-dom'
 import Home from '../pages/Home'
 import Signup from '../pages/Signup'
 import Login from '../pages/Login'
@@ -20,6 +20,7 @@ import UserProfile from '../pages/UserProfile'
 
 function AllRoutes() {
   return (
+  <BrowserRouter>
     <Routes>
          {/*  Users Routes */}
         <Route path='*'        element={<PageNotFound />}/>
@@ -54,6 +55,7 @@ function AllRoutes() {
         <Route path='/employe/dashboard'      element={<EmployeDashoard />}/>
 
     </Routes>
+  </BrowserRouter>  
   )
 }
 

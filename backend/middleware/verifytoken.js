@@ -1,23 +1,23 @@
-require('dotenv').config()
-const jwt = require('jsonwebtoken')
+require("dotenv").config();
+const jwt = require("jsonwebtoken");
 
 const verifyToken = async (req, res, next) => {
-    let bearerHeader = req.headers.authorization
-    // console.log("bearre header ==>", bearerHeader);
-    
-  
-    let token = bearerHeader.split(' ')[1]
+  let bearerHeader = req.headers.authorization;
+  // console.log("bearre header ==>", bearerHeader);
 
-    // console.log("token ==>", token);
-    
-    if(!token) return res.status(401).json({message : 'NO Token provided'})
+  let token = bearerHeader.split(" ")[1];
 
-    let decodeToken =  jwt.verify(token,process.env.JWT_SECRET)   
-    // console.log("user ==>", decodeToken);
+//   console.log("token ==>", token);
 
-   req.user = decodeToken
-   next()
-         
-}
+  if (token === "null") {
+    return res.status(401).json({ message: "NO Token provided" });
+  }
 
-module.exports = verifyToken
+  let decodeToken = jwt.verify(token, process.env.JWT_SECRET);
+//   console.log("user ==>", decodeToken);
+
+  req.user = decodeToken;
+  next();
+};
+
+module.exports = verifyToken;

@@ -1,3 +1,5 @@
+import Header from "../components/Header"
+import Footer from "../components/Footer"
 import ExploreProduct from       "../components/Home/ExploreProduct"
 import FlashSaleHeader from      "../components/Home/FlashSaleHeader"
 import HeroSection from          "../components/Home/HomeHeroSection"
@@ -12,12 +14,14 @@ function Home() {
     
   return (
     <>
-     <HeroSection />
-     <FlashSaleHeader showTimer={true} title='Todays' description='Fresh sales'/>
-     <StaticCardPage />
-     <ExploreProduct />
-     <NewArrival />
-     <FeaturesSection />
+    <Header />
+       <HeroSection />
+       <FlashSaleHeader showTimer={true} title='Todays' description='Fresh sales'/>
+       <StaticCardPage />
+       <ExploreProduct />
+       <NewArrival />
+       <FeaturesSection />
+     <Footer />
     </>
   )
 }

@@ -1,15 +1,18 @@
-import { BrowserRouter } from 'react-router-dom'
+import { useContext } from 'react'
 import './App.css'
+import { CardContextProvider } from './context/CardContext'
 import AllRoutes from './routes/AllRoutes'
-import Header from './components/Header'
-import Footer from './components/Footer'
+
+
 function App() {
   return (
-    <BrowserRouter>
-       {/* <Header /> */}
+    <>
+    <CardContextProvider>      
        <AllRoutes />
-       {/* <Footer /> */}
-    </BrowserRouter>
+    </CardContextProvider>
+
+    </>
+    
   )
 }
 

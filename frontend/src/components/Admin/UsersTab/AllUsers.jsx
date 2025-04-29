@@ -12,7 +12,7 @@ useEffect(() => {
     headers : {'authorization' : `bearer ${window.localStorage.getItem('token')}`}
   })
   .then(res => {
-    if(res.status === 400){
+    if(res.status != 200){
      throw new Error("UnAuthorized Role");
     }
     return res.json()})

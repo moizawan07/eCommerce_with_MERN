@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   AiFillHeart,
   AiOutlineEye,
@@ -6,8 +6,10 @@ import {
 } from "react-icons/ai";
 import { FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { CardContext } from "../context/CardContext";
 
 const DameCards = ({
+  _id,
   title,
   discount,
   imageUrl,
@@ -16,10 +18,19 @@ const DameCards = ({
   rating,
   reviews,
   btnHide,
-  inStock
+  inStock,
+  category
 }) => {
+  
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate(null)
+ 
+
+
+  const addToCard = async () => {
+    console.log("Product Idid ===>", _id);
+     
+  }
 
   return (
     <div
@@ -61,8 +72,8 @@ const DameCards = ({
           className={`bg-black text-white w-full py-3 transition ${
             isHovered ? "block" : "hidden"}
            disabled:opacity-50`}
-          disabled={btnHide || !inStock} // This Condition Bcuz Card Ye Card Static Jaga Be use Ho rha And Products Page Pa be
-          onClick={() => alert("hello")}
+           disabled={btnHide || !inStock} // This Condition Bcuz Card Ye Card Static Jaga Be use Ho rha And Products Page Pa be
+           onClick={addToCard}
         >
           <AiOutlineShoppingCart
             className="inline-block mr-2 align-middle"
