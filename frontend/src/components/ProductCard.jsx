@@ -24,13 +24,34 @@ const DameCards = ({
   
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate(null)
- 
+  const {cardItems , setCardItems, setCardNumber} = useContext(CardContext)
 
 
   const addToCard = async () => {
-    console.log("Product Idid ===>", _id);
+    console.log("Product id ===>", _id);
+    console.log("Card Items [] ===>", cardItems);
+    
+    
+    // Now Set The Product Document Id In CardItems State
+    // If Already added So remove like an toogle work i doo here
+
+     let alreadyAdd = cardItems.findIndex(item => item === _id)
+    
      
-  }
+// If number >= 0 means already add huwa wa so remove it 
+     if(alreadyAdd >= 0){
+       cardItems.splice(alreadyAdd, 1)
+       setCardItems([...cardItems])
+      return setCardNumber((previous) => previous - 1)
+      }
+
+// if number not >= 0 means not add it Before so add it
+    
+      setCardItems([...cardItems, _id])
+      setCardNumber((previous) => previous + 1)
+
+      
+}
 
   return (
     <div
@@ -69,7 +90,8 @@ const DameCards = ({
 
         {/* Add To Cart Button (Hover Effect) */}
         <button
-          className={`bg-black text-white w-full py-3 transition ${
+          className={`bg-${cardItems.includes(_id) ? 'red-500' : 'black'}
+           text-white w-full py-3 transition ${
             isHovered ? "block" : "hidden"}
            disabled:opacity-50`}
            disabled={btnHide || !inStock} // This Condition Bcuz Card Ye Card Static Jaga Be use Ho rha And Products Page Pa be
@@ -79,7 +101,7 @@ const DameCards = ({
             className="inline-block mr-2 align-middle"
             size={20}
           />
-          Add To Cart
+         {cardItems.includes(_id) ?  'Remove To Cart' : ' Add To Cart'}
         </button>
       </div>
 

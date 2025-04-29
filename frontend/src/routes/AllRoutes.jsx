@@ -6,6 +6,8 @@ import Products from '../pages/Products'
 import About from '../pages/About'
 import Contact from '../pages/Contact'
 import PageNotFound from '../pages/PageNotFound'
+import Cart from '../pages/Cart'
+
 // import AdminSignup from '../pages/admin/AdminSignup'
 import AdminLogin from '../pages/admin/AdminLogin'
 import AdminDashboard from '../pages/admin/AdminDashboard'
@@ -18,6 +20,8 @@ import AdminProducts from '../pages/admin/AdminProducts'
 import AdminCreateProduct from '../pages/admin/AdminCreateProduct'
 import UserProfile from '../pages/UserProfile'
 
+
+
 function AllRoutes() {
   return (
   <BrowserRouter>
@@ -29,6 +33,7 @@ function AllRoutes() {
         <Route path='/login'   element={<Login />}/>
         <Route path='/about'   element={<About />}/>
         <Route path='/contact' element={<Contact />}/>
+        <Route path='/cart' element={<Cart />}/>
 
         {/* Products Routes */}
         <Route path='/products'element={<Products />}/>

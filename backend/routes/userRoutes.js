@@ -24,6 +24,6 @@ userRoutes.post('/login', loginAuth, login)
 userRoutes.get('/allUsersGet', verifyToken, adminAuth, getAllusers)  
 
 // 4: Add to Card
-
+userRoutes.post('/addToCard', verifyToken, (req, res) => res.status(200).json({message : 'hello user'}))
 
 module.exports = userRoutes

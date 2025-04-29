@@ -8,10 +8,13 @@ import {
   FiMenu,
   FiX,
 } from "react-icons/fi";
+import { useContext } from "react";
+import { CardContext } from "../context/CardContext";
 
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+  let {cardNumber} = useContext(CardContext)
 
   const navLinks = ["Home", "Products",  "About", "Contact", "SignUp"];
 
@@ -38,17 +41,22 @@ const Header = () => {
       </nav>
 
       {/* Desktop Search + Icons */}
-      <div className="hidden md:flex items-center gap-4">
+      <div className="hidden md:flex items-center gap-6">
         <div className="bg-gray-100 rounded-md px-3 py-1 flex items-center focus-within:ring-2 focus-within:ring-gray-400">
           <input
             type="text"
             placeholder="What are you looking for?"
-            className="bg-transparent outline-none text-sm w-42 focus:w-48 transition-all duration-300"
+            className="bg-transparent outline-none text-sm w-43 focus:w-64 transition-all duration-300"
           />
           <FiSearch className="text-gray-500 ml-2" />
         </div>
         <FiHeart className="text-xl cursor-pointer" />
+        <NavLink to='/cart' className='relative'>
         <FiShoppingCart className="text-xl cursor-pointer" />
+         <p className="absolute top-[-7px] left-3 text-white w-5 h-5 text-center content-center rounded-[50%] bg-red-600 z-50 font-semibold text-[12px]">
+         {cardNumber}
+         </p>
+        </NavLink>
         <NavLink to="/profile">
           <FiUser className="text-xl cursor-pointer" />
         </NavLink>
