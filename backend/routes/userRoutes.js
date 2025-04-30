@@ -10,6 +10,7 @@ const login = require('../controllers/login')
 const verifyToken = require('../middleware/verifytoken')
 const adminAuth = require('../middleware/adminAuth')
 const getAllusers = require('../controllers/getAllUsers')
+const addToCardProducts = require('../controllers/addToCardProductsGet')
 
 
 // 1: Signup Route
@@ -24,6 +25,6 @@ userRoutes.post('/login', loginAuth, login)
 userRoutes.get('/allUsersGet', verifyToken, adminAuth, getAllusers)  
 
 // 4: Add to Card
-userRoutes.post('/addToCard', verifyToken, (req, res) => res.status(200).json({message : 'hello user'}))
+userRoutes.post('/addToCard', verifyToken, addToCardProducts)
 
 module.exports = userRoutes

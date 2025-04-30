@@ -33,11 +33,9 @@ function AllRoutes() {
         <Route path='/login'   element={<Login />}/>
         <Route path='/about'   element={<About />}/>
         <Route path='/contact' element={<Contact />}/>
-        <Route path='/cart' element={<Cart />}/>
-
-        {/* Products Routes */}
+        <Route path='/cart'    element={<Cart />}/>
         <Route path='/products'element={<Products />}/>
-        <Route path='/productDetail'element={<ProductDetail />}/>
+        <Route path='/productDetail/:productId'element={<ProductDetail />}/>
 
 
         {/* User Profile Routes  */}

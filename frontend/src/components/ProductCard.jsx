@@ -24,10 +24,12 @@ const DameCards = ({
   
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate(null)
-  const {cardItems , setCardItems, setCardNumber} = useContext(CardContext)
+  const {cardItems , setCardItems} = useContext(CardContext)
 
 
   const addToCard = async () => {
+    let token = window.localStorage.getItem('token')
+      if(!token) return navigate('/login')
     console.log("Product id ===>", _id);
     console.log("Card Items [] ===>", cardItems);
     
@@ -41,14 +43,12 @@ const DameCards = ({
 // If number >= 0 means already add huwa wa so remove it 
      if(alreadyAdd >= 0){
        cardItems.splice(alreadyAdd, 1)
-       setCardItems([...cardItems])
-      return setCardNumber((previous) => previous - 1)
+      return setCardItems([...cardItems])
       }
 
 // if number not >= 0 means not add it Before so add it
     
-      setCardItems([...cardItems, _id])
-      setCardNumber((previous) => previous + 1)
+      setCardItems([_id, ...cardItems])
 
       
 }
@@ -84,7 +84,7 @@ const DameCards = ({
         {/* Eye Icon  */}
         <div className="absolute top-12 right-2 z-10">
           <button className="bg-white rounded-full p-2 text-gray-500 hover:text-gray-700 shadow-sm">
-            <AiOutlineEye onClick={() => navigate('/productDetail')} size={16} />
+            <AiOutlineEye onClick={() => navigate(`/productDetail/${_id}`)} size={16} />
           </button>
         </div>
 

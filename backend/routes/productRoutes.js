@@ -8,6 +8,7 @@ const verifyToken = require('../middleware/verifytoken')
 const adminAuth = require('../middleware/adminAuth')
 const upload = require('../middleware/uploadMulter')
 const createProduct = require('../controllers/createProduct')
+const productDetail = require('../controllers/productDetail')
 
 // Upload The Products in Mongodb
 productRoutes.get('/uploads', uploadAllProducts)
@@ -18,6 +19,8 @@ productRoutes.get('/getProducts', getProducts)
 // Sorting Category wise Product
 productRoutes.post('/getCategorie/Product', getCategoryProducts)
 
+// Product Detail info 
+productRoutes.post('/productDetail', productDetail)
 
 // Products Upload By Admin
 productRoutes.post('/create', verifyToken, adminAuth, upload.single('imageUrl'), createProduct)

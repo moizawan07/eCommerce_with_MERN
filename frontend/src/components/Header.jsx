@@ -14,7 +14,7 @@ import { CardContext } from "../context/CardContext";
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
-  let {cardNumber} = useContext(CardContext)
+  let {cardItems} = useContext(CardContext)
 
   const navLinks = ["Home", "Products",  "About", "Contact", "SignUp"];
 
@@ -54,7 +54,7 @@ const Header = () => {
         <NavLink to='/cart' className='relative'>
         <FiShoppingCart className="text-xl cursor-pointer" />
          <p className="absolute top-[-7px] left-3 text-white w-5 h-5 text-center content-center rounded-[50%] bg-red-600 z-50 font-semibold text-[12px]">
-         {cardNumber}
+         {cardItems.length}
          </p>
         </NavLink>
         <NavLink to="/profile">
