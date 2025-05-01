@@ -1,22 +1,36 @@
-import { useEffect } from "react"
-import Home from '../../pages/Home'
+import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
+import Home from "../../pages/Home";
 
-const AdminProtectedRoute = ({children}) => {
-  let token = window.localStorage.getItem('token')
+const AdminProtectedRoute = ({ children }) => {
+  const [authorized, setAuthorized] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:3000/admin/dashboardCome', {
-      method : 'GET',
-      headers : {'Authorization' : `bearer ${window.localStorage.getItem('token')}`},
-    })
-    .then(res => {
-      if(res.status != 200) throw new Error("Role UnAuthorized");
-      return res.json()
-    })
-    .then(data =>  children)
-    .catch(err => <Home />)
-  }, [])
+    const token = window.localStorage.getItem("token");
 
-}
+    fetch('http://localhost:3000/admin/coming/dashboard', {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    })
+      .then(res => {
+        if (res.status !== 200) {
+          throw new Error("Unauthorized");
+        }
+        return res.json();
+      })
+      .then(() => setAuthorized(true))
+      .catch(() => {
+        setAuthorized(false);
+        navigate('/');
+      });
+  }, []);
 
-module.exports = AdminProtectedRoute
+
+ 
+  return  authorized && children;
+};
+
+export default AdminProtectedRoute;

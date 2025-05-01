@@ -57,7 +57,7 @@ const Header = () => {
          {cardItems.length}
          </p>
         </NavLink>
-        <NavLink to="/profile">
+        <NavLink to="/userProfile">
           <FiUser className="text-xl cursor-pointer" />
         </NavLink>
       </div>
@@ -96,8 +96,9 @@ const Header = () => {
         <div className="flex justify-around py-2 border-b">
           <FiHeart className="text-xl cursor-pointer" />
           <FiShoppingCart className="text-xl cursor-pointer" />
-          <NavLink to="/profile" onClick={toggleSidebar}>
-            <FiUser className="text-xl cursor-pointer" />
+          
+          <NavLink to="/userProfile" onClick={toggleSidebar}>
+            <FiUser className="text-xl cursor-pointe" />
           </NavLink>
         </div>
 

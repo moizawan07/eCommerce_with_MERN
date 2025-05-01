@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom"
 import Footer from "../components/Footer"
 import Header from "../components/Header"
 import SuggestedNav from "../components/SuggestedNav"
@@ -5,7 +6,7 @@ import ProductDetailCom from "../components/products/ProductDetailCom"
 
 
 function ProductDetail() {
-
+  let navigate = useNavigate(null)
 
   return (
   <>

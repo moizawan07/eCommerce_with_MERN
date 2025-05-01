@@ -11,10 +11,10 @@ const CartPage = () => {
   let {cardItems, setCardItems} = useContext(CardContext)
   let navigate = useNavigate(null)
 
-  // console.log("product ==>", product);
+  console.log("product ==>", product);
   
   useEffect(() => {
-    console.log("use effect run==>", cardItems);
+    // console.log("use effect run==>", cardItems);
     
      fetch('http://localhost:3000/user/addToCard', {
       method: 'POST',
@@ -48,7 +48,7 @@ const CartPage = () => {
 
   let updatedProducts = cardItems.filter(item  => item !== productId)
 
-  console.log("updatedProducts", updatedProducts);
+  // console.log("updatedProducts", updatedProducts);
   
    
    setCardItems(updatedProducts)

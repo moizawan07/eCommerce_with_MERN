@@ -3,13 +3,14 @@ const jwt = require("jsonwebtoken");
 
 const verifyToken = async (req, res, next) => {
   let bearerHeader = req.headers.authorization;
-  console.log("bearre header ==>", bearerHeader);
+  // console.log("bearre header ==>", bearerHeader);
+    if(!bearerHeader) return res.status(401).json({message : 'Header is required'})
 
   let token = bearerHeader.split(" ")[1];
 
-//   console.log("token ==>", token);
+  // console.log("token ==>", token);
 
-  if (token === "null") {
+  if (token === "null" || !token) {
     return res.status(401).json({ message: "NO Token provided" });
   }
 

@@ -13,24 +13,24 @@ dotenv.config() // Environment Varaibles loads
 dbConnect() // Database Connected
 
 // ROUTES Imports
-const userRoutes = require('./routes/userRoutes');      
 const adminRoutes = require('./routes/adminRoutes')     
-const productRoutes = require('./routes/productRoutes')
 const employeRoutes = require('./routes/employeRoutes')
-// const adminRoutes = require('./routes/adminRoutes');
+const userRoutes = require('./routes/userRoutes');      
+const productRoutes = require('./routes/productRoutes')
+const orderRoutes = require('./routes/orderRoutes')
+
 
 
 
 // Use routes with prefixes
-app.use('/product', productRoutes);
-app.use('/user', userRoutes);
-app.use('/admin', adminRoutes);
+app.use('/admin',   adminRoutes);
 app.use('/employe', employeRoutes);
+app.use('/user',    userRoutes);
+app.use('/product', productRoutes);
+app.use('/order',   orderRoutes);
 
 
    
-
-
 
 const PORT = process.env.PORT || 5000
 

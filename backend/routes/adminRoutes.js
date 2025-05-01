@@ -18,7 +18,7 @@ const adminAuth = require('../middleware/adminAuth')
 adminRoutes.post('/login', loginAuth, login)
 
 // 3: Coming Dashboard Person Check Hes Authorized Or not means (admin)
-adminRoutes.get('coming/dashboard', verifytoken, adminAuth, 
+adminRoutes.get('/coming/dashboard', verifytoken, adminAuth, 
     (req, res) => res.send({status : 200,message : 'Hes Authorized'}))
 
 
