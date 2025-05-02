@@ -7,8 +7,8 @@ import About from '../pages/About'
 import Contact from '../pages/Contact'
 import PageNotFound from '../pages/PageNotFound'
 import Cart from '../pages/Cart'
-import UserProfile from '../pages/UserProfile'
 import ProtectedRoute from '../components/ProtectedRoute'
+import EditProfile from '../pages/userProfile/EditProfile'
 
 // import AdminSignup from '../pages/admin/AdminSignup'
 import AdminLogin from '../pages/admin/AdminLogin'
@@ -47,7 +47,7 @@ function AllRoutes() {
 
         <Route path='/productDetail/:productId'element={<ProductDetail />}/>
 
-        <Route path='/userProfile'element={<ProtectedRoute> <UserProfile /> </ProtectedRoute>} />
+        <Route path='/userProfile'element={<ProtectedRoute> <EditProfile /></ProtectedRoute>} />
 
 
 

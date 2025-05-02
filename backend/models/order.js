@@ -19,6 +19,11 @@ const schema = mongoose.Schema({
             inStock : Boolean,
             status : String
         }],
+        userName: String,
+        userNum: Number,
+        userCity: String,
+        userAdd: String,
+        userPM: String,
     createdAt: {
         type: Date,
         default: Date.now,}    

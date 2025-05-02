@@ -4,12 +4,15 @@ import { CardContext } from '../../context/CardContext';
 import { HiOutlineMinus } from "react-icons/hi";
 import { BsPlusLg } from "react-icons/bs";
 import Celebration from './Celebration';
+import BillingDetails from './BillingDetail';
 
 const CartPage = () => {
+
   const [product, setProduct] = useState([])
   let  [getProducts, setGetProducts] = useState(true)
-  let [orderDone, setOrderDone] = useState(false)
-  let {cardItems, setCardItems} = useContext(CardContext)
+  let  [orderDone, setOrderDone] = useState(false)
+  let [modal, setModal] = useState(false)
+  let  {cardItems, setCardItems} = useContext(CardContext)
   let navigate = useNavigate(null)
 
   console.log("product ==>", product);
@@ -106,41 +109,7 @@ const CartPage = () => {
     },0)
   }
   
-  // Now Procedd to checkout card items
-  async function checkout () {
-    // all user slect card items pa status pending kr ka send kr rha
-    let allcheckoutProducts= product.map(item => ({...item, status : 'pending'}))
-    console.log("allChjekut products ==>", allcheckoutProducts);
-
-     try {
-      let response = await  fetch('http://localhost:3000/order/done', {
-        method: 'POST',
-        headers : {
-          'authorization' : `bearer ${window.localStorage.getItem('token')}`,
-          "Content-Type" : 'application/json',
-        },
-        body: JSON.stringify({allcheckoutProducts}) 
-       })
-       let resData = await response.json() 
-      console.log("response ==>", response);
-      console.log("Data ==>", resData);
-
-      if(response.status === 200){
-        console.log("iff ma");
-        setProduct([])
-        setCardItems([])
-        return setOrderDone(true)
-      }
-
-      alert(resData.message)
-      
-     } 
-     catch (error) {
-      console.log("errror", error);
-      
-     }
-  }
-
+  
   return(orderDone ? <Celebration /> : 
      product.length > 0 ? (
      <div className="container mx-auto p-4 mt-5">
@@ -236,12 +205,20 @@ const CartPage = () => {
               <span className="text-sm py-2">Rs:{totalPrice}</span>
             </div>
             <button className="bg-red-500 text-white rounded px-6 py-3 mt-4 w-full text-sm"
-            onClick={checkout}
+            onClick={() => setModal(true)}
             >
               Proceed to checkout
             </button>
           </div>
         </div>
+
+        {/* Billing Details Compoent call */}
+       {modal &&  <BillingDetails 
+       modaal = {setModal}
+       cardProucts= {{product, setProduct}}
+       orderState= {{orderDone, setOrderDone}}
+         
+       />}
      </div>
   ): <EmptyCart/>)
 }
@@ -252,8 +229,10 @@ export default CartPage;
 
 
 
+
+// Empty Card Message Show Compoenent
 import { FiShoppingCart } from 'react-icons/fi';
-import { Link, useNavigate } from 'react-router-dom'; // Use this if you're using React Router
+import { Link, useNavigate } from 'react-router-dom'; 
 
 
 function EmptyCart () {

@@ -2,15 +2,20 @@ let orderModel = require('../models/order')
 
 const order =  async (req, res) => {
    let userId = req.user.userId
-  let {allcheckoutProducts} = req.body
+  let {allcheckoutProducts, userName, userNum, userCity, userAdd, userPM} = req.body
 
  console.log("user ==>", userId);
- console.log("products ==>", allcheckoutProducts);
+ console.log("products ==>", req.body);
 
  try {
     let orderAdd = new orderModel({
         userId,
         products: allcheckoutProducts,
+        userName, 
+        userNum,
+        userCity,
+        userAdd,
+        userPM,
         createdAt: new Date()
     })
 
