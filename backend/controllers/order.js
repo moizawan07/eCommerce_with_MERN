@@ -1,25 +1,27 @@
 let orderModel = require('../models/order')
 
 const order =  async (req, res) => {
-    let userId = req.user.userId
-  let {cartItems} = req.body
+   let userId = req.user.userId
+  let {allcheckoutProducts} = req.body
+
  console.log("user ==>", userId);
+ console.log("products ==>", allcheckoutProducts);
 
  try {
     let orderAdd = new orderModel({
         userId,
-        products: cartItems,
+        products: allcheckoutProducts,
         createdAt: new Date()
     })
 
-    await orderAdd
+    await orderAdd.save()
     console.log("order add==>", orderAdd);
     
-    res.send(200).json({message : 'sucess'})
+    res.status(200).json({message : 'sucess'})
  }
   
  catch (error) {
-    res.send(500).json({message : 'server error'})
+    res.status(500).json({message : 'server error'})
  }
 
 }

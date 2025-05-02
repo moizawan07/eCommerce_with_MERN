@@ -17,6 +17,7 @@ const schema = mongoose.Schema({
             discount : String,
             category : String,
             inStock : Boolean,
+            status : String
         }],
     createdAt: {
         type: Date,

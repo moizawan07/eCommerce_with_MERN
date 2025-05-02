@@ -30,8 +30,8 @@ const DameCards = ({
   const addToCard = async () => {
     let token = window.localStorage.getItem('token')
       if(!token) return navigate('/login')
-    console.log("Product id ===>", _id);
-    console.log("Card Items [] ===>", cardItems);
+    // console.log("Product id ===>", _id);
+    // console.log("Card Items [] ===>", cardItems);
     
     
     // Now Set The Product Document Id In CardItems State
@@ -49,6 +49,7 @@ const DameCards = ({
 // if number not >= 0 means not add it Before so add it
     
       setCardItems([_id, ...cardItems])
+
 
       
 }

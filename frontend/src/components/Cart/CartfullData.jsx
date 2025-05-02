@@ -3,11 +3,12 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { CardContext } from '../../context/CardContext';
 import { HiOutlineMinus } from "react-icons/hi";
 import { BsPlusLg } from "react-icons/bs";
-
+import Celebration from './Celebration';
 
 const CartPage = () => {
   const [product, setProduct] = useState([])
   let  [getProducts, setGetProducts] = useState(true)
+  let [orderDone, setOrderDone] = useState(false)
   let {cardItems, setCardItems} = useContext(CardContext)
   let navigate = useNavigate(null)
 
@@ -15,6 +16,8 @@ const CartPage = () => {
   
   useEffect(() => {
     // console.log("use effect run==>", cardItems);
+    if(cardItems.length < 1) return;
+    console.log("falseeee", cardItems.length);
     
      fetch('http://localhost:3000/user/addToCard', {
       method: 'POST',
@@ -37,7 +40,7 @@ const CartPage = () => {
       
      })
 
-     .catch(err => alert(err.message))
+     .catch(err => console.log(err.message))
 
   }, [getProducts])
 
@@ -95,16 +98,50 @@ const CartPage = () => {
     
   }
   
+  // Products Total price Calculates
   let totalPrice;
-  // Products Total price
   if(product.length > 0){
      totalPrice = product.reduce((acc, item) => {
      return item.newPrice * item.quanity + acc
     },0)
   }
   
+  // Now Procedd to checkout card items
+  async function checkout () {
+    // all user slect card items pa status pending kr ka send kr rha
+    let allcheckoutProducts= product.map(item => ({...item, status : 'pending'}))
+    console.log("allChjekut products ==>", allcheckoutProducts);
 
-  return (
+     try {
+      let response = await  fetch('http://localhost:3000/order/done', {
+        method: 'POST',
+        headers : {
+          'authorization' : `bearer ${window.localStorage.getItem('token')}`,
+          "Content-Type" : 'application/json',
+        },
+        body: JSON.stringify({allcheckoutProducts}) 
+       })
+       let resData = await response.json() 
+      console.log("response ==>", response);
+      console.log("Data ==>", resData);
+
+      if(response.status === 200){
+        console.log("iff ma");
+        setProduct([])
+        setCardItems([])
+        return setOrderDone(true)
+      }
+
+      alert(resData.message)
+      
+     } 
+     catch (error) {
+      console.log("errror", error);
+      
+     }
+  }
+
+  return(orderDone ? <Celebration /> : 
      product.length > 0 ? (
      <div className="container mx-auto p-4 mt-5">
       <div className="overflow-x-auto rounded-md shadow">
@@ -198,7 +235,9 @@ const CartPage = () => {
               <span className="text-sm py-2">Total:</span>
               <span className="text-sm py-2">Rs:{totalPrice}</span>
             </div>
-            <button className="bg-red-500 text-white rounded px-6 py-3 mt-4 w-full text-sm">
+            <button className="bg-red-500 text-white rounded px-6 py-3 mt-4 w-full text-sm"
+            onClick={checkout}
+            >
               Proceed to checkout
             </button>
           </div>
@@ -215,6 +254,7 @@ export default CartPage;
 
 import { FiShoppingCart } from 'react-icons/fi';
 import { Link, useNavigate } from 'react-router-dom'; // Use this if you're using React Router
+
 
 function EmptyCart () {
   return (

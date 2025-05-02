@@ -4,8 +4,8 @@ const verifyToken = require('../middleware/verifytoken');
 const order = require('../controllers/order');
 
 
-
-orderRoutes.get('/done', verifyToken,  order)
+// 1: Order done
+orderRoutes.post('/done', verifyToken,  order)
 
 
 
