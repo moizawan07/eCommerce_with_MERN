@@ -83,11 +83,16 @@ const DameCards = ({
         </div>
 
         {/* Eye Icon  */}
-        <div className="absolute top-12 right-2 z-10">
-          <button className="bg-white rounded-full p-2 text-gray-500 hover:text-gray-700 shadow-sm">
-            <AiOutlineEye onClick={() => navigate(`/productDetail/${_id}`)} size={16} />
-          </button>
-        </div>
+      {!btnHide && (
+         <div className="absolute top-12 right-2 z-10">
+           <button className="bg-white rounded-full p-2 text-gray-500 hover:text-gray-700 shadow-sm">
+            <AiOutlineEye
+              onClick={() => navigate(`/productDetail/${_id}`)} 
+            size={16}
+            />
+           </button>
+         </div>
+        )}  
 
         {/* Add To Cart Button (Hover Effect) */}
         <button

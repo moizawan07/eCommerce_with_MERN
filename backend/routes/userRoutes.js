@@ -11,6 +11,7 @@ const verifyToken = require('../middleware/verifytoken')
 const adminAuth = require('../middleware/adminAuth')
 const getAllusers = require('../controllers/getAllUsers')
 const addToCardProducts = require('../controllers/addToCardProductsGet')
+const userprofile = require('../controllers/userProfile')
 
 
 // 1: Signup Route
@@ -26,5 +27,8 @@ userRoutes.get('/allUsersGet', verifyToken, adminAuth, getAllusers)
 
 // 4: Add to Card
 userRoutes.post('/addToCard', verifyToken, addToCardProducts)
+
+// 5: User get Show Data on the profile page
+userRoutes.get('/getUser', verifyToken, userprofile)
 
 module.exports = userRoutes

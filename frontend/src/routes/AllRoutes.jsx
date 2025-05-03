@@ -21,6 +21,7 @@ import EmployeDashoard from '../pages/employe/EmployeDashoard'
 import AdminUsers from '../pages/admin/AdminUsers'
 import AdminProducts from '../pages/admin/AdminProducts'
 import AdminCreateProduct from '../pages/admin/AdminCreateProduct'
+import UserOrders from '../pages/userProfile/UserOrders'
 
 
 
@@ -48,6 +49,8 @@ function AllRoutes() {
         <Route path='/productDetail/:productId'element={<ProductDetail />}/>
 
         <Route path='/userProfile'element={<ProtectedRoute> <EditProfile /></ProtectedRoute>} />
+        
+        <Route path='/userOrders'element={<ProtectedRoute> <UserOrders /></ProtectedRoute>} />
 
 
 

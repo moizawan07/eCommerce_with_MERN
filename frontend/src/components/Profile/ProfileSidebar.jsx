@@ -1,15 +1,16 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const ProfileSidebar = () => {
   const location = useLocation();
   const pathname = location.pathname;
+  let navigate = useNavigate(null)
 
   const sidebarItems = [
-    { path: '/profile', label: 'My Profile' },
+    { path: '/userProfile', label: 'My Profile' },
     { path: '/address-book', label: 'Address Book' },
-    { path: '/payment-options', label: 'My Payment Options' },
-    { path: '/my-orders', label: 'My Orders' },
+    { path: '/payment-options', label: 'My Payment Options'},
+    { path: '/userOrders', label: 'My Orders' },
     { path: '/my-returns', label: 'My Returns' },
     { path: '/my-cancellations', label: 'My Cancellations' },
     { path: '/wishlist', label: 'My WishList' },
@@ -70,6 +71,9 @@ const ProfileSidebar = () => {
           ))}
         </ul>
       </nav>
+      <button 
+      onClick={() => {window.localStorage.removeItem('token'); navigate('/')} }
+      className='mt-12 bg-red-500 py-1.5 px-7 rounded-md text-white'>Logout</button>
     </aside>
   );
 };

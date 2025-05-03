@@ -1,9 +1,41 @@
-import React from 'react';
+import { useEffect, useState } from "react";
 
-const EditProfileForm = () => {
+// Edit Profile Form Component
+const EditProfileForm = ({nameChanged}) => {
+  let [user, setUser] = useState({
+    name : 'Moiz',
+    email:'moiz@gmail.com',
+    phone:'01245658785',
+    address : 'Garden',
+  })
+
+  useEffect(() => {
+    fetch('http://localhost:3000/user/getUser', {
+        method : 'GET',
+        headers:{"authorization" : `bearer ${window.localStorage.getItem('token')}`}
+    })
+    .then(res => {
+      if(res.status !== 200) throw new Error("Error");
+      return res.json()})
+    .then(data => { setUser(data.data)})
+    .catch(err => console.log(err))
+    
+  },[])
+  
+  useEffect(() => {nameChanged(user.name)}, [user.name])
+  
+  function  profileValuesGet() {
+    alert('hello')
+  }
+
+ 
+
+ 
+  
+  
   return (
     <div className="bg-white p-6 mt-6 rounded-md shadow-md w-full md:w-3/4 lg:w-[780px] mx-auto">
-      <h2 className="text-xl font-semibold mb-6 text-red-500">Edit Your Profile</h2>
+      <h2 className="text-xl font-semibold mb-6 text-red-500" onClick={() => nameChanged(user.name)}>Edit Your Profile</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label htmlFor="firstName" className="block text-gray-700 text-sm font-bold mb-2">
@@ -14,17 +46,21 @@ const EditProfileForm = () => {
             id="firstName"
             className=" rounded w-full py-2 px-3 text-gray-700  bg-[#F5F5F5] outline-none focus:border-red-500"
             placeholder="Md"
+             value={user.name}
+             onChange={profileValuesGet}
           />
         </div>
         <div>
           <label htmlFor="lastName" className="block text-gray-700 text-sm font-bold mb-2">
-            Last Name
+            Phone
           </label>
           <input
             type="text"
             id="lastName"
              className=" rounded w-full py-2 px-3 text-gray-700  bg-[#F5F5F5] outline-none focus:border-red-500"
             placeholder="Rimon"
+             value={user.phone.slice(0,5)+"******"}
+             onChange={profileValuesGet}
           />
         </div>
         <div>
@@ -36,6 +72,9 @@ const EditProfileForm = () => {
             id="email"
            className=" rounded w-full py-2 px-3 text-gray-700  bg-[#F5F5F5] outline-none focus:border-red-500"
             placeholder="rimel1111@gmail.com"
+             value={user.email}
+             onChange={profileValuesGet}
+
           />
         </div>
         <div>
@@ -47,6 +86,8 @@ const EditProfileForm = () => {
             id="address"
              className=" rounded w-full py-2 px-3 text-gray-700  bg-[#F5F5F5] outline-none focus:border-red-500"
             placeholder="Kingston, 5236, United State"
+             value={user.address}
+             onChange={profileValuesGet}
           />
         </div>
       </div>
@@ -59,7 +100,7 @@ const EditProfileForm = () => {
               Current Password
             </label>
             <input
-              type="password"
+              type="text"
               id="currentPassword"
                className=" rounded w-full py-2 px-3 text-gray-700  bg-[#F5F5F5] outline-none focus:border-red-500"
               placeholder="Current Passwod"
@@ -101,5 +142,10 @@ const EditProfileForm = () => {
     </div>
   );
 };
+
+
+
+
+
 
 export { EditProfileForm}
