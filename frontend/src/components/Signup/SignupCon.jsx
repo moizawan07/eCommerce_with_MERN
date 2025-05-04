@@ -35,7 +35,7 @@ const SignUpPage = () => {
 
 
   // Form validation func
-  const formValdation = () => {
+   const formValdation = () => {
     let {name, email, phone, password,  address} = formValue
     let errComes = {}    // In this Hold err Comes when Form validation call
 
@@ -225,6 +225,7 @@ const SignUpPage = () => {
       </div>
     </div>
   );
+  
 };
 
 export default SignUpPage;

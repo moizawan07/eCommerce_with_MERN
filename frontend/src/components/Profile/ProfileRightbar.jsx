@@ -13,9 +13,10 @@ const EditProfileForm = ({ nameChanged }) => {
     newPass : '',
     confPass : '',
   });
-  const inputs =  useRef(null)
+  const [getUser, setGetUser] = useState(false)
   const [editStart, setEditStart] = useState(false);
 
+console.log("user ==>", user);
 
   // User Profile Values get
   useEffect(() => {
@@ -29,23 +30,96 @@ const EditProfileForm = ({ nameChanged }) => {
         if (res.status !== 200) throw new Error("Error");
         return res.json();
       })
-      .then((data) => {
-        setUser(data.data);
+      .then(({data}) => {
+        setUser({
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          address: data.address,
+          passwordd : '******',
+          newPass : '',
+          confPass : '',
+        });
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [getUser]);
 
-  useEffect(() => {
-    nameChanged(user.name);
-  }, [user.name]);
+  // useEffect(() => {
+  //   nameChanged(user.name);
+  // }, [user.name]);
 
   function profileValuesGet(e) {
-    console.log(e.target);
+   setUser({...user, [e.target.id] : e.target.value})
   }
 
-  function userEdit  ()  {
-     alert('user edit sucess fully')
+  async function userEdit  ()  {
+   let {name, email, phone, address, passwordd, newPass, confPass} = user
+   //  All Fiedls Regex Code
+   let nameRegex = /^[A-Za-z]{3,}(?: [A-Za-z]+)*$/;
+   let emailRegex = /^[a-zA-Z0-9._%+-]{4,}@(gmail\.com|yahoo\.com|outlook\.com)$/;  
+   let phoneRegex = /^\d{11}$/;
+   let passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{6,}$/;
+
+   // Name Check
+    if(!nameRegex.test(name)){
+   return alert("Name must be 3 chracters long")
   }
+    if(!emailRegex.test(email)){
+   return alert("Invalid Email")
+  }
+    if(!phoneRegex.test(phone)){
+   return alert("Invalid number")
+  }
+    if(address.length < 6){
+   return alert("Addres must be at 6 characters long")
+  }
+    if(!passwordRegex.test(passwordd)){
+   return alert("Invalid password")
+  }
+    if(!passwordRegex.test(newPass)){
+   return alert("Invalid new password")
+  }
+    if(!passwordRegex.test(confPass)){
+   return alert("Invalid confirm password")
+  }
+
+  if(newPass !== confPass){
+   return alert('New password and confirm password do not match')
+  }
+
+  try {
+    let response = await  fetch("http://localhost:3000/user/editProfile", {
+      method: "POST",
+      headers: {
+        authorization: `bearer ${window.localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+      body : JSON.stringify(user)
+})
+  let resData = await response.json()
+  console.log("response", response);
+
+  if(response.status !== 200){
+    throw new Error(resData.message)
+  }
+  // setGetUser()
+  // setEditStart(false)
+
+  
+} 
+  catch (error) {
+   alert(error.message)    
+  }
+   
+  
+   
+
+
+//      if(nameRegex.test())
+     alert('user edit sucess fully')
+
+  }
+
 
   return (
     <div className={`bg-white p-6  ${!editStart ? 'mt-5' : 'mt-2'} rounded-md shadow-md w-full md:w-3/4 lg:w-[780px] mx-auto`}>
@@ -58,7 +132,8 @@ const EditProfileForm = ({ nameChanged }) => {
         </h2>
 
         {!editStart && (
-          <TbEdit size={22} onClick={() => setEditStart(true)} className="cursor-pointer text-gray-700"/>
+          <TbEdit size={22} onClick={() => {setEditStart(true); setUser({...user, passwordd : ''})}} 
+          className="cursor-pointer text-gray-700"/>
         )}
       </div>
 
@@ -82,26 +157,7 @@ const EditProfileForm = ({ nameChanged }) => {
             disabled={!editStart}
           />
         </div>
-        <div>
-          <label
-            htmlFor="lastName"
-            className="block text-gray-700 text-sm font-bold mb-2"
-          >
-            Phone
-          </label>
-          <input
-            type="text"
-            id="phone"
-            className={`rounded w-full py-2 px-3 text-gray-700  bg-[#F5F5F5] outline-none 
-              ${editStart && 'border border-red-500'}
-              `}
-            placeholder="Rimon"
-            value={user.phone.slice(0, 5) + "******"}
-            onChange={profileValuesGet}
-            disabled={!editStart}
-          />
-        </div>
-
+       
         <div>
           <label
             htmlFor="email"
@@ -117,6 +173,26 @@ const EditProfileForm = ({ nameChanged }) => {
               `}
             placeholder="rimel1111@gmail.com"
             value={user.email}
+            onChange={profileValuesGet}
+            disabled={!editStart}
+          />
+        </div>
+
+        <div>
+          <label
+            htmlFor="lastName"
+            className="block text-gray-700 text-sm font-bold mb-2"
+          >
+            Phone
+          </label>
+          <input
+            type={!editStart ? 'text' : 'number'}
+            id="phone"
+            className={`rounded w-full py-2 px-3 text-gray-700  bg-[#F5F5F5] outline-none 
+              ${editStart && 'border border-red-500'}
+              `}
+            placeholder="Rimon"
+            value={!editStart ? user.phone.slice(0, 5) + "******" : user.phone}
             onChange={profileValuesGet}
             disabled={!editStart}
           />
@@ -211,7 +287,7 @@ const EditProfileForm = ({ nameChanged }) => {
        {editStart && (
          <div className="flex justify-end mt-6">
         <button
-          onClick={() => setEditStart(false)}
+          onClick={() => {setEditStart(false); setGetUser(!getUser)}}
           className="bg-transparent hover:bg-gray-200 text-gray-700 font-semibold py-2 px-4 border border-gray-200 rounded shadow-sm mr-4 focus:outline-none focus:shadow-outline"
         >
           Cancel
