@@ -1,11 +1,9 @@
 let orderModel = require('../models/order')
+let userModel = require('../models/user')
 
 const order =  async (req, res) => {
-   let userId = req.user.userId
+   let {userId} = req.user
   let {allcheckoutProducts, userName, userNum, userCity, userAdd, userPM} = req.body
-
- console.log("user ==>", userId);
- console.log("products ==>", req.body);
 
  try {
     let orderAdd = new orderModel({
@@ -21,6 +19,11 @@ const order =  async (req, res) => {
 
     await orderAdd.save()
     console.log("order add==>", orderAdd);
+
+    let userDocument = await userModel.findById(userId)
+       userDocument.orders.push(orderAdd._id)
+     await userDocument.save()
+    
     
     res.status(200).json({message : 'sucess'})
  }

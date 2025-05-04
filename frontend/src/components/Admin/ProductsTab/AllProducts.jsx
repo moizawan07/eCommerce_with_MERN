@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { AiFillStar } from 'react-icons/ai';
 import { AiOutlineEye, AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai'; // Trying Ant Design Outlined
+import { useNavigate } from 'react-router-dom';
 // If AiOutline... doesn't work, try:
 // import { FiEye, FiEdit, FiTrash2 } from 'react-icons/fi'; // Feather Icons
 
 const AllProductList = () => {
   const [products,setProducts] = useState([])
+  let navigate = useNavigate(null)
  
 
  useEffect(() => {
@@ -26,7 +28,7 @@ const AllProductList = () => {
           <h2 className="text-lg font-semibold text-gray-300">All Product List</h2>
 
           <div className="flex items-center space-x-2">
-            <button className="bg-[#FF7A00] text-white py-2 px-4 rounded-md text-sm hover:bg-[#d66500]">
+            <button onClick={() => navigate('/admin/create/product')} className="bg-[#FF7A00] text-white py-2 px-4 rounded-md text-sm hover:bg-[#d66500]">
               Add Product
             </button>
 

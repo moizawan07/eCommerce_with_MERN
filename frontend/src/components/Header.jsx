@@ -14,14 +14,14 @@ import { CardContext } from "../context/CardContext";
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
-  let {cardItems} = useContext(CardContext)
+  let { cardItems } = useContext(CardContext);
 
-  const navLinks = ["Home", "Products",  "About", "Contact", "SignUp"];
+  const navLinks = ["Home", "Products", "About", "Contact", "SignUp"];
 
   return (
     <header className="shadow-md py-4 px-6 flex items-center justify-between relative z-50 bg-white">
       {/* Logo */}
-      <h1 className="text-2xl font-bold">TekVibe</h1>
+      <h1 className="text-3xl font-bold text-red-500">TekVibe</h1>
 
       {/* Desktop Nav */}
       <nav className="hidden md:flex space-x-6">
@@ -31,7 +31,7 @@ const Header = () => {
             to={`/${item === "Home" ? "" : item.toLowerCase()}`}
             className={({ isActive }) =>
               `text-sm underline-offset-4 ${
-                isActive ? "underline font-semibold" : ""
+                isActive ? "text-red-500 border-red-500 font-semibold" : ""
               }`
             }
           >
@@ -50,14 +50,23 @@ const Header = () => {
           />
           <FiSearch className="text-gray-500 ml-2" />
         </div>
+
         <FiHeart className="text-xl cursor-pointer" />
-        <NavLink to='/cart' className='relative'>
-        <FiShoppingCart className="text-xl cursor-pointer" />
-         <p className="absolute top-[-7px] left-3 text-white w-5 h-5 text-center content-center rounded-[50%] bg-red-600 z-50 font-semibold text-[12px]">
-         {cardItems.length}
-         </p>
+        <NavLink
+          to="/cart"
+          className={({ isActive }) => `relative ${isActive && "text-red-500"}`}
+        >
+          <FiShoppingCart className="text-xl cursor-pointer" />
+          <p className="absolute top-[-7px] left-3 text-white w-5 h-5 text-center content-center rounded-[50%] bg-red-600 z-50 font-semibold text-[12px]">
+            {cardItems.length}
+          </p>
         </NavLink>
-        <NavLink to="/userProfile">
+
+        <NavLink to="/userProfile"
+         className={({isActive}) =>
+          `${isActive && "text-red-500"}`
+          }
+        >
           <FiUser className="text-xl cursor-pointer" />
         </NavLink>
       </div>
@@ -74,14 +83,14 @@ const Header = () => {
         } transition-transform duration-300 ease-in-out z-50`}
       >
         <div className="p-4 flex justify-between items-center border-b">
-          <h2 className="text-xl font-bold">MENU</h2>
+          <h2 className="text-xl font-bold text-red-500">MENU</h2>
           <button onClick={toggleSidebar}>
             <FiX size={24} />
           </button>
         </div>
 
         {/* Search Bar */}
-        <div className="px-4 py-4">
+        <div className="px-4 py-5">
           <div className="bg-gray-100 rounded-md px-3 py-2 flex items-center focus-within:ring-2 focus-within:ring-gray-400">
             <input
               type="text"
@@ -95,9 +104,20 @@ const Header = () => {
         {/* Icons */}
         <div className="flex justify-around py-2 border-b">
           <FiHeart className="text-xl cursor-pointer" />
+
+          <NavLink to='/cart'
+           className={({isActive}) =>
+            `${isActive && "text-red-500"}`
+            }
+          >
           <FiShoppingCart className="text-xl cursor-pointer" />
-          
-          <NavLink to="/userProfile" onClick={toggleSidebar}>
+          </NavLink>
+
+          <NavLink to="/userProfile" 
+           className={({isActive}) =>
+            `${isActive && "text-red-500"}`
+            }
+          onClick={toggleSidebar}>
             <FiUser className="text-xl cursor-pointe" />
           </NavLink>
         </div>
@@ -109,7 +129,10 @@ const Header = () => {
               key={item}
               to={`/${item === "Home" ? "" : item.toLowerCase()}`}
               onClick={toggleSidebar}
-              className="text-base text-gray-700 hover:text-black"
+              className={({isActive}) => {
+               return `text-base text-gray-700 hover:text-black
+                ${isActive && "text-red-500 font-semibold"}`
+              }}
             >
               {item}
             </NavLink>
@@ -121,7 +144,3 @@ const Header = () => {
 };
 
 export default Header;
-
-
-
-

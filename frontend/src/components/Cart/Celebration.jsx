@@ -1,35 +1,56 @@
 import React, { useEffect, useRef } from 'react';
 import { CiShoppingCart } from "react-icons/ci";
 import { useNavigate } from 'react-router-dom';
+import { FaCheckCircle, FaGift, FaTruck } from 'react-icons/fa'; // Import more icons
 
 function DeliveryVideo() {
-  let videoRef = useRef(null)
-  let navigate = useNavigate(null)
+  let videoRef = useRef(null);
+  let navigate = useNavigate();
 
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.playbackRate = 1.0; // Set to 2x speed (fast)
+      videoRef.current.playbackRate = 1.0;
     }
   }, []);
 
-
   return (
-    <div className='w-full flex flex-col justify-center items-center pb-15'>
-       <video
-         src="/assets/orderDone.mp4" // Apne video file ka path dein
-         autoPlay
-         ref={videoRef} 
-         loop 
-         muted 
-         style={{ width: '1800px', height: '500px' }} // Aap apne hisaab se style kar sakte hain
-      />
-        <button 
-        onClick={() => navigate('/products')}
-        className='bg-amber-600 text-white rounded-md px-10 py-3.5 flex gap-2 items-center cursor-pointer'>
-          <CiShoppingCart size={24}/>
-          Continue Shopping 
-        </button>
+    <div className='w-full flex flex-col items-center pb-10'>
+      <div className='relative w-full max-w-[850px]'>
+        <video
+          src="/assets/orderDone.mp4"
+          autoPlay
+          ref={videoRef}
+          loop
+          muted
+          className='w-[100%] rounded-lg shadow-lg'
+          style={{ maxHeight: '200px', objectFit: 'cover' }}
+        />
+        <div className='absolute top-1/2 left-8 transform -translate-y-1/2 text-white bg-black bg-opacity-60 rounded-md p-6'>
+          <h2 className='text-3xl font-semibold mb-4 flex items-center gap-2'>
+            <FaCheckCircle className='text-green-400' /> Thanks for Shopping!
+          </h2>
+          <ul className='space-y-2 text-lg'>
+            <li className='flex items-center gap-2'>
+              <FaTruck className='text-blue-400' /> Fast & Reliable Delivery
+            </li>
+            <li className='flex items-center gap-2'>
+              <FaGift className='text-purple-400' /> Enjoy Your New Items
+            </li>
+            <li className='flex items-center gap-2'>
+              <CiShoppingCart className='text-yellow-400' /> Explore More Great Products
+            </li>
+            <li>...and many more exciting things to come!</li>
+          </ul>
+        </div>
       </div>
+      <button
+        onClick={() => navigate('/products')}
+        className='mt-8 bg-amber-600 text-white rounded-md px-12 py-4 flex gap-3 items-center cursor-pointer text-lg hover:bg-amber-700 transition-colors duration-300'
+      >
+        <CiShoppingCart size={28} />
+        Continue Shopping
+      </button>
+    </div>
   );
 }
 
