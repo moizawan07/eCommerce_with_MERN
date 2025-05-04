@@ -21,6 +21,27 @@ useEffect(() => {
 }, [])
 
 
+async function userDelete  (userId){
+  alert('hello', userId)
+
+  // try {
+  //   let response = await fetch('http://localhost:3000/user/allUsersGet', {
+  //    method : 'POST',
+  //    headers : {'authorization' : `bearer ${window.localStorage.getItem('token')}`},
+  //    body: JSON.stringify({userId})
+  //  })
+  // //  let resData = response.json()
+
+     if(Response.status !== 200) throw new Error(resData);
+
+     alert('sucessfully delete')
+  //  console.log("response", response);
+      
+  // } 
+  // catch (error) {
+  //   console.error(error);
+  // }
+}
 
   return (
     <div className="bg-[#0E1628] rounded-md shadow-md overflow-x-auto">
@@ -57,7 +78,7 @@ useEffect(() => {
                     <AiOutlineEdit className="text-yellow-300 hover:text-yellow-400" size={18} />
                   </div>
                   <div className="bg-red-900 rounded-md p-1">
-                    <AiOutlineDelete className="text-red-300 hover:text-red-400" size={18} />
+                    <AiOutlineDelete onClick={() => userDelete(user._id)} className="text-red-300 hover:text-red-400" size={18} />
                   </div>
                 </td>
               </tr>
