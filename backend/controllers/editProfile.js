@@ -3,14 +3,15 @@ let bcrypt = require('bcrypt')
 
 const editProfile = async (req, res) => {
   let {userId} = req.user
-  let {name, email, passwordd, address, phone} = req.body
+  let {name, email, passwordd, address, phone, newPass} = req.body
 
   try {
     let userDocu = await userModel.findById(userId)
 
     let passMatch = await bcrypt.compare(passwordd, userDocu.password)
-     if(!passMatch) return res.status(200).json({message : 'Password not match'})
-     let hashPass = await bcrypt.hash(passwordd,10)
+     if(!passMatch) return res.status(400).json({message : 'Current Password not match'})
+
+     let hashPass = await bcrypt.hash(newPass,10)
 
      userDocu.name = name   
      userDocu.email = email   

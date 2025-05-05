@@ -16,7 +16,6 @@ const EditProfileForm = ({ nameChanged }) => {
   const [getUser, setGetUser] = useState(false)
   const [editStart, setEditStart] = useState(false);
 
-console.log("user ==>", user);
 
   // User Profile Values get
   useEffect(() => {
@@ -52,6 +51,7 @@ console.log("user ==>", user);
    setUser({...user, [e.target.id] : e.target.value})
   }
 
+  // User Edit In this
   async function userEdit  ()  {
    let {name, email, phone, address, passwordd, newPass, confPass} = user
    //  All Fiedls Regex Code
@@ -97,15 +97,13 @@ console.log("user ==>", user);
       body : JSON.stringify(user)
 })
   let resData = await response.json()
-  console.log("response", response);
-
+ 
   if(response.status !== 200){
     throw new Error(resData.message)
   }
-  // setGetUser()
-  // setEditStart(false)
 
-  
+  setGetUser()
+  setEditStart(false)
 } 
   catch (error) {
    alert(error.message)    
@@ -233,7 +231,7 @@ console.log("user ==>", user);
               Current Password
             </label>
             <input
-              type="text"
+              type="password"
               id="passwordd"
               className={`rounded w-full py-2 px-3 text-gray-700  bg-[#F5F5F5] outline-none 
                 ${editStart && 'border border-red-500'}
@@ -255,7 +253,7 @@ console.log("user ==>", user);
               New Password
              </label>
              <input
-              type="text"
+              type="password"
               id="newPass"
               className=" rounded w-full py-2 px-3 text-gray-700  bg-[#F5F5F5] outline-none border border-red-500"
               placeholder="New Passwod"
@@ -271,7 +269,7 @@ console.log("user ==>", user);
               Confirm New Password
             </label>
             <input
-              type="text"
+              type="password"
               id="confPass"
               className=" rounded w-full py-2 px-3 text-gray-700  bg-[#F5F5F5] outline-none border border-red-500"
               placeholder="Confirm New Passwod"
@@ -299,6 +297,7 @@ console.log("user ==>", user);
        ) 
 
        }
+       
     </div>
   );
 };

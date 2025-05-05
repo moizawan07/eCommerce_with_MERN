@@ -21,7 +21,9 @@ const EcomCards = ({ title, value, growth, type }) => {
       <div className="bg-black p-5 rounded-md">
 
       {/* Value */}
-      <h2 className="text-[28px] font-bold text-white mb-3">{value}</h2>
+      <h2 className="text-[28px] font-bold text-white mb-3">
+        {value < 10 ? '0' + value : value}
+      </h2>
 
       {/* Growth */}
       <div className="flex items-center gap-2 text-[#3B82F6] border-1  border-[#1a52d6] px-4 py-1.5 rounded-full w-max text-sm">

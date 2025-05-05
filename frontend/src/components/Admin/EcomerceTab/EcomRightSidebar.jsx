@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import RightTopHeader from "../RightTopHeader"
 import AdminFooter from "./AdminFooter"
 import EcomCards from "./EcomCards"
@@ -7,6 +8,18 @@ import TopOrders from "./TopOrders"
 
 
 function EcomRightSidebar() {
+  let [dashInfo, setdashinfo] = useState(false)
+
+ useEffect(() => {
+   fetch('http://localhost:3000/admin/analytics', {
+    method: 'GET',
+    headers: {'authorization' : `bearer ${window.localStorage.getItem('token')}`}
+   })
+   .then(res => res.json())
+   .then(data => setdashinfo(data.data))
+   .catch(err => console.error(err))
+ },[])
+
   return (
     <div className="bg-[#020617] w-full h-auto pb-5 min-h-[100vh]  text-white">
      <RightTopHeader />
@@ -15,10 +28,10 @@ function EcomRightSidebar() {
      
      {/* All Cards */}
     <div className="w-full px-4 py-6 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-      <EcomCards title="Total Products" value="25,154" growth="25%" type="products" />
-      <EcomCards title="Total Paid Orders" value="$16,000" growth="12%" type="orders" />
-      <EcomCards title="Total Customers" value="15,400k" growth="15%" type="customers" />
-      <EcomCards title="Sales" value="12,340" growth="19%" type="sales" />
+      <EcomCards title="Total Products" value={dashInfo.totalProducts} growth="25%" type="products" />
+      <EcomCards title="Total  Orders"value={dashInfo.totalOrders} growth="12%" type="orders" />
+      <EcomCards title="Total Customers" value={dashInfo.totalUsers} growth="15%" type="customers" />
+      <EcomCards title="Sales"value={dashInfo.totalSales} growth="19%" type="sales" />
     </div>
  
      {/* Overview Chart */}

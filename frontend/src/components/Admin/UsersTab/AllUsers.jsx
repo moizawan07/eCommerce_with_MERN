@@ -4,6 +4,8 @@ import { AiOutlineEye, AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
 
 const AllUserTable = () => {
   const [users, setUsers] = useState([])
+  const [getUsers, setGetUsers] = useState(false)
+
 
 // Get all Users
 useEffect(() => {
@@ -18,29 +20,29 @@ useEffect(() => {
     return res.json()})
   .then(data => setUsers(data.data))
   .catch(err => alert(err.message))
-}, [])
+}, [getUsers])
 
 
 async function userDelete  (userId){
-  alert('hello', userId)
+  try {
+    let response = await fetch('http://localhost:3000/admin/userDelete', {
+     method : 'DELETE',
+     headers : {'authorization' : `bearer ${window.localStorage.getItem('token')}`,
+     'Content-type' : 'application/json'},
+     body: JSON.stringify({userId})
+   })
+   let resData = response.json()
 
-  // try {
-  //   let response = await fetch('http://localhost:3000/user/allUsersGet', {
-  //    method : 'POST',
-  //    headers : {'authorization' : `bearer ${window.localStorage.getItem('token')}`},
-  //    body: JSON.stringify({userId})
-  //  })
-  // //  let resData = response.json()
-
-     if(Response.status !== 200) throw new Error(resData);
+     if(response.status !== 200) throw new Error(resData);
 
      alert('sucessfully delete')
-  //  console.log("response", response);
+
+     setGetUsers(!getUsers)
       
-  // } 
-  // catch (error) {
-  //   console.error(error);
-  // }
+  } 
+  catch (error) {
+    console.error(error);
+  }
 }
 
   return (

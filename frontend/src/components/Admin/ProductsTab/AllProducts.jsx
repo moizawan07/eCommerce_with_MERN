@@ -8,15 +8,68 @@ import { useNavigate } from 'react-router-dom';
 
 const AllProductList = () => {
   const [products,setProducts] = useState([])
+  const [getProduct, setGetProduct] = useState()
+
   let navigate = useNavigate(null)
  
+  console.log("component mount", products);
+  
 
  useEffect(() => {
    fetch('http://localhost:3000/product/getProducts')
    .then(res => res.json())
    .then(data => setProducts(data.products))
    .catch(err => alert(err.message))
- }, [])
+ }, [getProduct])
+
+
+async function productDelete (proId) {
+  try {
+    let response = await fetch('http://localhost:3000/admin/productDelete', {
+     method : 'DELETE',
+     headers : {'authorization' : `bearer ${window.localStorage.getItem('token')}`,
+     'Content-type' : 'application/json'},
+     body: JSON.stringify({proId})
+   })
+   let resData = response.json()
+
+     if(response.status !== 200) throw new Error(resData);
+
+     alert('sucessfully delete')
+
+     setGetProduct(!getProduct)
+  } 
+  catch (error) {
+    alert(error.message);
+  }
+}
+
+async function productInStockChanged (proId, value) {
+   let updatedProducts = [...products]
+   let proindex = updatedProducts.findIndex(item => item._id === proId)
+     updatedProducts[proindex].inStock = value === 'true'
+         setProducts(updatedProducts)
+
+  try {
+    let response = await fetch('http://localhost:3000/admin/productInStockChanged', {
+     method : 'PUT',
+     headers : {'authorization' : `bearer ${window.localStorage.getItem('token')}`,
+     'Content-type' : 'application/json'},
+     body: JSON.stringify({proId, value})
+   })
+   let resData = response.json()
+
+     if(response.status !== 200) throw new Error(resData);
+
+     alert('sucessfully Changed')
+
+     setGetProduct(!getProduct)
+  } 
+  catch (error) {
+    alert(error.message);
+  }
+}
+
 
 
   return (
@@ -46,7 +99,7 @@ const AllProductList = () => {
           <thead className="text-gray-400 text-sm">
             <tr>
               <th className="py-2 px-3 w-10">
-                <input type="checkbox" className="form-checkbox rounded border-gray-600 bg-gray-700 accent-amber-500 focus:text-white" />
+                <input type="checkbox" className="form-checkbox rounded accent-orange-600/55 outline-none" />
               </th>
               <th className="py-2 px-3">Product Img & Name</th>
               <th className="py-2 px-3">Price</th>
@@ -64,7 +117,8 @@ const AllProductList = () => {
              products.map((product) => ( 
               <tr key={product._id} className="border-b border-gray-700 last:border-b-0">
               <td className="py-2 px-3">
-                <input type="checkbox" className="form-checkbox rounded border-gray-600 bg-gray-700 accent-amber-500 focus:text-white" />
+                <input type="checkbox" 
+                className="form-checkbox rounded border-gray-600  accent-orange-600/55 outline-none" />
               </td>
 
               <td className="py-2 px-3">
@@ -85,9 +139,16 @@ const AllProductList = () => {
                 {product.category}
               </td>
 
-              <td className={`py-2 px-3 text-${product.inStock ? 'green-500' : 'red-500'}`}>
-                {product.inStock ? 'True' : 'False'}
-                </td>
+              <td className="py-2 px-3">
+              <select
+                onChange={(e) => productInStockChanged(product._id, e.target.value)}
+                  value={product.inStock ? 'true' : 'false'}
+                  className={`bg-gray-800  py-1 px-2 rounded focus:outline-none 
+                    ${product.inStock ? 'text-green-400' : 'text-red-400'}`}>
+                  <option className='text-green-400' value="true">True</option>
+                  <option  className="text-red-500" value="false">False</option>
+                </select>
+            </td>
 
               <td className="py-2 px-4">
                 <div className="flex items-center">
@@ -104,7 +165,9 @@ const AllProductList = () => {
                   <AiOutlineEdit className="text-yellow-300 hover:text-yellow-400" size={18} />
                 </div>
                 <div className="bg-red-900 rounded-md p-1">
-                  <AiOutlineDelete className="text-red-300 hover:text-red-400" size={18} />
+                  <AiOutlineDelete className="text-red-300 hover:text-red-400" size={18} 
+                  onClick={() => productDelete(product._id)}
+                  />
                 </div>
               </td>
 
