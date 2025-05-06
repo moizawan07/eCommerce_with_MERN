@@ -14,18 +14,21 @@ function DeliveryVideo() {
   }, []);
 
   return (
-    <div className='w-full flex flex-col items-center pb-10'>
-      <div className='relative w-full max-w-[850px]'>
+    <>
+   
+    <div className='w-full flex flex-col items-center lg:flex-row-reverse lg:justify-evenly pb-10 mt-5'>
+      <div className='w-[900px] h-[520px]'>
         <video
           src="/assets/orderDone.mp4"
           autoPlay
           ref={videoRef}
           loop
           muted
-          className='w-[100%] rounded-lg shadow-lg'
-          style={{ maxHeight: '200px', objectFit: 'cover' }}
+          className='w-[700px] rounded-lg h-[100%]'
+          // style={{ maxHeight: '200px', objectFit: 'cover' }}
         />
-        <div className='absolute top-1/2 left-8 transform -translate-y-1/2 text-white bg-black bg-opacity-60 rounded-md p-6'>
+      </div>
+        <div className='text-white bg-black bg-opacity-60 rounded-md p-6'>
           <h2 className='text-3xl font-semibold mb-4 flex items-center gap-2'>
             <FaCheckCircle className='text-green-400' /> Thanks for Shopping!
           </h2>
@@ -42,7 +45,8 @@ function DeliveryVideo() {
             <li>...and many more exciting things to come!</li>
           </ul>
         </div>
-      </div>
+    </div>
+    <div className="flex justify-center mb-15">
       <button
         onClick={() => navigate('/products')}
         className='mt-8 bg-amber-600 text-white rounded-md px-12 py-4 flex gap-3 items-center cursor-pointer text-lg hover:bg-amber-700 transition-colors duration-300'
@@ -50,7 +54,9 @@ function DeliveryVideo() {
         <CiShoppingCart size={28} />
         Continue Shopping
       </button>
+      
     </div>
+    </>
   );
 }
 

@@ -21,7 +21,38 @@ const OrdersTable = () => {
       .catch(err => alert(err.message));
   }, []);
 
+// Order Status Change
+ const orderStausChange = async (docuId, prodId, value) => {
+   console.log("docuId ==>", docuId);
+   console.log("prodId ==>", prodId);
+   console.log("value ==>", value);
+
+   const updatedOrders = [...orders]
+    let docuIndex = updatedOrders.findIndex(item => item._id === docuId)
+    let prodIndex = updatedOrders[docuIndex].products.findIndex(product => product._id === prodId)
+  updatedOrders[docuIndex].products[prodIndex].status = value
+  setOrders(updatedOrders)
+
+  try {
+    let response = await fetch('http://localhost:3000/admin/statusChange', {
+      method : 'PUT',
+      headers : {'authorization' : `bearer ${window.localStorage.getItem('token')}`,
+      'Content-type' : 'application/json'},
+      body: JSON.stringify({docuId, prodId,value})
+    })
+    let resData = response.json()
+ 
+      if(response.status !== 200) throw new Error(resData);
+ 
+      alert('sucessfully Changed')
+ 
+  } 
+  catch (error) {
+    alert(error.message)
+  }
+ }
   
+
   return (
     <div className="bg-[#0E1628] rounded-md shadow-md overflow-x-auto">
       <div className="p-4 md:p-6">
@@ -33,6 +64,7 @@ const OrdersTable = () => {
               <th className="py-2 px-3">Product</th>
               <th className="py-2 px-3">Quantity</th>
               <th className="py-2 px-3">Customer </th>
+              <th className="py-2 px-3">Status </th>
               <th className="py-2 px-3">City</th>
               <th className="py-2 px-3">Payment</th>
               <th className="py-2 px-3">Date</th>
@@ -57,6 +89,19 @@ const OrdersTable = () => {
                   </div></td>
               <td className="py-2 px-7">{product.quanity}</td>
               <td className="py-2 px-3">{order.userName}</td>
+              <td className="py-2 px-3">
+               <select value={product.status}
+               onChange={(e) => orderStausChange(order._id, product._id, e.target.value)}
+               className={`py-1 px-2 rounded outline-none
+                 ${product.status == "pending" ? 'bg-amber-900 text-amber-300': 
+                  product.status == "accept" ? 'bg-green-900 text-green-300' : 
+                  'bg-red-900 text-red-200'}`}>
+                <option className='bg-yellow-900 text-yellow-300' value='pending'>Pending</option>
+                <option className='bg-green-900 text-green-300' value='accept'>Accept</option>
+                <option className='bg-red-900 text-red-200' value='decline'>Decline</option>
+               </select>
+              </td>
+              
               <td className="py-2 px-3">{order.userCity}</td>
               <td className="py-2 px-3">{order.userPM == 'cod' ? "Cash" : order.userPM}</td>
               <td className="py-2 px-3">{new Date(order.createdAt).toLocaleDateString()}</td>
@@ -73,7 +118,6 @@ const OrdersTable = () => {
               </td>
               </tr>
           ))))}
-              
           </tbody>
         </table>
       </div>

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { CardContext } from '../../context/CardContext';
+import { toast } from 'react-toastify';
 
 const BillingDetails = ({modaal,cardProucts, orderState}) => {
 // console.log("card", cardProucts);
@@ -69,18 +70,18 @@ async function placeOrder () {
             }) 
        })
        let resData = await response.json() 
-      console.log("response ==>", response);
-      console.log("Data ==>", resData);
+    //   console.log("response ==>", response);
+    //   console.log("Data ==>", resData);
 
       if(response.status === 200){
-        console.log("iff ma");
+         toast.success('Order Done', {position : 'top-left'})
         setProduct([])
         setCardItems([])
         modaal(false)
         return setOrderDone(true)
       }
 
-      alert(resData.message)
+      
       
      } 
      catch (error) {

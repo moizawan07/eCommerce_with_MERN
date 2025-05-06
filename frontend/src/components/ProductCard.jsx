@@ -7,6 +7,7 @@ import {
 import { FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { CardContext } from "../context/CardContext";
+import { toast } from "react-toastify";
 
 const DameCards = ({
   _id,
@@ -42,6 +43,7 @@ const DameCards = ({
      
 // If number >= 0 means already add huwa wa so remove it 
      if(alreadyAdd >= 0){
+       toast.success('Remove to Cart Sucessfully', {position : 'bottom-right'})
        cardItems.splice(alreadyAdd, 1)
       return setCardItems([...cardItems])
       }
@@ -50,8 +52,8 @@ const DameCards = ({
     
       setCardItems([_id, ...cardItems])
 
+      toast.success('Add To Card Sucessfully')
 
-      
 }
 
   return (

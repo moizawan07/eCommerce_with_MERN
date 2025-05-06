@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 const LoginCon = () => {
  // For Inputs Value Stored
@@ -85,6 +86,7 @@ const loginSubmit = async (e) => {
       return setServerMsg(resData.message)
      }
 
+     toast.success('Login Sucessfull', {position : 'top-left'})
      // Token Set in the Localstorage
      window.localStorage.setItem('token', resData.token)
      setServerMsg(resData.message)

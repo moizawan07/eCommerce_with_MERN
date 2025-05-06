@@ -20,7 +20,8 @@ const OrdersTable = () => {
 
 
   return (
-    <div className="w-[950px] mt-5  rounded-md shadow-md overflow-x-auto">
+    <div className="w-[950px] mt-5  rounded-md -md overflow-x-auto">
+      {orders.length > 0 ? (
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-50">
           <tr>
@@ -66,7 +67,7 @@ const OrdersTable = () => {
                   className={`px-3 py-1.5 rounded-md text-xs font-semibold ${
                     product.status === 'pending' ? 'bg-yellow-100 text-yellow-800'
                     : product.status === 'accept' ? 'bg-green-100 text-green-800'
-                    : product.status === 'declined' ? 'bg-red-100 text-red-800'
+                    : product.status === 'decline' ? 'bg-red-100 text-red-800'
                     : 'bg-gray-100 text-gray-800'
                   }`}
                 >
@@ -85,7 +86,7 @@ const OrdersTable = () => {
             </tr>
           ))))}
         </tbody>
-      </table>
+      </table>) : <p className='ml-45 text-gray-500 mt-[105px]'>No Orders Right Now</p>}
     </div>
   );
 };

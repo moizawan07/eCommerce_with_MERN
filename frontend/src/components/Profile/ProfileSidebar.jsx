@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const ProfileSidebar = () => {
   const location = useLocation();
@@ -72,7 +73,9 @@ const ProfileSidebar = () => {
         </ul>
       </nav>
       <button 
-      onClick={() => {window.localStorage.removeItem('token'); navigate('/')} }
+      onClick={() => {window.localStorage.removeItem('token'); navigate('/')
+         toast.success('Logout sucessfully', {position : 'top-left'})
+      } }
       className='mt-12 bg-red-500 py-1.5 px-7 rounded-md text-white'>Logout</button>
     </aside>
   );

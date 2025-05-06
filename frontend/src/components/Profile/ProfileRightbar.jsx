@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useEffect, useState } from "react";
 import { TbEdit } from "react-icons/tb";
+import { toast } from "react-toastify";
 
 // Edit Profile Form Component
 const EditProfileForm = ({ nameChanged }) => {
@@ -60,31 +61,36 @@ const EditProfileForm = ({ nameChanged }) => {
    let phoneRegex = /^\d{11}$/;
    let passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{6,}$/;
 
+  //  console.log("name", name);
+   
    // Name Check
     if(!nameRegex.test(name)){
-   return alert("Name must be 3 chracters long")
+   return toast.error('Invalid Name')
   }
     if(!emailRegex.test(email)){
-   return alert("Invalid Email")
+   return toast.error('Invalid Email')
+
   }
     if(!phoneRegex.test(phone)){
-   return alert("Invalid number")
+   return toast.error('Invalid phone number')
+
   }
     if(address.length < 6){
-   return alert("Addres must be at 6 characters long")
+   return toast.error('Addres must be at 6 characters long')
+
   }
     if(!passwordRegex.test(passwordd)){
-   return alert("Invalid password")
+   return toast.error('Password must be at least 6 characters and include letters and numbers')
   }
     if(!passwordRegex.test(newPass)){
-   return alert("Invalid new password")
+   return toast.error('Invalid New Password')
   }
     if(!passwordRegex.test(confPass)){
-   return alert("Invalid confirm password")
+      return toast.error('Invalid Confirm Password')
   }
 
   if(newPass !== confPass){
-   return alert('New password and confirm password do not match')
+    return toast.error('New password and confirm password do not match')
   }
 
   try {
@@ -101,21 +107,15 @@ const EditProfileForm = ({ nameChanged }) => {
   if(response.status !== 200){
     throw new Error(resData.message)
   }
-
+  toast.success('Edit Sucessfully', {position : 'bottom-right'})
+  
   setGetUser()
   setEditStart(false)
 } 
   catch (error) {
-   alert(error.message)    
+    return toast.error(error.message)  
   }
    
-  
-   
-
-
-//      if(nameRegex.test())
-     alert('user edit sucess fully')
-
   }
 
 

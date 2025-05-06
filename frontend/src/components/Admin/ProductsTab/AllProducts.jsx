@@ -9,10 +9,10 @@ import { useNavigate } from 'react-router-dom';
 const AllProductList = () => {
   const [products,setProducts] = useState([])
   const [getProduct, setGetProduct] = useState()
-
   let navigate = useNavigate(null)
+
  
-  console.log("component mount", products);
+  // console.log("component mount", products);
   
 
  useEffect(() => {

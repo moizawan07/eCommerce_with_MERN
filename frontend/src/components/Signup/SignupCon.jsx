@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 const SignUpPage = () => {
   // For Inputs Value Stored
@@ -112,7 +113,8 @@ const SignUpPage = () => {
        if(response.status != 201){
         return setServerMsg(resData.message)
        }
-
+        
+       toast.success('Signup Sucessfull Now Login')
        setServerMsg(resData.message)
        setTimeout(() => {
           navigate('/login')

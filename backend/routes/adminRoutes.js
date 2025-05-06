@@ -13,6 +13,7 @@ const userDelete = require('../controllers/userDelete')
 const productDelete = require('../controllers/ProductDelete')
 const analytic = require('../controllers/analytic')
 const productInStockChanged = require('../controllers/productInstockChange')
+const orderStatusChange = require('../controllers/orderStatusChange')
 
 
 // 1: Signup Route
@@ -38,7 +39,8 @@ adminRoutes.delete('/productDelete', verifytoken, adminAuth, productDelete)
 // 6: product InStock Changed
 adminRoutes.put('/productInStockChanged', verifytoken, adminAuth, productInStockChanged)
 
-
+// 7: Order Status Changed
+adminRoutes.put('/statusChange', verifytoken, adminAuth, orderStatusChange)
 
 
 module.exports = adminRoutes
