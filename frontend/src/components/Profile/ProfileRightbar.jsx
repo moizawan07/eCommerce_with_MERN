@@ -4,7 +4,7 @@ import { TbEdit } from "react-icons/tb";
 import { toast } from "react-toastify";
 
 // Edit Profile Form Component
-const EditProfileForm = ({ nameChanged }) => {
+const EditProfileForm = ({ nameChangedFun }) => {
   let [user, setUser] = useState({
     name: "Moiz",
     email: "moiz@gmail.com",
@@ -40,13 +40,16 @@ const EditProfileForm = ({ nameChanged }) => {
           newPass : '',
           confPass : '',
         });
+        nameChangedFun(data.name)
       })
       .catch((err) => console.log(err));
   }, [getUser]);
 
   // useEffect(() => {
-  //   nameChanged(user.name);
-  // }, [user.name]);
+  //   console.log("2 effect==>", user.name);
+    
+  //   nameChangedFun(user.name)
+  // }, []);
 
   function profileValuesGet(e) {
    setUser({...user, [e.target.id] : e.target.value})

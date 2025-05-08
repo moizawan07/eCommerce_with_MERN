@@ -117,13 +117,13 @@ const DameCards = ({
       <div className="p-4 flex flex-col flex-grow">
         <div className="flex justify-between">
         <h3 className="text-sm text-gray-700 font-semibold mb-2">{title}</h3>
-        <p className="text-[12px] text-[#c62d03] font-semibold">{!inStock && "Out of Stock"}</p>
+        <p className="text-[12px] text-red-600">{!inStock && "Out of Stock"}</p>
         </div>
         <div className="flex items-center mb-2">
           <span className="text-gray-600 line-through text-xs mr-2">
             Rs {oldPrice}
           </span>
-          <span className="text-red-500 font-semibold text-sm">
+          <span className="text-red-500 font-serif text-sm">
             Rs {newPrice}
           </span>
         </div>

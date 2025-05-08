@@ -15,7 +15,7 @@ const UserOrders = () => {
         <p onClick={() => navigate('/')} className="text-gray-500   cursor-pointer">Home / 
             <span className='cursor-pointer text-gray-900 ml-2'>Profile</span>
         </p> 
-        <p>Wellcome <span className='text-red-500'>Moiz!</span></p>
+        <p><span className='text-red-500'>Your Orders</span></p>
         </div>
         </SuggestedNav>
 

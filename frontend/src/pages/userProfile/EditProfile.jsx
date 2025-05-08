@@ -7,6 +7,9 @@ import { EditProfileForm } from '../../components/Profile/ProfileRightbar'
 
 function EditProfile() {
   let [userName , setUserName] = useState("moiz")
+  function nameChanged (n) {
+    setUserName(n)
+  }
   return (
     <>
     <Header />
@@ -23,7 +26,7 @@ function EditProfile() {
     
        <div className="flex items-start justify-between w-full pl-25 py-20">
           <ProfileSidebar />
-          <EditProfileForm nameChanged = {setUserName}/>
+          <EditProfileForm nameChangedFun = {nameChanged}/>
        </div>
 
    <Footer />

@@ -19,7 +19,7 @@ const Header = () => {
   const navLinks = ["Home", "Products", "About", "Contact", "SignUp"];
 
   return (
-    <header className="shadow-md py-4 px-6 flex items-center justify-between relative z-50 bg-white">
+    <header className="shadow shadow-red-500 py-4 px-13  flex items-center justify-between relative z-50 bg-white">
       {/* Logo */}
       <h1 className="text-3xl font-bold stylish">TekVibe</h1>
 
