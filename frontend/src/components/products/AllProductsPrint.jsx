@@ -77,7 +77,7 @@ function AllProductsPrint() {
           discount=  {product.discount}
           category=  {product.category}
            />
-        }) : <p>Loading...</p>
+        }) :  <div className='w-[1250px] flex justify-center mt-10'><div className="loader"></div> </div>
       }
 
     </div>

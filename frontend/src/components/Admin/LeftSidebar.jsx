@@ -72,7 +72,7 @@ const LeftSidebar = () => {
           <SidebarLink to="/admin/orders" icon={<FaClipboardList />} label="Orders" isOpen={isOpen} />
           <SidebarLink to="/purchases" icon={<FaShoppingCart />} label="Purchases" isOpen={isOpen} />
           <SidebarLink to="/admin/create/product" icon={<FaPlus />} label="New Product" isOpen={isOpen} />
-          <SidebarLink to="/profile" icon={<FaUserCircle />} label="Profile" isOpen={isOpen} />
+          <SidebarLink to="/admin/profile" icon={<FaUserCircle />} label="Profile" isOpen={isOpen} />
           <SidebarLink to="/settings" icon={<FaCog />} label="Settings" isOpen={isOpen} />
         </div>
       </div>

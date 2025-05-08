@@ -4,15 +4,15 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { FiChevronRight } from "react-icons/fi";
 
 const categories = [
-  { name: "Woman’s Fashion", hasIcon: true },
-  { name: "Men’s Fashion", hasIcon: true },
-  { name: "Electronics" },
-  { name: "Home & Lifestyle" },
-  { name: "Medicine" },
-  { name: "Sports & Outdoor" },
-  { name: "Baby’s & Toys" },
-  { name: "Groceries & Pets" },
-  { name: "Health & Beauty" },
+  { name: "Smartphones", hasIcon: true },
+  { name: "Laptops & PCs", hasIcon: true },
+  { name: "Smartwatches", hasIcon: true },
+  { name: "Bluetooth Speakers" },
+  { name: "Headphones & Earbuds" },
+  { name: "Mobile Accessories" },
+  { name: "Gaming Devices" },
+  { name: "Camera & Photography" },
+  { name: "Home Electronics" },
 ];
 
 const HeroSection = () => {
@@ -20,11 +20,11 @@ const HeroSection = () => {
     <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 p-4">
       {/* Left Sidebar */}
       <div className="bg-white  border-r border-gray-400  p-4 hidden md:block">
-        <ul className="space-y-3">
+        <ul className="">
           {categories.map((item, index) => (
             <li
               key={index}
-              className="flex justify-between font-[600] mt-3 items-center text-sm hover:text-blue-500 cursor-pointer transition-all"
+              className="flex justify-between font-[600] mb-6 items-center text-sm hover:text-red-600 cursor-pointer transition-all"
             >
               {item.name}
               {item.hasIcon && <FiChevronRight className="text-sm" />}
@@ -40,7 +40,7 @@ const HeroSection = () => {
           infiniteLoop
           showThumbs={false}
           showStatus={false}
-          interval={3000}
+          interval={2000}
         >
           {[1,2,3,4,5].map((num) => (
             <div key={num}>

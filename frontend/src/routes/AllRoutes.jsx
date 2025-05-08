@@ -23,6 +23,7 @@ import AdminProducts from '../pages/admin/AdminProducts'
 import AdminCreateProduct from '../pages/admin/AdminCreateProduct'
 import UserOrders from '../pages/userProfile/UserOrders'
 import AdminOrders from '../pages/admin/AdminOrders'
+import AdminProfile from '../pages/admin/AdminProfile'
 
 
 
@@ -65,6 +66,7 @@ function AllRoutes() {
         <Route path='/admin/products'  element={<AdminProtectedRoute>     <AdminProducts /> </AdminProtectedRoute>}/>
         <Route path='/admin/create/product'element={<AdminProtectedRoute> <AdminCreateProduct /> </AdminProtectedRoute>}/>
         <Route path='/admin/orders' element={<AdminProtectedRoute> <AdminOrders /> </AdminProtectedRoute>}/>
+        <Route path='/admin/profile' element={<AdminProtectedRoute> <AdminProfile /> </AdminProtectedRoute>}/>
 
 
 

@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
 *{
     font-family: "Inter", sans-serif;
+    font-weight: 350;
 }
 body{
     width: 100%;
@@ -49,4 +52,25 @@ body{
     background-color: #5C6777;
     border-radius: 4px;
   }
-   
+  
+  
+  /* Loader */
+.loader {
+  width: 15px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  animation: l5 1s infinite linear alternate;
+}
+@keyframes l5 {
+    0%  {box-shadow: 20px 0 #000, -20px 0 #0002;background: #000 }
+    33% {box-shadow: 20px 0 #000, -20px 0 #0002;background: #0002}
+    66% {box-shadow: 20px 0 #0002,-20px 0 #000; background: #0002}
+    100%{box-shadow: 20px 0 #0002,-20px 0 #000; background: #000 }
+}
+
+.stylish{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 500;
+  font-style: oblique;
+  color: rgb(236, 22, 22);
+}

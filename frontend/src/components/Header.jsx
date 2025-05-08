@@ -21,7 +21,7 @@ const Header = () => {
   return (
     <header className="shadow-md py-4 px-6 flex items-center justify-between relative z-50 bg-white">
       {/* Logo */}
-      <h1 className="text-3xl font-bold text-red-500">TekVibe</h1>
+      <h1 className="text-3xl font-bold stylish">TekVibe</h1>
 
       {/* Desktop Nav */}
       <nav className="hidden md:flex space-x-6">
