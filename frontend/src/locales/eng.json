@@ -1,0 +1,39 @@
+{
+    "shopName" : "TekVibe",
+    "navbar": {
+    "home": "Home",
+    "products": "Products",
+    "about": "About",
+    "contact":"Contact",
+    "signup": "SignUp"
+  },
+    "heroLeft" : {
+        "name1" : "Smartphones",
+        "name2":  "Laptops & PCs",
+        "name3":  "Smartwatches",
+        "name4" : "Bluetooth Speakers",
+        "name5" : "Headphones & Earbuds",
+        "name6":  "Mobile Accessories",
+        "name7":  "Gaming Devices",
+        "name8":  "Camera & Photography",
+        "name9":  "Home Electronics"
+    },
+    "support" : {
+        "first" : {"name" : "FREE AND FAST DELIVERY", "des" : "Free delivery for all orders over $140"},
+        "second" : {"name" : "24/7 CUSTOMER SERVICE", "des" : "Friendly 24/7 customer suppor"},
+        "three" :{"name" : "MONEY BACK GUARANTEE", "des" : "We return money within 30 days"}
+    },
+    "categorySorting" : {
+        "first" : "Phones",
+        "second" : "Laptops",
+        "third" : "Smart Watch",
+        "fourth" : "Camera",
+        "fifth" : "HeadPhones",
+        "six" : "Gaming"
+    },  
+    "addToCart": "Add to Cart",
+    "removeToCart": "Remove To Cart",
+    "currencyRate" : 0.0036,
+    "currencySymbol": "$",
+    "outOfStock" : "Out of stock"
+}

@@ -89,7 +89,7 @@ const products = [
 function ExploreProduct() {
   return (
      <>
-       <FlashSaleHeader title='Our Products' description='Explore Our Products'/>
+       <FlashSaleHeader title='Our Products' description='Explore Our Products' />
        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:px-8 py-10 px-4">
          {products.map((product, index) => {
            return <DameCards

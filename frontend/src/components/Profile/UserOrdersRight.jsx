@@ -1,92 +1,74 @@
 import React, { useEffect, useState } from 'react';
+import { FaBoxOpen } from 'react-icons/fa';
 
 const OrdersTable = () => {
-  const [orders, setOrders] = useState([])
- console.log("orders ==>", orders);
-   
+  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     fetch('http://localhost:3000/order/getUsersOrders', {
-        method : 'GET',
-        headers:{"authorization" : `bearer ${window.localStorage.getItem('token')}`}
+      method: 'GET',
+      headers: {
+        "authorization": `bearer ${window.localStorage.getItem('token')}`
+      }
     })
-    .then(res => {
-      if(res.status !== 200) throw new Error("Error");
-      return res.json()})
-    .then(data => setOrders(data.data))
-    .catch(err => console.log(err))
-  },[])
-  
-
+      .then(res => {
+        if (res.status !== 200) throw new Error("Error");
+        return res.json();
+      })
+      .then(data => setOrders(data.data))
+      .catch(err => console.log(err));
+  }, []);
 
   return (
-    <div className="w-[950px] mt-5  rounded-md -md overflow-x-auto">
+    <div className="w-full md:w-[1035px] px-4 mt-6">
       {orders.length > 0 ? (
-      <table className="min-w-full divide-y divide-gray-200">
-        <thead className="bg-gray-50">
-          <tr>
-            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Product
-            </th>
-            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Quantity
-            </th>
-            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Status
-            </th>
-            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Billing Method
-            </th>
-            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Date
-            </th>
-          </tr>
-        </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
-
-          {orders.map((order) => (
-            order.products.map((product) => (
-            <tr key={product._id} className="md:table-row  table-cell">
-              <td className="px-6 py-4 whitespace-nowrap md:table-cell block">
-                <div className="flex items-center">
-                  <div className="h-10 w-10 flex-shrink-0">
-                    <img className="h-10 w-10 rounded" src={product.imageUrl} alt={product.title} />
-                  </div>
-                  <div className="ml-4">
-                    <div className="text-sm font-medium text-gray-900">{product.title}</div>
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          {orders.map(order =>
+            order.products.map(product => (
+              <div key={product._id} className="bg-white p-5 rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
+                <div className="flex items-center gap-4">
+                  <img src={product.imageUrl} alt={product.title} className="w-16 h-16 object-cover rounded" />
+                  <div>
+                    <h2 className="text-lg font-semibold text-gray-800">{product.title}</h2>
+                    <p className="text-sm text-gray-500">Qty: {product.quanity}</p>
                   </div>
                 </div>
-                <div className="md:hidden text-sm text-gray-500 mt-1">Product</div>
-              </td>
-              <td className="px-10  py-4 whitespace-nowrap md:table-cell block">
-                <div className="text-sm text-gray-900">{product.quanity}</div>
-                <div className="md:hidden text-sm text-gray-500 mt-1">Quantity</div>
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap md:table-cell block">
-                <span
-                  className={`px-3 py-1.5 rounded-md text-xs font-semibold ${
-                    product.status === 'pending' ? 'bg-yellow-100 text-yellow-800'
-                    : product.status === 'accept' ? 'bg-green-100 text-green-800'
-                    : product.status === 'decline' ? 'bg-red-100 text-red-800'
-                    : 'bg-gray-100 text-gray-800'
-                  }`}
-                >
-                  {product.status}
-                </span>
-                <div className="md:hidden text-sm text-gray-500 mt-1">Status</div>
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 md:table-cell block">
-                {order.userPM === 'cod' ? "Cash on Delevery" : "Easypaisa"}
-                <div className="md:hidden text-sm text-gray-500 mt-1">Billing Method</div>
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 md:table-cell block">
-                {new Date(order.createdAt).toLocaleDateString("en-GB")}
-                <div className="md:hidden text-sm text-gray-500 mt-1">Date</div>
-              </td>
-            </tr>
-          ))))}
-        </tbody>
-      </table>) : <p className='ml-45 text-gray-500 mt-[105px]'>No Orders Right Now</p>}
+
+                <div className="mt-4 flex flex-col gap-2">
+                  <div className="flex justify-between">
+                    <span className="text-gray-500 text-sm">Status:</span>
+                    <span className={`text-xs font-semibold px-3 py-1 rounded-full ${
+                      product.status === 'pending' ? 'bg-yellow-100 text-yellow-700' :
+                      product.status === 'accept' ? 'bg-green-100 text-green-700' :
+                      product.status === 'decline' ? 'bg-red-100 text-red-700' :
+                      'bg-gray-100 text-gray-700'
+                    }`}>
+                      {product.status}
+                    </span>
+                  </div>
+
+                  <div className="flex justify-between">
+                    <span className="text-gray-500 text-sm">Billing:</span>
+                    <span className="text-sm">{order.userPM === 'cod' ? 'Cash on Delivery' : 'Easypaisa'}</span>
+                  </div>
+
+                  <div className="flex justify-between">
+                    <span className="text-gray-500 text-sm">Date:</span>
+                    <span className="text-sm">{new Date(order.createdAt).toLocaleDateString("en-GB")}</span>
+                  </div>
+                </div>
+
+                <div className="mt-4 flex items-center text-gray-400 text-sm gap-2">
+                  <FaBoxOpen />
+                  <span>Order ID: {order._id.slice(-6).toUpperCase()}</span>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+      ) : (
+        <p className='text-center text-gray-500 mt-20'>No Orders Right Now</p>
+      )}
     </div>
   );
 };

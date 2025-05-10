@@ -1,24 +1,22 @@
-import { useRef } from "react";
 import { useEffect, useState } from "react";
 import { TbEdit } from "react-icons/tb";
 import { toast } from "react-toastify";
 
 // Edit Profile Form Component
 const EditProfileForm = ({ nameChangedFun }) => {
-  let [user, setUser] = useState({
+  const [user, setUser] = useState({
     name: "Moiz",
     email: "moiz@gmail.com",
     phone: "01245658785",
     address: "Garden",
-    passwordd : '******',
-    newPass : '',
-    confPass : '',
+    passwordd: "******",
+    newPass: "",
+    confPass: "",
   });
-  const [getUser, setGetUser] = useState(false)
+  const [getUser, setGetUser] = useState(false);
   const [editStart, setEditStart] = useState(false);
 
-
-  // User Profile Values get
+  // Get user details from backend
   useEffect(() => {
     fetch("http://localhost:3000/user/getUser", {
       method: "GET",
@@ -30,277 +28,222 @@ const EditProfileForm = ({ nameChangedFun }) => {
         if (res.status !== 200) throw new Error("Error");
         return res.json();
       })
-      .then(({data}) => {
+      .then(({ data }) => {
         setUser({
           name: data.name,
           email: data.email,
           phone: data.phone,
           address: data.address,
-          passwordd : '******',
-          newPass : '',
-          confPass : '',
+          passwordd: "******",
+          newPass: "",
+          confPass: "",
         });
-        nameChangedFun(data.name)
+        nameChangedFun(data.name);
       })
       .catch((err) => console.log(err));
   }, [getUser]);
 
-  // useEffect(() => {
-  //   console.log("2 effect==>", user.name);
-    
-  //   nameChangedFun(user.name)
-  // }, []);
-
+  // Input change handler
   function profileValuesGet(e) {
-   setUser({...user, [e.target.id] : e.target.value})
+    setUser({ ...user, [e.target.id]: e.target.value });
   }
 
-  // User Edit In this
-  async function userEdit  ()  {
-   let {name, email, phone, address, passwordd, newPass, confPass} = user
-   //  All Fiedls Regex Code
-   let nameRegex = /^[A-Za-z]{3,}(?: [A-Za-z]+)*$/;
-   let emailRegex = /^[a-zA-Z0-9._%+-]{4,}@(gmail\.com|yahoo\.com|outlook\.com)$/;  
-   let phoneRegex = /^\d{11}$/;
-   let passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{6,}$/;
+  // Edit user profile
+  async function userEdit() {
+    let { name, email, phone, address, passwordd, newPass, confPass } = user;
 
-  //  console.log("name", name);
-   
-   // Name Check
-    if(!nameRegex.test(name)){
-   return toast.error('Invalid Name')
-  }
-    if(!emailRegex.test(email)){
-   return toast.error('Invalid Email')
+    let nameRegex = /^[A-Za-z]{3,}(?: [A-Za-z]+)*$/;
+    let emailRegex = /^[a-zA-Z0-9._%+-]{4,}@(gmail\.com|yahoo\.com|outlook\.com)$/;
+    let phoneRegex = /^\d{11}$/;
+    let passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{6,}$/;
 
-  }
-    if(!phoneRegex.test(phone)){
-   return toast.error('Invalid phone number')
+    if (!nameRegex.test(name)) return toast.error("Invalid Name");
+    if (!emailRegex.test(email)) return toast.error("Invalid Email");
+    if (!phoneRegex.test(phone)) return toast.error("Invalid phone number");
+    if (address.length < 6) return toast.error("Address must be at least 6 characters");
+    if (!passwordRegex.test(passwordd))
+      return toast.error("Password must have letters & numbers, min 6 chars");
+    if (!passwordRegex.test(newPass)) return toast.error("Invalid New Password");
+    if (!passwordRegex.test(confPass)) return toast.error("Invalid Confirm Password");
+    if (newPass !== confPass)
+      return toast.error("New password and confirm password do not match");
 
-  }
-    if(address.length < 6){
-   return toast.error('Addres must be at 6 characters long')
+    try {
+      let response = await fetch("http://localhost:3000/user/editProfile", {
+        method: "POST",
+        headers: {
+          authorization: `bearer ${window.localStorage.getItem("token")}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
 
-  }
-    if(!passwordRegex.test(passwordd)){
-   return toast.error('Password must be at least 6 characters and include letters and numbers')
-  }
-    if(!passwordRegex.test(newPass)){
-   return toast.error('Invalid New Password')
-  }
-    if(!passwordRegex.test(confPass)){
-      return toast.error('Invalid Confirm Password')
-  }
+      let resData = await response.json();
+      if (response.status !== 200) throw new Error(resData.message);
 
-  if(newPass !== confPass){
-    return toast.error('New password and confirm password do not match')
+      toast.success("Edited Successfully", { position: "bottom-right" });
+      setGetUser(!getUser);
+      setEditStart(false);
+    } catch (error) {
+      return toast.error(error.message);
+    }
   }
-
-  try {
-    let response = await  fetch("http://localhost:3000/user/editProfile", {
-      method: "POST",
-      headers: {
-        authorization: `bearer ${window.localStorage.getItem("token")}`,
-        "Content-Type": "application/json",
-      },
-      body : JSON.stringify(user)
-})
-  let resData = await response.json()
- 
-  if(response.status !== 200){
-    throw new Error(resData.message)
-  }
-  toast.success('Edit Sucessfully', {position : 'bottom-right'})
-  
-  setGetUser()
-  setEditStart(false)
-} 
-  catch (error) {
-    return toast.error(error.message)  
-  }
-   
-  }
-
 
   return (
-    <div className={`bg-white p-6  ${!editStart ? 'mt-5' : 'mt-2'} rounded-md shadow-md w-full md:w-3/4 lg:w-[780px] mx-auto`}>
-      <div className="flex justify-between items-center">
-        <h2
-          className="text-xl font-semibold mb-6 text-red-500"
-          onClick={() => nameChanged(user.name)}
-        >
-          {editStart && "Edit"} Your Profile
-        </h2>
-
-        {!editStart && (
-          <TbEdit size={22} onClick={() => {setEditStart(true); setUser({...user, passwordd : ''})}} 
-          className="cursor-pointer text-gray-700"/>
-        )}
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label
-            htmlFor="firstName"
-            className="block text-gray-700 text-sm font-bold mb-2"
-          >
-            First Name
-          </label>
-          <input
-            type="text"
-            id="name"
-            className={`rounded w-full py-2 px-3 text-gray-700  bg-[#F5F5F5] outline-none 
-              ${editStart && 'border border-red-500'}
-              `}
-            placeholder="Md"
-            value={user.name}
-            onChange={profileValuesGet}
-            disabled={!editStart}
-          />
-        </div>
-       
-        <div>
-          <label
-            htmlFor="email"
-            className="block text-gray-700 text-sm font-bold mb-2"
-          >
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-           className={`rounded w-full py-2 px-3 text-gray-700  bg-[#F5F5F5] outline-none 
-              ${editStart && 'border border-red-500'}
-              `}
-            placeholder="rimel1111@gmail.com"
-            value={user.email}
-            onChange={profileValuesGet}
-            disabled={!editStart}
-          />
+    <div className="w-full max-w-5xl mx-auto md:px-4 py-6">
+      <div className="bg-white rounded-xl shadow-md p-2 md:p-10">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-bold text-red-500">
+            {editStart ? "Edit" : "Your"} Profile
+          </h2>
+          {!editStart && (
+            <TbEdit
+              size={24}
+              onClick={() => {
+                setEditStart(true);
+                setUser({ ...user, passwordd: "" });
+              }}
+              className="text-gray-600 cursor-pointer hover:text-red-500 transition-all"
+            />
+          )}
         </div>
 
-        <div>
-          <label
-            htmlFor="lastName"
-            className="block text-gray-700 text-sm font-bold mb-2"
-          >
-            Phone
-          </label>
-          <input
-            type={!editStart ? 'text' : 'number'}
-            id="phone"
-            className={`rounded w-full py-2 px-3 text-gray-700  bg-[#F5F5F5] outline-none 
-              ${editStart && 'border border-red-500'}
-              `}
-            placeholder="Rimon"
-            value={!editStart ? user.phone.slice(0, 5) + "******" : user.phone}
-            onChange={profileValuesGet}
-            disabled={!editStart}
-          />
-        </div>
-
-        <div>
-          <label
-            htmlFor="address"
-            className="block text-gray-700 text-sm font-bold mb-2"
-          >
-            Address
-          </label>
-          <input
-            type="text"
-            id="address"
-            className={`rounded w-full py-2 px-3 text-gray-700  bg-[#F5F5F5] outline-none 
-              ${editStart && 'border border-red-500'}
-              `}
-            placeholder="Kingston, 5236, United State"
-            value={user.address}
-            onChange={profileValuesGet}
-            disabled={!editStart}
-          />
-        </div>
-
-      </div>
-
-      <div className="mt-6">
-        <h3 className="text-lg font-semibold mb-3 text-gray-800">
-          Password Changes
-        </h3>
-        <div className="grid grid-cols-1 gap-4">
+        {/* Input Fields */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Name */}
           <div>
-            <label
-              htmlFor="currentPassword"
-              className="block text-gray-700 text-sm font-bold mb-2"
-            >
-              Current Password
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
             <input
-              type="password"
-              id="passwordd"
-              className={`rounded w-full py-2 px-3 text-gray-700  bg-[#F5F5F5] outline-none 
-                ${editStart && 'border border-red-500'}
-                `}
-              placeholder="Current Passwod"
-              value={user.passwordd}
-              onChange={profileValuesGet}
+              type="text"
+              id="name"
               disabled={!editStart}
+              value={user.name}
+              onChange={profileValuesGet}
+              className={`w-full px-4 py-2 rounded-md bg-gray-100 border ${
+                editStart ? "border-red-500" : "border-transparent"
+              } focus:outline-none`}
             />
           </div>
 
-         {editStart && (
-          <>
-            <div>
-             <label
-              htmlFor="newPassword"
-              className="block text-gray-700 text-sm font-bold mb-2"
-             >
-              New Password
-             </label>
-             <input
-              type="password"
-              id="newPass"
-              className=" rounded w-full py-2 px-3 text-gray-700  bg-[#F5F5F5] outline-none border border-red-500"
-              placeholder="New Passwod"
-              value={user.newPass}
-              onChange={profileValuesGet}
-             />
-             </div>
-            <div>
-            <label
-              htmlFor="confirmNewPassword"
-              className="block text-gray-700 text-sm font-bold mb-2"
-            >
-              Confirm New Password
-            </label>
+          {/* Email */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
             <input
-              type="password"
-              id="confPass"
-              className=" rounded w-full py-2 px-3 text-gray-700  bg-[#F5F5F5] outline-none border border-red-500"
-              placeholder="Confirm New Passwod"
+              type="email"
+              id="email"
+              disabled={!editStart}
+              value={user.email}
               onChange={profileValuesGet}
-              value={user.confPass}
+              className={`w-full px-4 py-2 rounded-md bg-gray-100 border ${
+                editStart ? "border-red-500" : "border-transparent"
+              } focus:outline-none`}
             />
-            </div>
-        </>
-         )}
+          </div>
+
+          {/* Phone */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+            <input
+              type={!editStart ? "text" : "number"}
+              id="phone"
+              disabled={!editStart}
+              value={!editStart ? user.phone.slice(0, 5) + "******" : user.phone}
+              onChange={profileValuesGet}
+              className={`w-full px-4 py-2 rounded-md bg-gray-100 border ${
+                editStart ? "border-red-500" : "border-transparent"
+              } focus:outline-none`}
+            />
+          </div>
+
+          {/* Address */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Address</label>
+            <input
+              type="text"
+              id="address"
+              disabled={!editStart}
+              value={user.address}
+              onChange={profileValuesGet}
+              className={`w-full px-4 py-2 rounded-md bg-gray-100 border ${
+                editStart ? "border-red-500" : "border-transparent"
+              } focus:outline-none`}
+            />
+          </div>
         </div>
-         </div>
 
-       {editStart && (
-         <div className="flex justify-end mt-6">
-        <button
-          onClick={() => {setEditStart(false); setGetUser(!getUser)}}
-          className="bg-transparent hover:bg-gray-200 text-gray-700 font-semibold py-2 px-4 border border-gray-200 rounded shadow-sm mr-4 focus:outline-none focus:shadow-outline"
-        >
-          Cancel
-        </button>
-        <button onClick={userEdit} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded shadow-sm focus:outline-none focus:shadow-outline">
-          Save Changes
-        </button>
-         </div>
-       ) 
+        {/* Password Section */}
+        <div className="mt-8">
+          <h3 className="text-lg font-semibold text-gray-800 mb-4">Password Change</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Current Password */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Current Password
+              </label>
+              <input
+                type="password"
+                id="passwordd"
+                disabled={!editStart}
+                value={user.passwordd}
+                onChange={profileValuesGet}
+                className={`w-full px-4 py-2 rounded-md bg-gray-100 border ${
+                  editStart ? "border-red-500" : "border-transparent"
+                } focus:outline-none`}
+              />
+            </div>
 
-       }
-       
+            {editStart && (
+              <>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    New Password
+                  </label>
+                  <input
+                    type="password"
+                    id="newPass"
+                    value={user.newPass}
+                    onChange={profileValuesGet}
+                    className="w-full px-4 py-2 rounded-md bg-gray-100 border border-red-500 focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Confirm New Password
+                  </label>
+                  <input
+                    type="password"
+                    id="confPass"
+                    value={user.confPass}
+                    onChange={profileValuesGet}
+                    className="w-full px-4 py-2 rounded-md bg-gray-100 border border-red-500 focus:outline-none"
+                  />
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+
+        {/* Buttons */}
+        {editStart && (
+          <div className="flex justify-end gap-4 mt-8">
+            <button
+              onClick={() => {
+                setEditStart(false);
+                setGetUser(!getUser);
+              }}
+              className="px-6 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-100 transition"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={userEdit}
+              className="px-6 py-2 rounded-md bg-red-500 text-white hover:bg-red-600 transition"
+            >
+              Save Changes
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

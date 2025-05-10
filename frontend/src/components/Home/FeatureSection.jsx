@@ -1,24 +1,25 @@
 import React from "react";
 import FeatureCard from "../FeatureCard";
 import { FaTruck, FaHeadset, FaShieldAlt } from "react-icons/fa";
+import { t } from "i18next";
 
 function FeaturesSection() {
   return (
     <div className="py-25 px-4 flex flex-col md:flex-row justify-center items-center gap-20">
       <FeatureCard
         Icon={FaTruck}
-        title="FREE AND FAST DELIVERY"
-        subtitle="Free delivery for all orders over $140"
+        title={t('support.first.name')}
+        subtitle={t('support.first.des')}
       />
       <FeatureCard
         Icon={FaHeadset}
-        title="24/7 CUSTOMER SERVICE"
-        subtitle="Friendly 24/7 customer support"
+        title={t('support.second.name')}
+        subtitle={t('support.second.des')}
       />
       <FeatureCard
         Icon={FaShieldAlt}
-        title="MONEY BACK GUARANTEE"
-        subtitle="We return money within 30 days"
+        title={t('support.three.name')}
+        subtitle={t('support.three.des')}
       />
     </div>
   );

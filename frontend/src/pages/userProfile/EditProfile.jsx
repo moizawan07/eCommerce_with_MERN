@@ -15,16 +15,16 @@ function EditProfile() {
     <Header />
 
     <SuggestedNav>
-        <div className="flex justify-between mt-10 px-25">
+        <div className="flex justify-between mt-10 px-18 md:px-25">
         <p onClick={() => navigate('/')} className="text-gray-500   cursor-pointer">Home / 
             <span className='cursor-pointer text-gray-900 ml-2'>Profile</span>
         </p> 
-        <p>Wellcome <span className='text-red-500'>{userName}!</span></p>
+        <p>Wellcome <span className='text-red-500 capitalize'>{userName}!</span></p>
         </div>
     </SuggestedNav>
 
     
-       <div className="flex items-start justify-between w-full pl-25 py-20">
+       <div className="flex items-start justify-between w-full px-5 md:pl-25 py-20">
           <ProfileSidebar />
           <EditProfileForm nameChangedFun = {nameChanged}/>
        </div>

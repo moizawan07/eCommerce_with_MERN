@@ -2,6 +2,7 @@ import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { FiChevronRight } from "react-icons/fi";
+import { t } from "i18next";
 
 const categories = [
   { name: "Smartphones", hasIcon: true },
@@ -26,7 +27,8 @@ const HeroSection = () => {
               key={index}
               className="flex justify-between font-[600] mb-6 items-center text-sm hover:text-red-600 cursor-pointer transition-all"
             >
-              {item.name}
+              {t(`heroLeft.name${++index}`)}
+              {console.log(`heroleft.name${++index}`)}
               {item.hasIcon && <FiChevronRight className="text-sm" />}
             </li>
           ))}

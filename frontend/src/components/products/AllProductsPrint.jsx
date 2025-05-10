@@ -10,15 +10,16 @@ import { CiCamera } from "react-icons/ci";
 import { AiOutlineDesktop } from 'react-icons/ai';
 import { CiHeadphones } from "react-icons/ci";
 import { PiGameControllerThin } from "react-icons/pi";
+import { t } from 'i18next';
 
 function AllProductsPrint() {
   const categories = [
-    { name: 'Phones', icon: TfiMobile},
-    { name: 'Laptops', icon: AiOutlineDesktop},
-    { name: 'Smart Watch', icon: TbDeviceWatchExclamation},
-    { name: 'Camera', icon: CiCamera},
-    { name: 'HeadPhones', icon: CiHeadphones },
-    { name: 'Gaming', icon: PiGameControllerThin},
+    { name: t('categorySorting.first'), icon: TfiMobile, categoryName : 'phones'},
+    { name: t('categorySorting.second'), icon: AiOutlineDesktop, categoryName : 'laptops'},
+    { name: t('categorySorting.third'), icon: TbDeviceWatchExclamation,  categoryName : 'smart watch'},
+    { name: t('categorySorting.fourth'), icon: CiCamera,  categoryName : 'camera'},
+    { name: t('categorySorting.fifth'), icon: CiHeadphones,  categoryName : 'headphones'},
+    { name: t('categorySorting.six'), icon: PiGameControllerThin,  categoryName : 'gaming'},
 ]
 // Stored all Getting products in this State
   let [products, setProducts] = useState(null)
@@ -59,7 +60,7 @@ function AllProductsPrint() {
     </div>
 
 
-    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-[15px] gap-y-[40px] px-10 mt-10  mb-25'>
+    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-[15px] gap-y-[40px] px-6 mt-10  mb-25'>
 
       {products ? 
         products.map((product, index) => {

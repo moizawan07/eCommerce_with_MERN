@@ -1,9 +1,12 @@
-function CategoryCard({ name, icon: Icon, onCardCliked }) {
+function CategoryCard({ name, icon: Icon, onCardCliked , categoryName}) {
+
+  console.log('name==>', name);
+  
   const categoryGet = () => {
     fetch("http://localhost:3000/product/getCategorie/Product", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ categoryName: name.toLowerCase() }),
+      body: JSON.stringify({ categoryName: categoryName}),
     })
       .then((res) => res.json())
       .then((data) => onCardCliked(data.products))

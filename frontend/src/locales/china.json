@@ -1,0 +1,48 @@
+{
+  "shopName": "科技之声",
+  "navbar": {
+    "home": "主页",
+    "products": "产品",
+    "about": "关于我们",
+    "contact": "联系我们",
+    "signup": "注册"
+  },
+  "heroLeft": {
+    "name1": "智能手机",
+    "name2": "笔记本电脑与台式机",
+    "name3": "智能手表",
+    "name4": "蓝牙音响",
+    "name5": "耳机与耳塞",
+    "name6": "手机配件",
+    "name7": "游戏设备",
+    "name8": "相机与摄影",
+    "name9": "家用电子产品"
+  },
+  "support": {
+    "first": {
+      "name": "免费快速配送",
+      "des": "所有订单满 ¥1000 免费配送"
+    },
+    "second": {
+      "name": "全天候客户服务",
+      "des": "友好的 24/7 客户支持"
+    },
+    "three": {
+      "name": "退款保障",
+      "des": "30 天内退款保障"
+    }
+  },
+  "categorySorting": {
+    "first": "手机",
+    "second": "笔记本",
+    "third": "智能手表",
+    "fourth": "相机",
+    "fifth": "耳机",
+    "six": "游戏"
+  },
+  "addToCart": "加入购物车",
+  "removeToCart": "从购物车移除",
+  "currencyRate": 0.026,
+  "currencySymbol": "¥",
+  "outOfStock" : "缺货"
+}

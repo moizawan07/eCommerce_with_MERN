@@ -8,6 +8,7 @@ import { CiCamera } from "react-icons/ci";
 import { AiOutlineDesktop } from 'react-icons/ai';
 import { CiHeadphones } from "react-icons/ci";
 import { PiGameControllerThin } from "react-icons/pi";
+import { t } from "i18next";
 
 
 
@@ -15,13 +16,14 @@ import { PiGameControllerThin } from "react-icons/pi";
 function CategoriesSorting() {
 
 const categories = [
-    { name: 'Phones', icon: TfiMobile },
+    { name: t('categorySorting.second'), icon: TfiMobile },
     { name: 'Computers', icon: AiOutlineDesktop },
     { name: 'SmartWatch', icon: TbDeviceWatchExclamation },
     { name: 'Camera', icon: CiCamera },
     { name: 'HeadPhones', icon: CiHeadphones },
     { name: 'Gaming', icon: PiGameControllerThin },
 ];
+// console.log("moiz" ,categories[0]);
 
   return (
     <div>

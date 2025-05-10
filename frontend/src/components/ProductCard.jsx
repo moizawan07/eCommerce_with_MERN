@@ -8,6 +8,7 @@ import { FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { CardContext } from "../context/CardContext";
 import { toast } from "react-toastify";
+import { t } from "i18next";
 
 const DameCards = ({
   _id,
@@ -22,7 +23,11 @@ const DameCards = ({
   inStock,
   category
 }) => {
+  const rate = parseFloat(t("currencyRate")); // Convert to number
+  // console.log("rate ==>", rate);
+  // console.log("converedPrice ==>", convertedPrice);
   
+
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate(null)
   const {cardItems , setCardItems} = useContext(CardContext)
@@ -101,7 +106,7 @@ const DameCards = ({
           className={`bg-${cardItems.includes(_id) ? 'red-500' : 'black'}
            text-white w-full py-3 transition ${
             isHovered ? "block" : "hidden"}
-           disabled:opacity-50`}
+           disabled:opacity-40`}
            disabled={btnHide || !inStock} // This Condition Bcuz Card Ye Card Static Jaga Be use Ho rha And Products Page Pa be
            onClick={addToCard}
         >
@@ -109,7 +114,7 @@ const DameCards = ({
             className="inline-block mr-2 align-middle"
             size={20}
           />
-         {cardItems.includes(_id) ?  'Remove To Cart' : ' Add To Cart'}
+         {cardItems.includes(_id) ?  t("removeToCart") : t("addToCart")}
         </button>
       </div>
 
@@ -117,14 +122,14 @@ const DameCards = ({
       <div className="p-4 flex flex-col flex-grow">
         <div className="flex justify-between">
         <h3 className="text-sm text-gray-700 font-semibold mb-2">{title}</h3>
-        <p className="text-[12px] text-red-600">{!inStock && "Out of Stock"}</p>
+        <p className="text-[12px] text-red-600">{!inStock && t('outOfStock')}</p>
         </div>
         <div className="flex items-center mb-2">
           <span className="text-gray-600 line-through text-xs mr-2">
-            Rs {oldPrice}
+            {t("currencySymbol") + " " +  Math.round(oldPrice * rate).toFixed(2)}
           </span>
           <span className="text-red-500 font-serif text-sm">
-            Rs {newPrice}
+            {t('currencySymbol') + " " +  Math.round(newPrice * rate).toFixed(2)}
           </span>
         </div>
 

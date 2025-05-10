@@ -112,7 +112,7 @@ const CartPage = () => {
   
   return(orderDone ? <Celebration /> : 
      product.length > 0 ? (
-     <div className="container mx-auto p-4 mt-5">
+     <div className="container mx-auto p-1.5 md:p-4 mt-5">
       <div className="overflow-x-auto rounded-md shadow">
         <table className="table-auto w-full border-collapse"> 
           <thead className="bg-gray-50"> 
@@ -166,30 +166,30 @@ const CartPage = () => {
      {/* Bottom Section (Corrected Layout) */}
     
         {/* First Row: Return To Shop and Update Cart Buttons */}
-        <div className="flex justify-between mb-4 mt-5 px-2">
-          <button onClick={() => navigate('/products')} className="border hover:bg-red-500 hover:border-none hover:text-white border-gray-400 rounded px-6 py-3 text-sm mr-4">
+        <div className="flex justify-evenly md:justify-between mb-4 mt-5 px-2">
+          <button onClick={() => navigate('/products')} className="border hover:bg-red-500 hover:border-none hover:text-white border-gray-400 rounded px-2 md:px-6 py-3 text-sm mr-4">
             Return To Shop
           </button>
-          <button className="border border-gray-400 rounded px-6 py-3 text-sm">
+          <button className="border border-gray-400 rounded px-2 md:px-6 py-3 text-sm">
             Update Cart
           </button>
          </div>
 
         {/* Second Row: Coupon Code and Cart Total */}
-        <div className="flex flex-col md:flex-row w-full justify-between px-2 mt-20 mb-25 items-start md:items-start">
-          <div className="flex items-center mb-4 md:mb-0 md:mr-4">
+        <div className="flex  flex-col md:flex-row w-full md:justify-between px-2 mt-20 mb-25  md:items-start">
+          <div className=" w-full flex flex-col gap-3 md:flex-row md:gap-0 items-center mb-4 md:mb-0 md:mr-4">
             <input
               type="text"
               placeholder="Coupon Code"
-              className="border border-gray-400 rounded px-4 py-3 text-sm w-78 focus:outline-none"
+              className="border border-gray-400 rounded px-4 py-3 text-sm w-full md:w-78 focus:outline-none"
             />
-            <button className="bg-red-500 text-white rounded px-10 py-3 text-sm ml-2">
+            <button className="bg-red-500 w-full md:w-auto text-white rounded md:px-10 py-3 text-sm ml-2">
               Apply Coupon
             </button>
           </div>
 
-          <div className="border border-gray-300 rounded px-5 py-4 w-[484px] ">
-            <h2 className="text-lg font-semibold mb-4">Cart Total</h2>
+          <div className="border border-gray-300 rounded px-2.5 md:px-5 py-4 w-full md:w-[564px]">
+            <h2 className="md:text-lg font-semibold mb-4">Cart Total</h2>
             <div className="flex justify-between mb-1">
               <span className="text-sm py-3.5">Subtotal:</span>
               <span className="text-sm py-3.5">
