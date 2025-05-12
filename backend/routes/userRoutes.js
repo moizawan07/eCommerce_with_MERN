@@ -13,6 +13,7 @@ const getAllusers = require('../controllers/getAllUsers')
 const addToCardProducts = require('../controllers/addToCardProductsGet')
 const userprofile = require('../controllers/userProfile')
 const editProfile = require('../controllers/editProfile')
+const chatMessageSend = require('../controllers/chatMessage')
 
 
 // 1: Signup Route
@@ -34,5 +35,8 @@ userRoutes.get('/getUser', verifyToken, userprofile)
 
 // 6: Edit Profile 
 userRoutes.post('/editProfile', verifyToken, editProfile)
+
+// 7: Chat
+userRoutes.post('/chatMsgSend', verifyToken, chatMessageSend)
  
 module.exports = userRoutes
