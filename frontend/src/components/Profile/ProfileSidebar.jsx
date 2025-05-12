@@ -12,10 +12,10 @@ const ProfileSidebar = () => {
   const sidebarItems = [
     { path: '/userProfile', label: 'My Profile' },
     { path: '/address-book', label: 'Address Book' },
-    { path: '/payment-options', label: 'My Payment Options' },
     { path: '/userOrders', label: 'My Orders' },
     { path: '/my-returns', label: 'My Returns' },
     { path: '/my-cancellations', label: 'My Cancellations' },
+    { path: '/userChat', label: 'Chat' },
     { path: '/wishlist', label: 'My WishList' },
   ];
 

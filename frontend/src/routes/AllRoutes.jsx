@@ -24,6 +24,7 @@ import AdminCreateProduct from '../pages/admin/AdminCreateProduct'
 import UserOrders from '../pages/userProfile/UserOrders'
 import AdminOrders from '../pages/admin/AdminOrders'
 import AdminProfile from '../pages/admin/AdminProfile'
+import ChatPage from '../pages/userProfile/Chat'
 
 
 
@@ -53,6 +54,8 @@ function AllRoutes() {
         <Route path='/userProfile'element={<ProtectedRoute> <EditProfile /></ProtectedRoute>} />
         
         <Route path='/userOrders'element={<ProtectedRoute> <UserOrders /></ProtectedRoute>} />
+
+        <Route path='/userChat'element={<ProtectedRoute> <ChatPage /></ProtectedRoute>} />
 
 
 
