@@ -14,12 +14,11 @@ const addToCardProducts = require('../controllers/addToCardProductsGet')
 const userprofile = require('../controllers/userProfile')
 const editProfile = require('../controllers/editProfile')
 const chatMessageSend = require('../controllers/chatMessage')
-// const sendMessageToDialogflow = require('../controllers/chatMessage')
+
 
 
 // 1: Signup Route
 userRoutes.post('/signup', signupAuth, signup)
-
 
 // 2: Login Route
 userRoutes.post('/login', loginAuth, login)
@@ -38,6 +37,6 @@ userRoutes.get('/getUser', verifyToken, userprofile)
 userRoutes.post('/editProfile', verifyToken, editProfile)
 
 // 7: Chat
-// userRoutes.post('/chatMsgSend', verifyToken, () => runSample('tekvibechatbot-ueff'))
+userRoutes.post('/chatMsgSend', verifyToken, chatMessageSend)
  
 module.exports = userRoutes

@@ -30,7 +30,7 @@ const ChatUI = () => {
           authorization: `bearer ${window.localStorage.getItem("token")}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ userMsg: inputVal }),
+        body: JSON.stringify({ message: inputVal }),
       });
       let resData = await response.json();
 
