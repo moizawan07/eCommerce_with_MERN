@@ -151,7 +151,7 @@ const loginSubmit = async (e) => {
            >
             Login
            </button>
-           <p className='text-red-500 text-[14px]'>Forget Your Password?</p>
+           <p className='text-red-500 text-[14px] cursor-pointer' onClick={() => navigate('/forgotPassword')}>Forget Your Password?</p>
          </div>
             
           </form>

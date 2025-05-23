@@ -90,7 +90,7 @@ const EditProfileForm = ({ nameChangedFun }) => {
   }
 
   return (
-    <div className="w-full max-w-5xl mx-auto md:px-4 py-6">
+    <div className="w-full max-w-5xl mx-auto md:px-4">
       <div className="bg-white rounded-xl shadow-md p-2 md:p-10">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold text-red-500">

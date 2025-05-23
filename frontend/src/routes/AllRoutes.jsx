@@ -25,6 +25,8 @@ import UserOrders from '../pages/userProfile/UserOrders'
 import AdminOrders from '../pages/admin/AdminOrders'
 import AdminProfile from '../pages/admin/AdminProfile'
 import ChatPage from '../pages/userProfile/Chat'
+import ForgotPasswordPage from '../pages/ForgotPasswordPage'
+import ResetPasswordPage from '../pages/ResetPasswordPage'
 
 
 
@@ -40,6 +42,10 @@ function AllRoutes() {
         <Route path='/signup'  element={<Signup />}/>
         
         <Route path='/login'   element={<Login />}/>
+
+        <Route path='/forgotPassword'   element={<ForgotPasswordPage />}/>
+
+        <Route path='/resetPassword/:token'   element={<ResetPasswordPage />}/>
         
         <Route path='/about'   element={<About />}/>
         

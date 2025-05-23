@@ -8,6 +8,8 @@ const schema = mongoose.Schema({
     address : String,
     role : String,
     orders : [{type : mongoose.Schema.Types.ObjectId, ref : 'orders'}],
+    resetToken: String,
+    resetTokenExpiry: Date,
     createdAt: { type: Date, default: Date.now}
 })
 

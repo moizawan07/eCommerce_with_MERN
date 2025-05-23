@@ -14,6 +14,8 @@ const addToCardProducts = require('../controllers/addToCardProductsGet')
 const userprofile = require('../controllers/userProfile')
 const editProfile = require('../controllers/editProfile')
 const chatMessageSend = require('../controllers/chatMessage')
+const forgotPassword = require('../controllers/forgotPassword')
+const resetPassword = require('../controllers/resetPassword')
 
 
 
@@ -39,4 +41,11 @@ userRoutes.post('/editProfile', verifyToken, editProfile)
 // 7: Chat
 userRoutes.post('/chatMsgSend', verifyToken, chatMessageSend)
  
+// 8: ForgotPassword 
+userRoutes.post('/forgotPassword', forgotPassword)
+
+// 8: Reset password 
+userRoutes.post('/resetPassword/:token', resetPassword)
+
+
 module.exports = userRoutes
