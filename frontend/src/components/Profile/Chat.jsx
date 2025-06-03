@@ -24,7 +24,7 @@ const ChatUI = () => {
     const reqAndRes = [{ sender: "user", text: inputVal }];
 
     try {
-      let response = await fetch("http://localhost:3000/user/chatMsgSend", {
+      let response = await fetch("https://ecommercewithmern-production.up.railway.app/user/chatMsgSend", {
         method: "POST",
         headers: {
           authorization: `bearer ${window.localStorage.getItem("token")}`,

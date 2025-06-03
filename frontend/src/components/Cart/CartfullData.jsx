@@ -22,7 +22,7 @@ const CartPage = () => {
     if(cardItems.length < 1) return;
     console.log("falseeee", cardItems.length);
     
-     fetch('http://localhost:3000/user/addToCard', {
+     fetch('https://ecommercewithmern-production.up.railway.app/user/addToCard', {
       method: 'POST',
       headers : {
         'authorization' : `bearer ${window.localStorage.getItem('token')}`,

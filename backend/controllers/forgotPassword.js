@@ -30,7 +30,7 @@ const forgotPassword =  async (req, res) => {
   const resetLink = `http://localhost:5173/resetPassword/${token}`;
 
   await transporter.sendMail({
-    to: 'awanmoiz709@gmail.com',
+    to: user.email,
     subject: "Password Reset",
     html: `<p>Click <a href="${resetLink}">here</a> to reset your password</p>`,
   });

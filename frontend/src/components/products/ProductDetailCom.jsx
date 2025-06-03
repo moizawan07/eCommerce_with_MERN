@@ -9,7 +9,7 @@ const ProductDetail = () => {
    console.log("rff", productId);
    
  useEffect(() => {
-   fetch('http://localhost:3000/product/productDetail',{
+   fetch('https://ecommercewithmern-production.up.railway.app/product/productDetail',{
     method : 'POST',
     headers: {'Content-Type' : 'application/json'},
     body:JSON.stringify({id : productId})

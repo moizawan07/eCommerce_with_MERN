@@ -18,7 +18,7 @@ const EditProfileForm = ({ nameChangedFun }) => {
 
   // Get user details from backend
   useEffect(() => {
-    fetch("http://localhost:3000/user/getUser", {
+    fetch("https://ecommercewithmern-production.up.railway.app/user/getUser", {
       method: "GET",
       headers: {
         authorization: `bearer ${window.localStorage.getItem("token")}`,
@@ -69,7 +69,7 @@ const EditProfileForm = ({ nameChangedFun }) => {
       return toast.error("New password and confirm password do not match");
 
     try {
-      let response = await fetch("http://localhost:3000/user/editProfile", {
+      let response = await fetch("https://ecommercewithmern-production.up.railway.app/user/editProfile", {
         method: "POST",
         headers: {
           authorization: `bearer ${window.localStorage.getItem("token")}`,

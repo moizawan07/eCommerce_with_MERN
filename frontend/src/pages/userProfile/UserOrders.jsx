@@ -1,7 +1,7 @@
 import Footer from "../../components/Footer"
 import Header from "../../components/Header"
 import ProfileSidebar from "../../components/Profile/ProfileSidebar"
-import UserOrdersRight from "../../components/Profile/userOrdersRight"
+import UserOrdersRight from "../../components/Profile/UserOrdersRight"
 import SuggestedNav from "../../components/SuggestedNav"
 
 

@@ -16,7 +16,7 @@ const AllProductList = () => {
   
 
  useEffect(() => {
-   fetch('http://localhost:3000/product/getProducts')
+   fetch('https://ecommercewithmern-production.up.railway.app/product/getProducts')
    .then(res => res.json())
    .then(data => setProducts(data.products))
    .catch(err => alert(err.message))
@@ -25,7 +25,7 @@ const AllProductList = () => {
 
 async function productDelete (proId) {
   try {
-    let response = await fetch('http://localhost:3000/admin/productDelete', {
+    let response = await fetch('https://ecommercewithmern-production.up.railway.app/admin/productDelete', {
      method : 'DELETE',
      headers : {'authorization' : `bearer ${window.localStorage.getItem('token')}`,
      'Content-type' : 'application/json'},
@@ -51,7 +51,7 @@ async function productInStockChanged (proId, value) {
          setProducts(updatedProducts)
 
   try {
-    let response = await fetch('http://localhost:3000/admin/productInStockChanged', {
+    let response = await fetch('https://ecommercewithmern-production.up.railway.app/admin/productInStockChanged', {
      method : 'PUT',
      headers : {'authorization' : `bearer ${window.localStorage.getItem('token')}`,
      'Content-type' : 'application/json'},

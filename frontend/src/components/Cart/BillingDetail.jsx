@@ -62,7 +62,7 @@ const BillingDetails = ({ modaal, cardProucts, orderState }) => {
     // console.log("allChjekut products ==>", allcheckoutProducts);
 
     try {
-      let response = await fetch("http://localhost:3000/order/done", {
+      let response = await fetch("https://ecommercewithmern-production.up.railway.app/order/done", {
         method: "POST",
         headers: {
           authorization: `bearer ${window.localStorage.getItem("token")}`,

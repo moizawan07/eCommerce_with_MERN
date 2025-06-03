@@ -32,7 +32,7 @@ function AllProductsPrint() {
   // Get all Products in the database
   useEffect(() => {
 
-   fetch('http://localhost:3000/product/getProducts')
+   fetch('https://ecommercewithmern-production.up.railway.app/product/getProducts')
    .then(res => res.json())
    .then(data => setProducts(data.products))
    .catch(err => alert(err.message))
