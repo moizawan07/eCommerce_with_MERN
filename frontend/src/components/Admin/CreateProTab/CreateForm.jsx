@@ -44,7 +44,7 @@ console.log("form values ==>", formValue);
 
       
    try {
-    let response = await fetch('https://ecommercewithmern-production.up.railway.app/product/create', {
+    let response = await fetch('http://localhost:3000/product/create', {
         method : 'POST',
         headers : {
           'authorization' : `bearer ${window.localStorage.getItem('token')}`,

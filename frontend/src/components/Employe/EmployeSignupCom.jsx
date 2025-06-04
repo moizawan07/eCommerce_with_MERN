@@ -102,7 +102,7 @@ const EmployeSignupCom = () => {
      }
 
     try {
-      let response = await fetch('https://ecommercewithmern-production.up.railway.app/employe/signup', {
+      let response = await fetch('http://localhost:3000/employe/signup', {
         method : 'POST',
         headers : {"Content-type": "application/json"},
         body : JSON.stringify({...formValue, role : 'employe'})

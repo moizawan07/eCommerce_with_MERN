@@ -27,6 +27,7 @@ import AdminProfile from '../pages/admin/AdminProfile'
 import ChatPage from '../pages/userProfile/Chat'
 import ForgotPasswordPage from '../pages/ForgotPasswordPage'
 import ResetPasswordPage from '../pages/ResetPasswordPage'
+import Wishlist from '../pages/userProfile/Wishlist'
 
 
 
@@ -62,6 +63,8 @@ function AllRoutes() {
         <Route path='/userOrders'element={<ProtectedRoute> <UserOrders /></ProtectedRoute>} />
 
         <Route path='/userChat'element={<ProtectedRoute> <ChatPage /></ProtectedRoute>} />
+
+        <Route path='/wishlist' element={<ProtectedRoute> <Wishlist /></ProtectedRoute>} />
 
 
 

@@ -102,7 +102,7 @@ const AdminSignupCom = () => {
      }
 
     try {
-      let response = await fetch('https://ecommercewithmern-production.up.railway.app/admin/signup', {
+      let response = await fetch('http://localhost:3000/admin/signup', {
         method : 'POST',
         headers : {"Content-type": "application/json"},
         body : JSON.stringify({...formValue, role : 'admin'})

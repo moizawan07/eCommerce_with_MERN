@@ -9,7 +9,7 @@ const AdminProtectedRoute = ({ children }) => {
   useEffect(() => {
     const token = window.localStorage.getItem("token");
 
-    fetch('https://ecommercewithmern-production.up.railway.app/admin/coming/dashboard', {
+    fetch('http://localhost:3000/admin/coming/dashboard', {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,

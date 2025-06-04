@@ -4,6 +4,7 @@ let CardContext = createContext()
 
 function CardContextProvider  ({children})  {
   let [cardItems,setCardItems] = useState([])
+  let [wishlist,setWishlist] = useState([])
 
  
    // Jab component mount (refresh) ho localStorage se data lo aur State ma save kro loo
@@ -13,6 +14,9 @@ function CardContextProvider  ({children})  {
     if (storedCart) {
       setCardItems((previous) => [...previous, ...JSON.parse(storedCart)]);
     }
+
+    let getWishItems = JSON.parse(window.localStorage.getItem('wishlistItems')) || [];
+    setWishlist(getWishItems)
   }, []);
 
 
@@ -25,7 +29,7 @@ function CardContextProvider  ({children})  {
 
 
   return(
-    <CardContext.Provider value={{cardItems,setCardItems}}>
+    <CardContext.Provider value={{cardItems,setCardItems, wishlist, setWishlist}}>
       {children}
     </CardContext.Provider>
 )

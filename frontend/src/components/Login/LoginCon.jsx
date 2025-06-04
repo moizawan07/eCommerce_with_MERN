@@ -73,14 +73,12 @@ const loginSubmit = async (e) => {
    }
 
   try {
-    let response = await fetch('https://ecommercewithmern-production.up.railway.app/user/login', {
+    let response = await fetch('http://localhost:3000/user/login', {
       method : 'POST',
       headers : {"Content-type": "application/json"},
       body : JSON.stringify({...formValue, role : 'user'})
     })
     let resData = await response.json()
-    
-    console.log("dtaa==>", resData);
     
      if(response.status != 200){
       return setServerMsg(resData.message)
@@ -90,6 +88,8 @@ const loginSubmit = async (e) => {
      // Token Set in the Localstorage
      window.localStorage.setItem('token', resData.token)
      setServerMsg(resData.message)
+
+     window.localStorage.setItem('wishlistItems', JSON.stringify([]))
      setTimeout(() => {
         navigate('/')
      }, 1000);

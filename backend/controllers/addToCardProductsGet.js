@@ -7,7 +7,6 @@ const addToCardProducts = async (req, res) => {
 
   try {
     const unorderedProducts = await productModel.find({ _id: { $in: productsIds } });
-    console.log("products ==>", );
 
   // Now reorder according to productIds
 const orderedProducts = productsIds.map(id => 

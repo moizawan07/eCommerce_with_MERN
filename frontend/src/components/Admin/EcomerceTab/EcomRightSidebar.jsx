@@ -11,7 +11,7 @@ function EcomRightSidebar() {
   let [dashInfo, setdashinfo] = useState(false)
 
  useEffect(() => {
-   fetch('https://ecommercewithmern-production.up.railway.app/admin/analytics', {
+   fetch('http://localhost:3000/admin/analytics', {
     method: 'GET',
     headers: {'authorization' : `bearer ${window.localStorage.getItem('token')}`}
    })

@@ -12,7 +12,7 @@ const ResetPasswordPage = () => {
   const handleReset = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`https://ecommercewithmern-production.up.railway.app/user/resetPassword/${token}`,{
+      const res = await fetch(`http://localhost:3000/user/resetPassword/${token}`,{
         method : 'POST',
          headers : {
              "Content-Type" : 'application/json'

@@ -31,35 +31,56 @@ const DameCards = ({
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate(null)
   const {cardItems , setCardItems} = useContext(CardContext)
-
-
-  const addToCard = async () => {
+  const {wishlist, setWishlist} = useContext(CardContext)
+  
+  
+  
+  // ----- Add To Card Work Here ----
+const addToCard = async () => {
     let token = window.localStorage.getItem('token')
-      if(!token) return navigate('/login')
-    // console.log("Product id ===>", _id);
-    // console.log("Card Items [] ===>", cardItems);
-    
+    if(!token) return navigate('/login')
     
     // Now Set The Product Document Id In CardItems State
     // If Already added So remove like an toogle work i doo here
-
-     let alreadyAdd = cardItems.findIndex(item => item === _id)
     
-     
-// If number >= 0 means already add huwa wa so remove it 
-     if(alreadyAdd >= 0){
-       toast.success('Remove to Cart Sucessfully', {position : 'bottom-right'})
-       cardItems.splice(alreadyAdd, 1)
+    let alreadyAdd = cardItems.findIndex(item => item === _id)
+    
+    
+    // If number >= 0 means already add huwa wa so remove it 
+    if(alreadyAdd >= 0){
+      toast.success('Remove to Cart Sucessfully', {position : 'bottom-right'})
+      cardItems.splice(alreadyAdd, 1)
       return setCardItems([...cardItems])
-      }
+    }
 
 // if number not >= 0 means not add it Before so add it
     
       setCardItems([_id, ...cardItems])
 
       toast.success('Add To Card Sucessfully')
-
+      
 }
+
+// Wishlist Done 
+const wishlishDone = () => {
+    let storedWishItems = JSON.parse(window.localStorage.getItem('wishlistItems')) || []
+//  Toggle Items already add so remove otherwise add it
+let addIt = storedWishItems.findIndex((e) => e === _id)
+
+if(addIt != '-1') {
+  storedWishItems.splice(addIt, 1)
+  toast.success('Remove From wishlist', {position : 'top-left'})
+}
+else{
+  storedWishItems.push(_id)
+  toast.success('Add From wishlist', {position : 'top-right'})
+}
+
+setWishlist(storedWishItems)
+  
+window.localStorage.setItem('wishlistItems', JSON.stringify(storedWishItems))
+}
+
 
   return (
     <div
@@ -84,7 +105,9 @@ const DameCards = ({
         />
 
         <div className="absolute top-2 right-2 z-10">
-          <button className="bg-white rounded-full p-2 text-gray-500 hover:text-gray-700 shadow-sm">
+          <button className={`bg-white rounded-full p-2  hover:text-red-500 shadow-sm
+          ${wishlist.includes(_id) ? 'text-red-500' : 'text-gray-700'}`}
+          onClick={wishlishDone}>
             <AiFillHeart size={16} />
           </button>
         </div>

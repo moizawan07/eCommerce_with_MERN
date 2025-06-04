@@ -47,5 +47,8 @@ userRoutes.post('/forgotPassword', forgotPassword)
 // 8: Reset password 
 userRoutes.post('/resetPassword/:token', resetPassword)
 
+// 9: Wish List Items get
+userRoutes.post('/getWishlistItems', verifyToken, addToCardProducts)
+
 
 module.exports = userRoutes

@@ -50,15 +50,17 @@ const Header = () => {
       {/* Desktop Search + Icons */}
       <div className="hidden md:flex items-center gap-6">
         {/* Change Lanuages box */}
-       <select
-         onChange={changeLanguage}
-         value={i18n.language}
-         className="border px-2 py-1 rounded-md text-sm focus:outline-none border-gray-500">
-          <option value="eng">ENG</option>
-          <option value="urdu">URDU</option>
-          <option value="china">CHINA</option>
-          <option value="arbi">ARBI</option>
-       </select>
+      <select
+  onChange={changeLanguage}
+  value={i18n.language}
+  className="border px-2 py-1 rounded-md text-sm focus:outline-none border-gray-500"
+>
+  <option value="eng">🇺🇸 English</option>
+  <option value="urdu">🇵🇰 Urdu</option>
+  <option value="china">🇨🇳 Chinese</option>
+  <option value="arbi">🇸🇦 Arabic</option>
+</select>
+
 
         <div className="bg-gray-100 rounded-md px-3 py-1 flex items-center focus-within:ring-2 focus-within:ring-gray-400">
           <input

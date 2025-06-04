@@ -5,7 +5,7 @@ const OrdersTable = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    fetch('https://ecommercewithmern-production.up.railway.app/order/getUsersOrders', {
+    fetch('http://localhost:3000/order/getUsersOrders', {
       method: 'GET',
       headers: {
         "authorization": `bearer ${window.localStorage.getItem('token')}`

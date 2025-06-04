@@ -20,9 +20,7 @@ const CartPage = () => {
   useEffect(() => {
     // console.log("use effect run==>", cardItems);
     if(cardItems.length < 1) return;
-    console.log("falseeee", cardItems.length);
-    
-     fetch('https://ecommercewithmern-production.up.railway.app/user/addToCard', {
+     fetch('http://localhost:3000/user/addToCard', {
       method: 'POST',
       headers : {
         'authorization' : `bearer ${window.localStorage.getItem('token')}`,
@@ -31,7 +29,6 @@ const CartPage = () => {
       body: JSON.stringify(cardItems) 
      })
      .then(res => {
-      
        if(res.status != 200){
         throw new Error("Failed To Fetch");
        }

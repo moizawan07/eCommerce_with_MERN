@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { FiMenu, FiX } from 'react-icons/fi';
+import {CardContext} from '../../context/CardContext'
 
 const ProfileSidebar = () => {
   const location = useLocation();
   const pathname = location.pathname;
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  let {setWishlist} = useContext(CardContext)
 
   const sidebarItems = [
     { path: '/userProfile', label: 'My Profile' },
@@ -21,6 +23,8 @@ const ProfileSidebar = () => {
 
   const handleLogout = () => {
     window.localStorage.removeItem('token');
+    window.localStorage.removeItem('wishlistItems');
+    setWishlist([])
     navigate('/');
     toast.success('Logout successfully', { position: 'top-left' });
     setIsOpen(false);

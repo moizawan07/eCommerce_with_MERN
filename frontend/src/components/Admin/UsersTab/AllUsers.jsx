@@ -9,7 +9,7 @@ const AllUserTable = () => {
 
 // Get all Users
 useEffect(() => {
-  fetch('https://ecommercewithmern-production.up.railway.app/user/allUsersGet', {
+  fetch('http://localhost:3000/user/allUsersGet', {
     method : 'GET',
     headers : {'authorization' : `bearer ${window.localStorage.getItem('token')}`}
   })
@@ -25,7 +25,7 @@ useEffect(() => {
 
 async function userDelete  (userId){
   try {
-    let response = await fetch('https://ecommercewithmern-production.up.railway.app/admin/userDelete', {
+    let response = await fetch('http://localhost:3000/admin/userDelete', {
      method : 'DELETE',
      headers : {'authorization' : `bearer ${window.localStorage.getItem('token')}`,
      'Content-type' : 'application/json'},
