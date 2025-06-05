@@ -9,7 +9,7 @@ const OrdersTable = () => {
   console.log("modalOn", modalOn);
 
   useEffect(() => {
-    fetch("http://localhost:3000/order/allOrdersGet", {
+    fetch("https://ecommercewithmern-production.up.railway.app/order/allOrdersGet", {
       method: "GET",
       headers: {
         authorization: `bearer ${window.localStorage.getItem("token")}`,
@@ -40,7 +40,7 @@ const OrdersTable = () => {
     setOrders(updatedOrders);
 
     try {
-      let response = await fetch("http://localhost:3000/admin/statusChange", {
+      let response = await fetch("https://ecommercewithmern-production.up.railway.app/admin/statusChange", {
         method: "PUT",
         headers: {
           authorization: `bearer ${window.localStorage.getItem("token")}`,

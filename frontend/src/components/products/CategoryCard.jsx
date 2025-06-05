@@ -3,7 +3,7 @@ function CategoryCard({ name, icon: Icon, onCardCliked , categoryName}) {
   console.log('name==>', name);
   
   const categoryGet = () => {
-    fetch("http://localhost:3000/product/getCategorie/Product", {
+    fetch("https://ecommercewithmern-production.up.railway.app/product/getCategorie/Product", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ categoryName: categoryName}),

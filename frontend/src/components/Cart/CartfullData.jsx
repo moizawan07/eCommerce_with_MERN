@@ -20,7 +20,7 @@ const CartPage = () => {
   useEffect(() => {
     // console.log("use effect run==>", cardItems);
     if(cardItems.length < 1) return;
-     fetch('http://localhost:3000/user/addToCard', {
+     fetch('https://ecommercewithmern-production.up.railway.app/user/addToCard', {
       method: 'POST',
       headers : {
         'authorization' : `bearer ${window.localStorage.getItem('token')}`,

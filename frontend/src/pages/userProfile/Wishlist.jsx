@@ -14,7 +14,7 @@ function Wishlist() {
  console.log("use effect run111==>", wishlist);
 useEffect(() => {
     if(wishlist.length < 1) return;
-     fetch('http://localhost:3000/user/getWishlistItems', {
+     fetch('https://ecommercewithmern-production.up.railway.app/user/getWishlistItems', {
       method: 'POST',
       headers : {
         'authorization' : `bearer ${window.localStorage.getItem('token')}`,

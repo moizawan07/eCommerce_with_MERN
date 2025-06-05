@@ -73,7 +73,7 @@ const loginSubmit = async (e) => {
    }
 
   try {
-    let response = await fetch('http://localhost:3000/user/login', {
+    let response = await fetch('https://ecommercewithmern-production.up.railway.app/user/login', {
       method : 'POST',
       headers : {"Content-type": "application/json"},
       body : JSON.stringify({...formValue, role : 'user'})
